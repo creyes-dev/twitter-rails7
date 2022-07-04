@@ -463,5 +463,22 @@ $ rails db:migrate
    -> 0.0147s
 == 20220704040520 AddNameToUser: migrated (0.0148s) ===========================
 
+# Register new users
+
+User.all
+  User Load (0.8ms)  SELECT "users".* FROM "users"
+ =>
+[#<User id: 1, email: "user10@mail.com", role: 0, created_at: "2022-07-04 04:56:00.373972000 +0000", updated_at: "2022-07-04 04:56:00.373972000 +0000", name: nil>,
+ #<User id: 2, email: "trinidad@minimo.com", role: 0, created_at: "2022-07-04 04:59:43.775009000 +0000", updated_at: "2022-07-04 04:59:43.775009000 +0000", name: nil>,
+ #<User id: 3, email: "muresco@api.com", role: 0, created_at: "2022-07-04 05:01:10.786382000 +0000", updated_at: "2022-07-04 05:01:10.786382000 +0000", name: nil>,
+ #<User id: 4, email: "sanmartin@uni.gov.ar", role: 0, created_at: "2022-07-04 05:02:19.455804000 +0000", updated_at: "2022-07-04 05:02:19.455804000 +0000", name: nil>,
+ #<User id: 5, email: "facil@pasar.com", role: 0, created_at: "2022-07-04 05:03:26.099248000 +0000", updated_at: "2022-07-04 05:03:26.099248000 +0000", name: nil>,
+ #<User id: 6, email: "cami@exp.com", role: 0, created_at: "2022-07-04 05:04:11.842846000 +0000", updated_at: "2022-07-04 05:04:11.842846000 +0000", name: nil>,
+ #<User id: 7, email: "ulaqn@mail.com", role: 0, created_at: "2022-07-04 05:05:10.674593000 +0000", updated_at: "2022-07-04 05:05:10.674593000 +0000", name: nil>,
+ #<User id: 8, email: "indi@cacion.com", role: 0, created_at: "2022-07-04 05:06:28.965506000 +0000", updated_at: "2022-07-04 05:06:28.965506000 +0000", name: nil>]
+
+
+
+
 
 
