@@ -409,7 +409,18 @@ $ rails db:migrate
    -> 0.0248s
 == 20220704012035 DeviseCreateUsers: migrated (0.3095s) =======================
 
-following: Create User Account Roles In Devise | Ruby On Rails 7 Tutorial by Deanin
-https://youtu.be/FdCsBwI7raY
+# Generate and setting up the main page
+
+$ rails g controller pages home
+      create  app/controllers/pages_controller.rb
+       route  get 'pages/home'
+      invoke  erb
+      create    app/views/pages
+      create    app/views/pages/home.html.erb
+      invoke  test_unit
+      create    test/controllers/pages_controller_test.rb
+      invoke  helper
+      create    app/helpers/pages_helper.rb
+      invoke    test_unit
 
 
