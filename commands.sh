@@ -423,7 +423,7 @@ $ rails g controller pages home
       create    app/helpers/pages_helper.rb
       invoke    test_unit
 
-# Generate devise views
+# Generating devise views
 
 $ rails g devise:views
       invoke  Devise::Generators::SharedViewsGenerator
@@ -450,4 +450,18 @@ $ rails g devise:views
       create    app/views/devise/mailer/password_change.html.erb
       create    app/views/devise/mailer/reset_password_instructions.html.erb
       create    app/views/devise/mailer/unlock_instructions.html.erb
+
+# Using user name instead of email
+
+$ rails g migration AddNameToUser name:string
+      invoke  active_record
+      create    db/migrate/20220704040520_add_name_to_user.rb
+
+$ rails db:migrate
+== 20220704040520 AddNameToUser: migrating ====================================
+-- add_column(:users, :name, :string)
+   -> 0.0147s
+== 20220704040520 AddNameToUser: migrated (0.0148s) ===========================
+
+
 
