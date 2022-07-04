@@ -397,3 +397,19 @@ $ rails g devise User role:integer
       insert    app/models/user.rb
        route  devise_for :users
 
+# Migrating User table
+
+$ rails db:migrate
+== 20220704012035 DeviseCreateUsers: migrating ================================
+-- create_table(:users)
+   -> 0.2256s
+-- add_index(:users, :email, {:unique=>true})
+   -> 0.0589s
+-- add_index(:users, :reset_password_token, {:unique=>true})
+   -> 0.0248s
+== 20220704012035 DeviseCreateUsers: migrated (0.3095s) =======================
+
+following: Create User Account Roles In Devise | Ruby On Rails 7 Tutorial by Deanin
+https://youtu.be/FdCsBwI7raY
+
+
