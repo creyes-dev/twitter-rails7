@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: prode_production
-  username: prode
+  username: cristian
   password: <%= ENV["PRODE_DATABASE_PASSWORD"] %>

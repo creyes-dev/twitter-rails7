@@ -225,7 +225,33 @@ Updated ~/.gemrc: 'gem: --document=yri'
 
 $ solargraph bundle
 
+# Setting up postgresql and creating database
 
+$ rails db:create
+Created database 'prode_development'
+Created database 'prode_test'
+
+$ rails db:migrate
+
+$ sudo -u postgres psql
+[sudo] password for cristian:
+psql (13.7 (Debian 13.7-0+deb11u1))
+Type "help" for help.
+
+postgres=# \l
+
+                                      List of databases
+       Name        |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges
+-------------------+----------+----------+-------------+-------------+-----------------------
+ cristiandb        | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ postgres          | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ prode_development | cristian | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ prode_test        | cristian | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ template0         | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+                   |          |          |             |             | postgres=CTc/postgres
+ template1         | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+                   |          |          |             |             | postgres=CTc/postgres
+(6 rows)
 
 
 
