@@ -477,8 +477,45 @@ User.all
  #<User id: 7, email: "ulaqn@mail.com", role: 0, created_at: "2022-07-04 05:05:10.674593000 +0000", updated_at: "2022-07-04 05:05:10.674593000 +0000", name: nil>,
  #<User id: 8, email: "indi@cacion.com", role: 0, created_at: "2022-07-04 05:06:28.965506000 +0000", updated_at: "2022-07-04 05:06:28.965506000 +0000", name: nil>]
 
+3.1.2 :011 > User.first.update!(role: 1, name: 'cristian')
+  User Load (0.5ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1  [["LIMIT", 1]]
+  TRANSACTION (0.3ms)  BEGIN
+  User Update (14.0ms)  UPDATE "users" SET "role" = $1, "updated_at" = $2, "name" = $3 WHERE "users"."id" = $4  [["role", 1], ["updated_at", "2022-07-04 05:11:17.963733"], ["name", "cristian"], ["id", 1]]
+  TRANSACTION (4.5ms)  COMMIT
+ => true
 
+# Generating Competiton structure model
+$ rails generate model Competition_structure description:string
+      invoke  active_record
+      create    db/migrate/20220708002953_create_competition_structures.rb
+      create    app/models/competition_structure.rb
+      invoke    test_unit
+      create      test/models/competition_structure_test.rb
+      create      test/fixtures/competition_structures.yml
 
+$ rake db:migrate
+== 20220708002953 CreateCompetitionStructures: migrating ======================
+-- create_table(:competition_structures)
+   -> 0.3926s
+== 20220708002953 CreateCompetitionStructures: migrated (0.3928s) =============
 
+CompetitionStructure.all
+  CompetitionStructure Load (0.6ms)  SELECT "competition_structures".* FROM "competition_structures"
+ =>
+[#<CompetitionStructure:0x00007f65a03eba40
+  id: 1,
+  description: "league",
+  created_at: Fri, 08 Jul 2022 01:11:27.627251000 UTC +00:00,
+  updated_at: Fri, 08 Jul 2022 01:11:27.627251000 UTC +00:00>,
+ #<CompetitionStructure:0x00007f65a03eb928
+  id: 2,
+  description: "tournament",
+  created_at: Fri, 08 Jul 2022 01:11:41.493362000 UTC +00:00,
+  updated_at: Fri, 08 Jul 2022 01:11:41.493362000 UTC +00:00>,
+ #<CompetitionStructure:0x00007f65a03eb860
+  id: 3,
+  description: "league and tournament playoff",
+  created_at: Fri, 08 Jul 2022 01:12:36.390545000 UTC +00:00,
+  updated_at: Fri, 08 Jul 2022 01:12:36.390545000 UTC +00:00>]
 
 
