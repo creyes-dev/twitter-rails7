@@ -556,5 +556,16 @@ $ rails db:migrate
    -> 0.2230s
 == 20220708014132 CreateCompetitions: migrated (0.2231s) ======================
 
+# Add begin datetime to Competition table
+$ rails g migration addBeginToCompetitions begin:datetime
+      invoke  active_record
+      create    db/migrate/20220708022225_add_begin_to_competitions.rb
+
+$ rails db:migrate
+== 20220708022225 AddBeginToCompetitions: migrating ===========================
+-- add_column(:competitions, :begin, :datetime)
+   -> 0.0015s
+== 20220708022225 AddBeginToCompetitions: migrated (0.0015s) ==================
+
 
 
