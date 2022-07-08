@@ -579,5 +579,19 @@ $ rails db:migrate
    -> 0.0016s
 == 20220708022637 AddActiveToCompetitions: migrated (0.0018s) =================
 
+# Generating scaffold of group model
+$ rails g model Group competition:references name:string rounds:integer playoff_round:integer
+      invoke  active_record
+      create    db/migrate/20220708034024_create_groups.rb
+      create    app/models/group.rb
+      invoke    test_unit
+      create      test/models/group_test.rb
+      create      test/fixtures/groups.yml
+
+$ rails db:migrate
+== 20220708034024 CreateGroups: migrating =====================================
+-- create_table(:groups)
+   -> 0.2082s
+== 20220708034024 CreateGroups: migrated (0.2082s) ============================
 
 
