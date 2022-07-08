@@ -6,14 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# Book.create(
-#   title: "The Pragmatic Programmer:",
-#   author: "Andrew Hunt, Dave Thomas",
-#   description: "Illustrates the best practices and major pitfalls of many different aspects of software development",
-#   image_url: "https://images-na.ssl-images-amazon.com/images/I/41BKx1AxQWL._SX396_BO1,204,203,200_.jpg",
-#   publication_date: "10-30-1999",
-#   price: 30.96)
-
 CompetitionStructure.create!(description: "league")
 CompetitionStructure.create!(description: "tournament")
 CompetitionStructure.create!(description: "league and tournament playoff")
+
+Competition.create!(name: "Mundial qatar 2022", competition_structure_id: 3, national_teams: true, groups: 8, teams_group: 4, rounds: 1,  begin: "2022-11-21T09:00:00+00:00", active: true)
+
+

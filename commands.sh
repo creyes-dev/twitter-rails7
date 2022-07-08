@@ -567,5 +567,17 @@ $ rails db:migrate
    -> 0.0015s
 == 20220708022225 AddBeginToCompetitions: migrated (0.0015s) ==================
 
+# Add active to Competition table
+
+$ rails g migration addActiveToCompetitions active:boolean
+      invoke  active_record
+      create    db/migrate/20220708022637_add_active_to_competitions.rb
+
+$ rails db:migrate
+== 20220708022637 AddActiveToCompetitions: migrating ==========================
+-- add_column(:competitions, :active, :boolean)
+   -> 0.0016s
+== 20220708022637 AddActiveToCompetitions: migrated (0.0018s) =================
+
 
 
