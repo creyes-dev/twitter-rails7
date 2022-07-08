@@ -550,5 +550,11 @@ $ rails generate scaffold Competition name:string competition_structure:referenc
       create      app/views/competitions/show.json.jbuilder
       create      app/views/competitions/_competition.json.jbuilder
 
+$ rails db:migrate
+== 20220708014132 CreateCompetitions: migrating ===============================
+-- create_table(:competitions)
+   -> 0.2230s
+== 20220708014132 CreateCompetitions: migrated (0.2231s) ======================
+
 
 
