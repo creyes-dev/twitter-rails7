@@ -518,4 +518,37 @@ CompetitionStructure.all
   created_at: Fri, 08 Jul 2022 01:12:36.390545000 UTC +00:00,
   updated_at: Fri, 08 Jul 2022 01:12:36.390545000 UTC +00:00>]
 
+# Generating scaffold of competition model
+$ rails generate scaffold Competition name:string competition_structure:references national_teams:boolean groups:integer teams_group:integer rounds:integer
+      invoke  active_record
+      create    db/migrate/20220708014132_create_competitions.rb
+      create    app/models/competition.rb
+      invoke    test_unit
+      create      test/models/competition_test.rb
+      create      test/fixtures/competitions.yml
+      invoke  resource_route
+       route    resources :competitions
+      invoke  scaffold_controller
+      create    app/controllers/competitions_controller.rb
+      invoke    erb
+      create      app/views/competitions
+      create      app/views/competitions/index.html.erb
+      create      app/views/competitions/edit.html.erb
+      create      app/views/competitions/show.html.erb
+      create      app/views/competitions/new.html.erb
+      create      app/views/competitions/_form.html.erb
+      create      app/views/competitions/_competition.html.erb
+      invoke    resource_route
+      invoke    test_unit
+      create      test/controllers/competitions_controller_test.rb
+      create      test/system/competitions_test.rb
+      invoke    helper
+      create      app/helpers/competitions_helper.rb
+      invoke      test_unit
+      invoke    jbuilder
+      create      app/views/competitions/index.json.jbuilder
+      create      app/views/competitions/show.json.jbuilder
+      create      app/views/competitions/_competition.json.jbuilder
+
+
 
