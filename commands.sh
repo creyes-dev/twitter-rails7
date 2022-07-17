@@ -594,4 +594,34 @@ $ rails db:migrate
    -> 0.2082s
 == 20220708034024 CreateGroups: migrated (0.2082s) ============================
 
-
+# Generating team scaffold
+$ rails generate scaffold Team iso_code:integer name:string national_team:boolean iso_alpha2:string iso_alpha3:string
+      invoke  active_record
+      create    db/migrate/20220717035020_create_teams.rb
+      create    app/models/team.rb
+      invoke    test_unit
+      create      test/models/team_test.rb
+      create      test/fixtures/teams.yml
+      invoke  resource_route
+       route    resources :teams
+      invoke  scaffold_controller
+      create    app/controllers/teams_controller.rb
+      invoke    erb
+      create      app/views/teams
+      create      app/views/teams/index.html.erb
+      create      app/views/teams/edit.html.erb
+      create      app/views/teams/show.html.erb
+      create      app/views/teams/new.html.erb
+      create      app/views/teams/_form.html.erb
+      create      app/views/teams/_team.html.erb
+      invoke    resource_route
+      invoke    test_unit
+      create      test/controllers/teams_controller_test.rb
+      create      test/system/teams_test.rb
+      invoke    helper
+      create      app/helpers/teams_helper.rb
+      invoke      test_unit
+      invoke    jbuilder
+      create      app/views/teams/index.json.jbuilder
+      create      app/views/teams/show.json.jbuilder
+      create      app/views/teams/_team.json.jbuilder
