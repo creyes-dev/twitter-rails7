@@ -631,3 +631,102 @@ $ rails db:migrate
 -- create_table(:teams)
    -> 0.4467s
 == 20220717035020 CreateTeams: migrated (0.4468s) =============================
+
+# Installing bootstrap and sassc-rails gems
+$ bundle install
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Using rake 13.0.6
+Using minitest 5.16.2
+Using builder 3.2.4
+Using erubi 1.10.0
+Using racc 1.6.0
+Using rack 2.2.4
+Using strscan 3.0.3
+Using bcrypt 3.1.18
+Using marcel 1.0.2
+Using mini_mime 1.1.2
+Using digest 3.1.0
+Using timeout 0.3.0
+Using concurrent-ruby 1.1.10
+Using public_suffix 4.0.7
+Using crass 1.0.6
+Using bundler 2.3.17
+Using websocket-extensions 0.1.5
+Using regexp_parser 2.5.0
+Using msgpack 1.5.3
+Using io-console 0.5.11
+Using thor 1.2.1
+Using zeitwerk 2.6.0
+Using ffi 1.15.5
+Using tilt 2.0.10
+Using nio4r 2.5.8
+Using websocket 1.2.9
+Fetching popper_js 2.9.3
+Using bindex 0.8.1
+Using childprocess 4.1.0
+Fetching execjs 2.8.1
+Using method_source 1.0.0
+Using orm_adapter 0.5.0
+Using pg 1.4.1
+Using rexml 3.2.5
+Using sprockets 4.1.1
+Using addressable 2.8.0
+Using websocket-driver 0.7.5
+Using tzinfo 2.0.4
+Using warden 1.2.9
+Using mail 2.7.1
+Using net-protocol 0.1.3
+Using i18n 1.10.0
+Using rubyzip 2.3.2
+Using net-imap 0.2.3
+Using net-pop 0.1.1
+Using net-smtp 0.3.1
+Using selenium-webdriver 4.3.0
+Using reline 0.3.1
+Using sassc 2.4.0
+Using irb 1.4.1
+Using matrix 0.4.2
+Using puma 5.6.4
+Using debug 1.5.0
+Using nokogiri 1.13.6 (x86_64-linux)
+Using bootsnap 1.12.0
+Using loofah 2.18.0
+Using rack-test 2.0.2
+Using rails-html-sanitizer 1.4.3
+Using xpath 3.2.0
+Using webdrivers 5.0.0
+Using capybara 3.37.1
+Using activesupport 7.0.3
+Using rails-dom-testing 2.0.3
+Using globalid 1.0.0
+Using actionview 7.0.3
+Using activemodel 7.0.3
+Using activejob 7.0.3
+Using actionpack 7.0.3
+Using jbuilder 2.11.5
+Using actionmailer 7.0.3
+Using railties 7.0.3
+Using sprockets-rails 3.4.2
+Using activerecord 7.0.3
+Using actioncable 7.0.3
+Using activestorage 7.0.3
+Using importmap-rails 1.1.2
+Using stimulus-rails 1.0.4
+Using turbo-rails 1.1.1
+Using web-console 4.2.0
+Using sassc-rails 2.1.2
+Using actionmailbox 7.0.3
+Using actiontext 7.0.3
+Using responders 3.0.1
+Using rails 7.0.3
+Using devise 4.8.1
+Installing execjs 2.8.1
+Installing popper_js 2.9.3
+Fetching autoprefixer-rails 10.4.7.0
+Installing autoprefixer-rails 10.4.7.0
+Fetching bootstrap 5.1.3
+Installing bootstrap 5.1.3
+Bundle complete! 18 Gemfile dependencies, 87 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+
