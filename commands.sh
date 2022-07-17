@@ -625,3 +625,9 @@ $ rails generate scaffold Team iso_code:integer name:string national_team:boolea
       create      app/views/teams/index.json.jbuilder
       create      app/views/teams/show.json.jbuilder
       create      app/views/teams/_team.json.jbuilder
+
+$ rails db:migrate
+== 20220717035020 CreateTeams: migrating ======================================
+-- create_table(:teams)
+   -> 0.4467s
+== 20220717035020 CreateTeams: migrated (0.4468s) =============================
