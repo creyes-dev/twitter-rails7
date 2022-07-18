@@ -6,6 +6,8 @@
 
 # Ignore bundler config.
 /.bundle
+/app/assets/images/flags/1x1
+/app/assets/images/flags/4x3
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
