@@ -791,4 +791,36 @@ $ rails db:migrate
    -> 0.0703s
 == 20220719022244 DropGroupTeam: migrated (0.0705s) ===========================
 
+# generating model CompetingTeam
+$ rails g model Competing_team group:references team:references
+      invoke  active_record
+      create    db/migrate/20220719023051_create_competing_teams.rb
+      create    app/models/competing_team.rb
+      invoke    test_unit
+      create      test/models/competing_team_test.rb
+      create      test/fixtures/competing_teams.yml
+
+$ rails db:migrate
+== 20220719023051 CreateCompetingTeams: migrating =============================
+-- create_table(:competing_teams)
+   -> 0.1502s
+-- add_index(:competing_teams, [:group_id, :team_id], {:unique=>true})
+   -> 0.0331s
+== 20220719023051 CreateCompetingTeams: migrated (0.1835s) ====================
+
+# Generating model CompetingTeamScores
+$ rails g model Competing_team_score competing_team:references points:integer goals:integer wins:integer draws:integer loses:integer goals_made:integer goals_received:integer goals_differences:integer
+      invoke  active_record
+      create    db/migrate/20220719024121_create_competing_team_scores.rb
+      create    app/models/competing_team_score.rb
+      invoke    test_unit
+      create      test/models/competing_team_score_test.rb
+      create      test/fixtures/competing_team_scores.yml
+
+$ rails db:migrate
+== 20220719024121 CreateCompetingTeamScores: migrating ========================
+-- create_table(:competing_team_scores)
+   -> 0.0938s
+== 20220719024121 CreateCompetingTeamScores: migrated (0.0939s) ===============
+
 

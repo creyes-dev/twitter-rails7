@@ -10,9 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_19_022244) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_19_024121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "competing_team_scores", force: :cascade do |t|
+    t.bigint "competing_team_id", null: false
+    t.integer "points", default: 0, null: false
+    t.integer "goals", default: 0, null: false
+    t.integer "wins", default: 0, null: false
+    t.integer "draws", default: 0, null: false
+    t.integer "loses", default: 0, null: false
+    t.integer "goals_made", default: 0, null: false
+    t.integer "goals_received", default: 0, null: false
+    t.integer "goals_differences", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competing_team_id"], name: "index_competing_team_scores_on_competing_team_id"
+  end
+
+  create_table "competing_teams", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id", "team_id"], name: "index_competing_teams_on_group_id_and_team_id", unique: true
+    t.index ["group_id"], name: "index_competing_teams_on_group_id"
+    t.index ["team_id"], name: "index_competing_teams_on_team_id"
+  end
 
   create_table "competition_structures", force: :cascade do |t|
     t.string "description"
@@ -69,6 +94,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_022244) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "competing_team_scores", "competing_teams"
+  add_foreign_key "competing_teams", "groups"
+  add_foreign_key "competing_teams", "teams"
   add_foreign_key "competitions", "competition_structures"
   add_foreign_key "groups", "competitions"
 end
