@@ -17,7 +17,7 @@ Group.create([
   { competition_id: 1, name: "G", rounds: 1 },
   { competition_id: 1, name: "H", rounds: 1 }])
 
-  Team.create([{:national_team => true, :name =>"Afganistán", :iso_code => 4 , :iso_alpha3 =>"AFG", :iso_alpha2 =>"AF"},
+Team.create([{:national_team => true, :name =>"Afganistán", :iso_code => 4 , :iso_alpha3 =>"AFG", :iso_alpha2 =>"AF"},
     {:national_team => true, :name =>"Åland", :iso_code => 248 , :iso_alpha3 =>"ALA", :iso_alpha2 =>"AX"},
     {:national_team => true, :name =>"Albania", :iso_code => 8 , :iso_alpha3 =>"ALB", :iso_alpha2 =>"AL"},
     {:national_team => true, :name =>"Alemania", :iso_code => 276 , :iso_alpha3 =>"DEU", :iso_alpha2 =>"DE"},

@@ -735,3 +735,25 @@ $ bin/importmap pin bootstrap --download
 Pinning "bootstrap" to vendor/javascript/bootstrap.js via download from https://ga.jspm.io/npm:bootstrap@5.1.3/dist/js/bootstrap.esm.js
 Pinning "@popperjs/core" to vendor/javascript/@popperjs/core.js via download from https://ga.jspm.io/npm:@popperjs/core@2.11.5/lib/index.js
 
+# Generating scaffold of group_team model
+$ rails g model Group_team group:references team:references points:integer wins:integer draws:integer loses:integer goals_made:integer goals_received:integer difference_goals:integer
+      invoke  active_record
+      create    db/migrate/20220719010711_create_group_teams.rb
+      create    app/models/group_team.rb
+      invoke    test_unit
+      create      test/models/group_team_test.rb
+      create      test/fixtures/group_teams.yml
+
+$ rails db:migrate
+== 20220719010711 CreateGroupTeams: migrating =================================
+-- create_table(:group_teams)
+   -> 0.1947s
+== 20220719010711 CreateGroupTeams: migrated (0.1948s) ========================
+
+# Carefully adding indexes
+$ rails db:migrate
+== 20220719012418 AddingCompositeIndexToGroupTeams: migrating =================
+-- add_index(:group_teams, [:group_id, :team_id], {:unique=>true})
+   -> 0.3283s
+== 20220719012418 AddingCompositeIndexToGroupTeams: migrated (0.3285s) ========
+
