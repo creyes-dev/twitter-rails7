@@ -262,3 +262,4 @@ Team.create([{:national_team => true, :name =>"Afganistán", :iso_code => 4 , :i
     {:national_team => true, :name =>"Yibuti", :iso_code => 262 , :iso_alpha3 =>"DJI", :iso_alpha2 =>"DJ"},
     {:national_team => true, :name =>"Zambia", :iso_code => 894 , :iso_alpha3 =>"ZMB", :iso_alpha2 =>"ZM"},
     {:national_team => true, :name =>"Zimbabue", :iso_code => 716 , :iso_alpha3 =>"ZWE", :iso_alpha2 =>"ZW"}])
+

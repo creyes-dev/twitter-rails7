@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_19_012418) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_19_022244) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,23 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_012418) do
     t.datetime "begin"
     t.boolean "active"
     t.index ["competition_structure_id"], name: "index_competitions_on_competition_structure_id"
-  end
-
-  create_table "group_teams", force: :cascade do |t|
-    t.bigint "group_id", null: false
-    t.bigint "team_id", null: false
-    t.integer "points"
-    t.integer "wins"
-    t.integer "draws"
-    t.integer "loses"
-    t.integer "goals_made"
-    t.integer "goals_received"
-    t.integer "difference_goals"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id", "team_id"], name: "index_group_teams_on_group_id_and_team_id", unique: true
-    t.index ["group_id"], name: "index_group_teams_on_group_id"
-    t.index ["team_id"], name: "index_group_teams_on_team_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -87,7 +70,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_012418) do
   end
 
   add_foreign_key "competitions", "competition_structures"
-  add_foreign_key "group_teams", "groups"
-  add_foreign_key "group_teams", "teams"
   add_foreign_key "groups", "competitions"
 end

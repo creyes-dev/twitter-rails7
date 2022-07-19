@@ -757,3 +757,38 @@ $ rails db:migrate
    -> 0.3283s
 == 20220719012418 AddingCompositeIndexToGroupTeams: migrated (0.3285s) ========
 
+# Adding default values to GroupTeams table
+$ rails generate migration AddingInitValuesToGroupTeams
+      invoke  active_record
+      create    db/migrate/20220719014426_adding_init_values_to_group_teams.rb
+
+$ rails db:migrate
+== 20220719014426 AddingInitValuesToGroupTeams: migrating =====================
+-- change_column(:group_teams, :points, :integer, {:default=>0, :null=>false})
+   -> 0.0207s
+-- change_column(:group_teams, :wins, :integer, {:default=>0, :null=>false})
+   -> 0.0010s
+-- change_column(:group_teams, :draws, :integer, {:default=>0, :null=>false})
+   -> 0.0011s
+-- change_column(:group_teams, :loses, :integer, {:default=>0, :null=>false})
+   -> 0.0148s
+-- change_column(:group_teams, :goals_made, :integer, {:default=>0, :null=>false})
+   -> 0.0018s
+-- change_column(:group_teams, :goals_received, :integer, {:default=>0, :null=>false})
+   -> 0.0017s
+-- change_column(:group_teams, :difference_goals, :integer, {:default=>0, :null=>false})
+   -> 0.0019s
+== 20220719014426 AddingInitValuesToGroupTeams: migrated (0.0434s) ============
+
+# Changed my mind about GroupTeam table
+$ rails generate migration DropGroupTeam
+      invoke  active_record
+      create    db/migrate/20220719022244_drop_group_team.rb
+
+$ rails db:migrate
+== 20220719022244 DropGroupTeam: migrating ====================================
+-- drop_table(:group_teams)
+   -> 0.0703s
+== 20220719022244 DropGroupTeam: migrated (0.0705s) ===========================
+
+
