@@ -31,7 +31,7 @@
           <li><p>
             Group <%= group.name %>:
             <% group.competing_teams.each do |cteam| %>
-              <%= cteam.team.name %>,
+              <%= cteam.team.name %> ( <%= cteam.competing_team_score.points %> ),
             <% end %>
           </p></li>
       <% end %>
