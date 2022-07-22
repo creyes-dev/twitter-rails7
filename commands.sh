@@ -823,4 +823,10 @@ $ rails db:migrate
    -> 0.0938s
 == 20220719024121 CreateCompetingTeamScores: migrated (0.0939s) ===============
 
+# Seeding Qatar 2022 group stage teams
+$ rails db:reset
+
+# Checking if it's correct
+$ rails db:migrate
+
 

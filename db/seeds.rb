@@ -197,7 +197,7 @@ Team.create([{:national_team => true, :name =>"Afganistán", :iso_code => 4 , :i
     {:national_team => true, :name =>"Portugal", :iso_code => 620 , :iso_alpha3 =>"PRT", :iso_alpha2 =>"PT"},
     {:national_team => true, :name =>"Puerto Rico", :iso_code => 630 , :iso_alpha3 =>"PRI", :iso_alpha2 =>"PR"},
     {:national_team => true, :name =>"Catar", :iso_code => 634 , :iso_alpha3 =>"QAT", :iso_alpha2 =>"QA"},
-    {:national_team => true, :name =>"Reino Unido", :iso_code => 826 , :iso_alpha3 =>"GBR", :iso_alpha2 =>"GB"},
+    {:national_team => true, :name =>"Inglaterra", :iso_code => 826 , :iso_alpha3 =>"GBR", :iso_alpha2 =>"GB"},
     {:national_team => true, :name =>"Reunión", :iso_code => 638 , :iso_alpha3 =>"REU", :iso_alpha2 =>"RE"},
     {:national_team => true, :name =>"Ruanda", :iso_code => 646 , :iso_alpha3 =>"RWA", :iso_alpha2 =>"RW"},
     {:national_team => true, :name =>"Rumania", :iso_code => 642 , :iso_alpha3 =>"ROU", :iso_alpha2 =>"RO"},
@@ -261,5 +261,46 @@ Team.create([{:national_team => true, :name =>"Afganistán", :iso_code => 4 , :i
     {:national_team => true, :name =>"Yemen", :iso_code => 887 , :iso_alpha3 =>"YEM", :iso_alpha2 =>"YE"},
     {:national_team => true, :name =>"Yibuti", :iso_code => 262 , :iso_alpha3 =>"DJI", :iso_alpha2 =>"DJ"},
     {:national_team => true, :name =>"Zambia", :iso_code => 894 , :iso_alpha3 =>"ZMB", :iso_alpha2 =>"ZM"},
-    {:national_team => true, :name =>"Zimbabue", :iso_code => 716 , :iso_alpha3 =>"ZWE", :iso_alpha2 =>"ZW"}])
+    {:national_team => true, :name =>"Zimbabue", :iso_code => 716 , :iso_alpha3 =>"ZWE", :iso_alpha2 =>"ZW"},
+    {:national_team => true, :name => "Gales", :iso_code => 1826, :iso_alpha3 => "GB-WLS", :iso_alpha2 => "GB-WLS" }])
 
+CompetingTeam.create([
+  { group_id: 1, team_id: 180 },
+  { group_id: 1, team_id: 64 },
+  { group_id: 1, team_id: 199 },
+  { group_id: 1, team_id: 167 },
+  { group_id: 2, team_id: 181 },
+  { group_id: 2, team_id: 105 },
+  { group_id: 2, team_id: 72 },
+  { group_id: 2, team_id: 248 },
+  { group_id: 3, team_id: 12 },
+  { group_id: 3, team_id: 10 },
+  { group_id: 3, team_id: 146 },
+  { group_id: 3, team_id: 177 },
+  { group_id: 4, team_id: 79 },
+  { group_id: 4, team_id: 15 },
+  { group_id: 4, team_id: 61 },
+  { group_id: 4, team_id: 226 },
+  { group_id: 5, team_id: 71 },
+  { group_id: 5, team_id: 58 },
+  { group_id: 5, team_id: 4 },
+  { group_id: 5, team_id: 112 },
+  { group_id: 6, team_id: 22 },
+  { group_id: 6, team_id: 42 },
+  { group_id: 6, team_id: 140 },
+  { group_id: 6, team_id: 59 },
+  { group_id: 7, team_id: 32 },
+  { group_id: 7, team_id: 200 },
+  { group_id: 7, team_id: 212 },
+  { group_id: 7, team_id: 41 },
+  { group_id: 8, team_id: 178 },
+  { group_id: 8, team_id: 84 },
+  { group_id: 8, team_id: 233 },
+  { group_id: 8, team_id: 56 }
+])
+
+competing_teams = CompetingTeam.all
+
+competing_teams.each do |ct|
+  CompetingTeamScore.create( competing_team_id: ct.id )
+end
