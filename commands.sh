@@ -829,4 +829,23 @@ $ rails db:reset
 # Checking if it's correct
 $ rails db:migrate
 
+# Generating a new migration to delete competings team index (some competing teams won't have teams associated)
+
+$ rails generate migration DropTeamIndexOnCompetingTeam
+      invoke  active_record
+      create    db/migrate/20220723040622_drop_team_index_on_competing_team.rb
+
+$ rails db:migrate
+== 20220723040622 DropTeamIndexOnCompetingTeam: migrating =====================
+-- remove_index(:competing_teams, {:name=>:index_competing_teams_on_group_id_and_team_id})
+   -> 0.1271s
+-- remove_index(:competing_teams, {:name=>:index_competing_teams_on_team_id})
+   -> 0.0010s
+== 20220723040622 DropTeamIndexOnCompetingTeam: migrated (0.1283s) ============
+
+$ rails db:migrate
+== 20220723044717 NullableTeamInCompetingTeam: migrating ======================
+-- change_column(:competing_teams, :team_id, :bigint, {:null=>true})
+   -> 0.1537s
+== 20220723044717 NullableTeamInCompetingTeam: migrated (0.1538s) =============
 
