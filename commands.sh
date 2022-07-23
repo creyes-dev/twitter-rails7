@@ -849,3 +849,34 @@ $ rails db:migrate
    -> 0.1537s
 == 20220723044717 NullableTeamInCompetingTeam: migrated (0.1538s) =============
 
+# Creating country and city models for match location
+$ rails g model Country name:string iso_code:string iso_alpha2:string iso_alpha3:string
+      invoke  active_record
+      create    db/migrate/20220723185342_create_countries.rb
+      create    app/models/country.rb
+      invoke    test_unit
+      create      test/models/country_test.rb
+      create      test/fixtures/countries.yml
+
+$ rails db:migrate
+== 20220723185342 CreateCountries: migrating ==================================
+-- create_table(:countries)
+   -> 0.2834s
+== 20220723185342 CreateCountries: migrated (0.2835s) =========================
+
+$ rails db:reset
+
+# Check if Catar country was created
+
+$ 3.1.2 :003 > Country.find_by_name("Catar")
+  Country Load (0.3ms)  SELECT "countries".* FROM "countries" WHERE "countries"."name" = $1 LIMIT $2  [["name", "Catar"], ["LIMIT", 1]]
+ =>
+#<Country:0x00007f42f9cf75b8
+ id: 180,
+ name: "Catar",
+ iso_code: "634",
+ iso_alpha2: "QA",
+ iso_alpha3: "QAT",
+ created_at: Sat, 23 Jul 2022 19:20:33.490820000 UTC +00:00,
+ updated_at: Sat, 23 Jul 2022 19:20:33.490820000 UTC +00:00>
+
