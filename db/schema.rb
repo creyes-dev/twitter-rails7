@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_23_230001) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_23_231347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_23_230001) do
     t.boolean "is_finished", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "competing_team_1"
+    t.integer "competing_team_2"
     t.index ["location_id"], name: "index_matches_on_location_id"
   end
 

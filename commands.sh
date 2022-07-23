@@ -926,4 +926,16 @@ $ rails db:migrate
    -> 0.1615s
 == 20220723230001 CreateMatches: migrated (0.1616s) ===========================
 
+# Referencing competing teams from a match
+$ rails g migration AddCompetingTeamsToMatch competing_team_1:integer competing_team_2:integer
+      invoke  active_record
+      create    db/migrate/20220723231347_add_competing_teams_to_match.rb
+
+$ rails db:migrate
+== 20220723231347 AddCompetingTeamsToMatch: migrating =========================
+-- add_column(:matches, :competing_team_1, :integer)
+   -> 0.0043s
+-- add_column(:matches, :competing_team_2, :integer)
+   -> 0.0020s
+== 20220723231347 AddCompetingTeamsToMatch: migrated (0.0065s) ================
 
