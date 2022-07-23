@@ -880,3 +880,34 @@ $ 3.1.2 :003 > Country.find_by_name("Catar")
  created_at: Sat, 23 Jul 2022 19:20:33.490820000 UTC +00:00,
  updated_at: Sat, 23 Jul 2022 19:20:33.490820000 UTC +00:00>
 
+# Generating location model
+
+$ rails g model Location country:references name:string
+      invoke  active_record
+      create    db/migrate/20220723202613_create_locations.rb
+      create    app/models/location.rb
+      invoke    test_unit
+      create      test/models/location_test.rb
+      create      test/fixtures/locations.yml
+
+# Generating stadium model
+
+$ rails g model Stadium location:references name:string
+      invoke  active_record
+      create    db/migrate/20220723203156_create_stadia.rb
+      create    app/models/stadium.rb
+      invoke    test_unit
+      create      test/models/stadium_test.rb
+      create      test/fixtures/stadia.yml
+
+$ rails db:migrate
+== 20220723202613 CreateLocations: migrating ==================================
+-- create_table(:locations)
+   -> 0.2202s
+== 20220723202613 CreateLocations: migrated (0.2204s) =========================
+
+== 20220723203156 CreateStadia: migrating =====================================
+-- create_table(:stadia)
+   -> 0.1956s
+== 20220723203156 CreateStadia: migrated (0.1957s) ============================
+
