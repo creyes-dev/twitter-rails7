@@ -911,3 +911,19 @@ $ rails db:migrate
    -> 0.1956s
 == 20220723203156 CreateStadia: migrated (0.1957s) ============================
 
+# Generating scaffold of matches
+$ rails g model Match competing_team1_goals:integer competing_team2_goals:integer competing_team1_penalty_goals:integer competing_team2_penalty_goals:integer location:references date_time:datetime is_finished:boolean
+      invoke  active_record
+      create    db/migrate/20220723230001_create_matches.rb
+      create    app/models/match.rb
+      invoke    test_unit
+      create      test/models/match_test.rb
+      create      test/fixtures/matches.yml
+
+$ rails db:migrate
+== 20220723230001 CreateMatches: migrating ====================================
+-- create_table(:matches)
+   -> 0.1615s
+== 20220723230001 CreateMatches: migrated (0.1616s) ===========================
+
+
