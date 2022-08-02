@@ -939,3 +939,16 @@ $ rails db:migrate
    -> 0.0020s
 == 20220723231347 AddCompetingTeamsToMatch: migrated (0.0065s) ================
 
+# Adding name to matches
+
+$ git commit -m "Adding name to matches"
+[main e220b33] Adding name to matches
+ 1 file changed, 5 insertions(+)
+ create mode 100644 db/migrate/20220731033808_add_code_to_match.rb
+
+$ rails db:migrate
+== 20220731033808 AddCodeToMatch: migrating ===================================
+-- add_column(:matches, :name, :string)
+   -> 0.2019s
+== 20220731033808 AddCodeToMatch: migrated (0.2020s) ==========================
+
