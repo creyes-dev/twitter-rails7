@@ -966,3 +966,322 @@ $ rails db:migrate
    -> 0.0014s
 == 20220802014635 RemoveCompetingTeamsFromMatches: migrated (0.0827s) =========
 
+# Seeding matches
+
+# Big mistake about match location, deleting every match and modifying match model to relate to stadiums and not location
+
+3.1.2 :012 > Match.delete_all
+  Match Delete All (12.2ms)  DELETE FROM "matches"
+ => 30
+
+$ rails generate migration RemoveLocationFromMatches location:references
+      invoke  active_record
+      create    db/migrate/20220802035257_remove_location_from_matches.rb
+
+$ rails db:migrate
+== 20220802035257 RemoveLocationFromMatches: migrating ========================
+-- remove_reference(:matches, :location, {:null=>false, :foreign_key=>true})
+   -> 0.0777s
+== 20220802035257 RemoveLocationFromMatches: migrated (0.0778s) ===============
+
+# And then adding stadium relationship to match table
+
+$ rails generate migration AddStadiumToMatches stadium:references
+      invoke  active_record
+      create    db/migrate/20220802035729_add_stadium_to_matches.rb
+
+$ rails db:migrate
+== 20220802035729 AddStadiumToMatches: migrating ==============================
+-- add_reference(:matches, :stadium, {:null=>false, :foreign_key=>true})
+   -> 0.3704s
+== 20220802035729 AddStadiumToMatches: migrated (0.3705s) =====================
+
+# Seeding matches again
+
+  TRANSACTION (0.2ms)  BEGIN
+  CompetingTeam Load (0.5ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  CompetingTeam Load (0.3ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  Stadium Load (0.5ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Match Create (1.0ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-21 10:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.073506"], ["updated_at", "2022-08-02 04:06:40.073506"], ["name", "002"], ["competing_team_1_id", 3], ["competing_team_2_id", 4], ["stadium_id", 1]]
+  TRANSACTION (7.9ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Stadium Load (0.2ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Match Create (0.5ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-21 16:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.090455"], ["updated_at", "2022-08-02 04:06:40.090455"], ["name", "001"], ["competing_team_1_id", 1], ["competing_team_2_id", 2], ["stadium_id", 2]]
+  TRANSACTION (10.3ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Stadium Load (0.2ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-25 13:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.107116"], ["updated_at", "2022-08-02 04:06:40.107116"], ["name", "018"], ["competing_team_1_id", 1], ["competing_team_2_id", 3], ["stadium_id", 1]]
+  TRANSACTION (10.9ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Stadium Load (0.2ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Match Create (0.5ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-25 16:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.124138"], ["updated_at", "2022-08-02 04:06:40.124138"], ["name", "019"], ["competing_team_1_id", 4], ["competing_team_2_id", 2], ["stadium_id", 3]]
+  TRANSACTION (10.0ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Stadium Load (0.2ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-29 15:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.139960"], ["updated_at", "2022-08-02 04:06:40.139960"], ["name", "035"], ["competing_team_1_id", 2], ["competing_team_2_id", 3], ["stadium_id", 3]]
+  TRANSACTION (10.9ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Stadium Load (0.3ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-29 15:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.156985"], ["updated_at", "2022-08-02 04:06:40.156985"], ["name", "036"], ["competing_team_1_id", 4], ["competing_team_2_id", 1], ["stadium_id", 2]]
+  TRANSACTION (10.6ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-21 13:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.173029"], ["updated_at", "2022-08-02 04:06:40.173029"], ["name", "003"], ["competing_team_1_id", 5], ["competing_team_2_id", 6], ["stadium_id", 3]]
+  TRANSACTION (11.3ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-21 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.190166"], ["updated_at", "2022-08-02 04:06:40.190166"], ["name", "004"], ["competing_team_1_id", 7], ["competing_team_2_id", 8], ["stadium_id", 4]]
+  TRANSACTION (10.6ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-25 10:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.206444"], ["updated_at", "2022-08-02 04:06:40.206444"], ["name", "017"], ["competing_team_1_id", 8], ["competing_team_2_id", 6], ["stadium_id", 4]]
+  TRANSACTION (11.2ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  Stadium Load (0.2ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-25 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.223626"], ["updated_at", "2022-08-02 04:06:40.223626"], ["name", "020"], ["competing_team_1_id", 5], ["competing_team_2_id", 7], ["stadium_id", 2]]
+  TRANSACTION (10.5ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-29 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.239684"], ["updated_at", "2022-08-02 04:06:40.239684"], ["name", "033"], ["competing_team_1_id", 8], ["competing_team_2_id", 5], ["stadium_id", 4]]
+  TRANSACTION (11.0ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-29 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.257006"], ["updated_at", "2022-08-02 04:06:40.257006"], ["name", "034"], ["competing_team_1_id", 6], ["competing_team_2_id", 7], ["stadium_id", 1]]
+  TRANSACTION (10.5ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 9], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 10], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-21 10:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.273280"], ["updated_at", "2022-08-02 04:06:40.273280"], ["name", "008"], ["competing_team_1_id", 9], ["competing_team_2_id", 10], ["stadium_id", 5]]
+  TRANSACTION (10.6ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 11], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 12], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-21 16:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.289702"], ["updated_at", "2022-08-02 04:06:40.289702"], ["name", "007"], ["competing_team_1_id", 11], ["competing_team_2_id", 12], ["stadium_id", 7]]
+  TRANSACTION (11.4ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 12], ["LIMIT", 1]]
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 10], ["LIMIT", 1]]
+  Stadium Load (0.2ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  Match Create (0.5ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-26 13:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.307108"], ["updated_at", "2022-08-02 04:06:40.307108"], ["name", "022"], ["competing_team_1_id", 12], ["competing_team_2_id", 10], ["stadium_id", 6]]
+  TRANSACTION (10.3ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 9], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 11], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  Match Create (0.2ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-26 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.322590"], ["updated_at", "2022-08-02 04:06:40.322590"], ["name", "024"], ["competing_team_1_id", 9], ["competing_team_2_id", 11], ["stadium_id", 5]]
+  TRANSACTION (3.8ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 12], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 9], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  Match Create (0.2ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-30 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.331070"], ["updated_at", "2022-08-02 04:06:40.331070"], ["name", "039"], ["competing_team_1_id", 12], ["competing_team_2_id", 9], ["stadium_id", 7]]
+  TRANSACTION (3.6ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 10], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 11], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  Match Create (0.2ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-30 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.339224"], ["updated_at", "2022-08-02 04:06:40.339224"], ["name", "040"], ["competing_team_1_id", 10], ["competing_team_2_id", 11], ["stadium_id", 5]]
+  TRANSACTION (3.9ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 15], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 16], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-21 13:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.347970"], ["updated_at", "2022-08-02 04:06:40.347970"], ["name", "006"], ["competing_team_1_id", 15], ["competing_team_2_id", 16], ["stadium_id", 6]]
+  TRANSACTION (11.6ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 13], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 14], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-21 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.364431"], ["updated_at", "2022-08-02 04:06:40.364431"], ["name", "005"], ["competing_team_1_id", 13], ["competing_team_2_id", 14], ["stadium_id", 8]]
+  TRANSACTION (3.4ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 16], ["LIMIT", 1]]
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 14], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-26 10:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.373271"], ["updated_at", "2022-08-02 04:06:40.373271"], ["name", "021"], ["competing_team_1_id", 16], ["competing_team_2_id", 14], ["stadium_id", 8]]
+  TRANSACTION (11.2ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 13], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 15], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-26 16:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.389520"], ["updated_at", "2022-08-02 04:06:40.389520"], ["name", "023"], ["competing_team_1_id", 13], ["competing_team_2_id", 15], ["stadium_id", 7]]
+  TRANSACTION (3.4ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 14], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 15], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-30 15:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.397964"], ["updated_at", "2022-08-02 04:06:40.397964"], ["name", "037"], ["competing_team_1_id", 14], ["competing_team_2_id", 15], ["stadium_id", 8]]
+  TRANSACTION (3.3ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 16], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 13], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-30 15:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.406044"], ["updated_at", "2022-08-02 04:06:40.406044"], ["name", "038"], ["competing_team_1_id", 16], ["competing_team_2_id", 13], ["stadium_id", 6]]
+  TRANSACTION (3.4ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.2ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 19], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 20], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-23 13:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.414511"], ["updated_at", "2022-08-02 04:06:40.414511"], ["name", "011"], ["competing_team_1_id", 19], ["competing_team_2_id", 20], ["stadium_id", 3]]
+  TRANSACTION (3.4ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 17], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 18], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-23 16:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.422712"], ["updated_at", "2022-08-02 04:06:40.422712"], ["name", "010"], ["competing_team_1_id", 17], ["competing_team_2_id", 18], ["stadium_id", 1]]
+  TRANSACTION (3.2ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 20], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 18], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-27 10:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.431023"], ["updated_at", "2022-08-02 04:06:40.431023"], ["name", "025"], ["competing_team_1_id", 20], ["competing_team_2_id", 18], ["stadium_id", 4]]
+  TRANSACTION (3.6ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 17], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 19], ["LIMIT", 1]]
+  Stadium Load (0.2ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-27 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.439612"], ["updated_at", "2022-08-02 04:06:40.439612"], ["name", "028"], ["competing_team_1_id", 17], ["competing_team_2_id", 19], ["stadium_id", 2]]
+  TRANSACTION (3.3ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 20], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 17], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-09-01 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.447676"], ["updated_at", "2022-08-02 04:06:40.447676"], ["name", "043"], ["competing_team_1_id", 20], ["competing_team_2_id", 17], ["stadium_id", 3]]
+  TRANSACTION (3.7ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 18], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 19], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-09-01 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.456165"], ["updated_at", "2022-08-02 04:06:40.456165"], ["name", "044"], ["competing_team_1_id", 18], ["competing_team_2_id", 19], ["stadium_id", 2]]
+  TRANSACTION (3.6ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 23], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 24], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-23 10:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.464729"], ["updated_at", "2022-08-02 04:06:40.464729"], ["name", "012"], ["competing_team_1_id", 23], ["competing_team_2_id", 24], ["stadium_id", 2]]
+  TRANSACTION (11.4ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 21], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 22], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-23 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.481279"], ["updated_at", "2022-08-02 04:06:40.481279"], ["name", "009"], ["competing_team_1_id", 21], ["competing_team_2_id", 22], ["stadium_id", 4]]
+  TRANSACTION (3.4ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 21], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 23], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Match Create (0.2ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-27 13:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.489294"], ["updated_at", "2022-08-02 04:06:40.489294"], ["name", "026"], ["competing_team_1_id", 21], ["competing_team_2_id", 23], ["stadium_id", 1]]
+  TRANSACTION (3.9ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 24], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 22], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Match Create (0.2ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-27 16:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.497974"], ["updated_at", "2022-08-02 04:06:40.497974"], ["name", "027"], ["competing_team_1_id", 24], ["competing_team_2_id", 22], ["stadium_id", 3]]
+  TRANSACTION (3.5ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 24], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 21], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  Match Create (0.2ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-09-01 15:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.506307"], ["updated_at", "2022-08-02 04:06:40.506307"], ["name", "041"], ["competing_team_1_id", 24], ["competing_team_2_id", 21], ["stadium_id", 4]]
+  TRANSACTION (3.3ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 22], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 23], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-09-01 15:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.514643"], ["updated_at", "2022-08-02 04:06:40.514643"], ["name", "042"], ["competing_team_1_id", 22], ["competing_team_2_id", 23], ["stadium_id", 1]]
+  TRANSACTION (3.3ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 27], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 28], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  Match Create (0.2ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-24 10:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.522609"], ["updated_at", "2022-08-02 04:06:40.522609"], ["name", "013"], ["competing_team_1_id", 27], ["competing_team_2_id", 28], ["stadium_id", 8]]
+  TRANSACTION (3.8ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 25], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 26], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  Match Create (0.2ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-24 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.531313"], ["updated_at", "2022-08-02 04:06:40.531313"], ["name", "016"], ["competing_team_1_id", 25], ["competing_team_2_id", 26], ["stadium_id", 5]]
+  TRANSACTION (3.5ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 28], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 26], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  Match Create (0.2ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-28 10:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.539641"], ["updated_at", "2022-08-02 04:06:40.539641"], ["name", "029"], ["competing_team_1_id", 28], ["competing_team_2_id", 26], ["stadium_id", 8]]
+  TRANSACTION (3.4ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 25], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 27], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  Match Create (0.8ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-28 16:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.548037"], ["updated_at", "2022-08-02 04:06:40.548037"], ["name", "031"], ["competing_team_1_id", 25], ["competing_team_2_id", 27], ["stadium_id", 7]]
+  TRANSACTION (11.1ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 26], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 27], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  Match Create (0.2ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-09-02 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.564445"], ["updated_at", "2022-08-02 04:06:40.564445"], ["name", "047"], ["competing_team_1_id", 26], ["competing_team_2_id", 27], ["stadium_id", 7]]
+  TRANSACTION (3.6ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 28], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 25], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-09-02 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.572774"], ["updated_at", "2022-08-02 04:06:40.572774"], ["name", "048"], ["competing_team_1_id", 28], ["competing_team_2_id", 25], ["stadium_id", 5]]
+  TRANSACTION (3.7ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 31], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 32], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  Match Create (0.2ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-24 13:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.581222"], ["updated_at", "2022-08-02 04:06:40.581222"], ["name", "014"], ["competing_team_1_id", 31], ["competing_team_2_id", 32], ["stadium_id", 6]]
+  TRANSACTION (3.6ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 29], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 30], ["LIMIT", 1]]
+  Stadium Load (0.2ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-24 16:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.589992"], ["updated_at", "2022-08-02 04:06:40.589992"], ["name", "015"], ["competing_team_1_id", 29], ["competing_team_2_id", 30], ["stadium_id", 7]]
+  TRANSACTION (11.3ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 32], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 30], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-28 13:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.606248"], ["updated_at", "2022-08-02 04:06:40.606248"], ["name", "030"], ["competing_team_1_id", 32], ["competing_team_2_id", 30], ["stadium_id", 6]]
+  TRANSACTION (3.4ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 29], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 31], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  Match Create (0.3ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-11-28 19:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.614621"], ["updated_at", "2022-08-02 04:06:40.614621"], ["name", "032"], ["competing_team_1_id", 29], ["competing_team_2_id", 31], ["stadium_id", 5]]
+  TRANSACTION (3.5ms)  COMMIT
+  TRANSACTION (0.1ms)  BEGIN
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 30], ["LIMIT", 1]]
+  CompetingTeam Load (0.1ms)  SELECT "competing_teams".* FROM "competing_teams" WHERE "competing_teams"."id" = $1 LIMIT $2  [["id", 31], ["LIMIT", 1]]
+  Stadium Load (0.1ms)  SELECT "stadia".* FROM "stadia" WHERE "stadia"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  Match Create (0.4ms)  INSERT INTO "matches" ("competing_team1_goals", "competing_team2_goals", "competing_team1_penalty_goals", "competing_team2_penalty_goals", "date_time", "is_finished", "created_at", "updated_at", "name", "competing_team_1_id", "competing_team_2_id", "stadium_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-09-02 15:00:00"], ["is_finished", false],
+7, $8, $9, $10, $11, $12) RETURNING "id"  [["competing_team1_goals", 0], ["competing_team2_goals", 0], ["competing_team1_penalty_goals", 0], ["competing_team2_penalty_goals", 0], ["date_time", "2021-09-02 15:00:00"], ["is_finished", false], ["created_at", "2022-08-02 04:06:40.639911"], ["updated_at", "2022-08-02 04:06:40.639911"], ["name", "046"], ["competing_team_1_id", 32], ["competing_team_2_id", 29], ["stadium_id", 6]]
+  TRANSACTION (11.4ms)  COMMIT
+ => true
+3.1.2 :002 > Match.all.count
+  Match Count (0.6ms)  SELECT COUNT(*) FROM "matches"
+ => 48

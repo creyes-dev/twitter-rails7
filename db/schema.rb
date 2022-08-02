@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_02_015847) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_02_035729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,7 +89,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_015847) do
     t.integer "competing_team2_goals", default: 0
     t.integer "competing_team1_penalty_goals", default: 0
     t.integer "competing_team2_penalty_goals", default: 0
-    t.bigint "location_id", null: false
     t.datetime "date_time"
     t.boolean "is_finished", default: false
     t.datetime "created_at", null: false
@@ -97,7 +96,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_015847) do
     t.string "name"
     t.bigint "competing_team_1_id"
     t.bigint "competing_team_2_id"
-    t.index ["location_id"], name: "index_matches_on_location_id"
+    t.bigint "stadium_id", null: false
+    t.index ["stadium_id"], name: "index_matches_on_stadium_id"
   end
 
   create_table "stadia", force: :cascade do |t|
@@ -139,6 +139,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_015847) do
   add_foreign_key "competitions", "competition_structures"
   add_foreign_key "groups", "competitions"
   add_foreign_key "locations", "countries"
-  add_foreign_key "matches", "locations"
+  add_foreign_key "matches", "stadia"
   add_foreign_key "stadia", "locations"
 end
