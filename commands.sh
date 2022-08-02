@@ -952,3 +952,17 @@ $ rails db:migrate
    -> 0.2019s
 == 20220731033808 AddCodeToMatch: migrated (0.2020s) ==========================
 
+# Fixing matches and competing team relationship
+
+$ rails generate migration RemoveCompetingTeamsFromMatches competing_team_1:integer competing_team_2:integer
+      invoke  active_record
+      create    db/migrate/20220802014635_remove_competing_teams_from_matches.rb
+
+$ rails db:migrate
+== 20220802014635 RemoveCompetingTeamsFromMatches: migrating ==================
+-- remove_column(:matches, :competing_team_1, :integer)
+   -> 0.0811s
+-- remove_column(:matches, :competing_team_2, :integer)
+   -> 0.0014s
+== 20220802014635 RemoveCompetingTeamsFromMatches: migrated (0.0827s) =========
+
