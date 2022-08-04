@@ -4,6 +4,7 @@ class CompetitionsController < ApplicationController
   # GET /competitions or /competitions.json
   def index
     @competitions = Competition.all
+    @matches = Match.all
   end
 
   # GET /competitions/1 or /competitions/1.json

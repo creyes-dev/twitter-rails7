@@ -11,4 +11,17 @@
   <% end %>
 </div>
 
+  <p>
+    <strong>Matches </strong>
+    <ul>
+      <% @matches.each do |match| %>
+          <li>
+            <p>group: <%= match.competing_team_1.group.name %></p>
+            <p>location: <%= match.stadium.name %>, <%= match.stadium.location.name %>, <%= match.date_time %></p>
+            <p>match <%= match.name %>: <%= match.competing_team_1.team.name %> vs <%= match.competing_team_2.team.name %></p>
+          </li>
+      <% end %>
+    </ul>
+  </p>
+
 <%= link_to "New competition", new_competition_path %>
