@@ -1285,3 +1285,22 @@ $ rails db:migrate
 3.1.2 :002 > Match.all.count
   Match Count (0.6ms)  SELECT COUNT(*) FROM "matches"
  => 48
+
+# Changing column names
+$ rails db:migrate
+== 20220804042525 ChangeColumnNamesFromMatches: migrating =====================
+-- rename_column(:matches, :competing_team1_goals, :competing_team_home_goals)
+   -> 0.0300s
+-- rename_column(:matches, :competing_team2_goals, :competing_team_away_goals)
+   -> 0.0021s
+-- rename_column(:matches, :competing_team1_penalty_goals, :competing_team_home_penalty_goals)
+   -> 0.0016s
+-- rename_column(:matches, :competing_team2_penalty_goals, :competing_team_away_penalty_goals)
+   -> 0.0035s
+-- rename_column(:matches, :date_time, :datetime)
+   -> 0.0031s
+-- rename_column(:matches, :competing_team_1_id, :competing_team_home_id)
+   -> 0.0031s
+-- rename_column(:matches, :competing_team_2_id, :competing_team_away_id)
+   -> 0.0026s
+== 20220804042525 ChangeColumnNamesFromMatches: migrated (0.0463s) ============

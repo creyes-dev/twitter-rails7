@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_02_035729) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_04_042525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,17 +85,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_035729) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.integer "competing_team1_goals", default: 0
-    t.integer "competing_team2_goals", default: 0
-    t.integer "competing_team1_penalty_goals", default: 0
-    t.integer "competing_team2_penalty_goals", default: 0
-    t.datetime "date_time"
+    t.integer "competing_team_home_goals", default: 0
+    t.integer "competing_team_away_goals", default: 0
+    t.integer "competing_team_home_penalty_goals", default: 0
+    t.integer "competing_team_away_penalty_goals", default: 0
+    t.datetime "datetime"
     t.boolean "is_finished", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.bigint "competing_team_1_id"
-    t.bigint "competing_team_2_id"
+    t.bigint "competing_team_home_id"
+    t.bigint "competing_team_away_id"
     t.bigint "stadium_id", null: false
     t.index ["stadium_id"], name: "index_matches_on_stadium_id"
   end
