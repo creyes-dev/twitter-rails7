@@ -1316,3 +1316,5 @@ $ rails generate controller Matches
       invoke  helper
       create    app/helpers/matches_helper.rb
       invoke    test_unit
+
+# deleting every match and load them again
