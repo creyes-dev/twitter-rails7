@@ -1304,3 +1304,15 @@ $ rails db:migrate
 -- rename_column(:matches, :competing_team_2_id, :competing_team_away_id)
    -> 0.0026s
 == 20220804042525 ChangeColumnNamesFromMatches: migrated (0.0463s) ============
+
+# Generating match controller
+
+$ rails generate controller Matches
+      create  app/controllers/matches_controller.rb
+      invoke  erb
+      create    app/views/matches
+      invoke  test_unit
+      create    test/controllers/matches_controller_test.rb
+      invoke  helper
+      create    app/helpers/matches_helper.rb
+      invoke    test_unit
