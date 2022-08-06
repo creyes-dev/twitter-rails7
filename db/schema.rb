@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_04_042525) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_06_182803) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_04_042525) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_competing_teams_on_group_id"
+  end
+
+  create_table "competing_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "competition_id", null: false
+    t.bigint "competing_team_id"
+    t.integer "score", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competing_team_id"], name: "index_competing_users_on_competing_team_id"
+    t.index ["competition_id"], name: "index_competing_users_on_competition_id"
+    t.index ["user_id"], name: "index_competing_users_on_user_id"
   end
 
   create_table "competition_structures", force: :cascade do |t|
@@ -136,6 +148,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_04_042525) do
   add_foreign_key "competing_team_scores", "competing_teams"
   add_foreign_key "competing_teams", "groups"
   add_foreign_key "competing_teams", "teams"
+  add_foreign_key "competing_users", "competing_teams"
+  add_foreign_key "competing_users", "competitions"
+  add_foreign_key "competing_users", "users"
   add_foreign_key "competitions", "competition_structures"
   add_foreign_key "groups", "competitions"
   add_foreign_key "locations", "countries"

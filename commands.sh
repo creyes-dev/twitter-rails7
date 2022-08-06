@@ -1318,3 +1318,20 @@ $ rails generate controller Matches
       invoke    test_unit
 
 # deleting every match and load them again
+$ Match.delete_all
+
+# generating model CompetingUser
+$ rails g model Competing_user user:references competition:references competing_team:references score:integer
+      invoke  active_record
+      create    db/migrate/20220806182803_create_competing_users.rb
+      create    app/models/competing_user.rb
+      invoke    test_unit
+      create      test/models/competing_user_test.rb
+      create      test/fixtures/competing_users.yml
+
+$ rails db:migrate
+== 20220806182803 CreateCompetingUsers: migrating =============================
+-- create_table(:competing_users)
+   -> 0.3399s
+== 20220806182803 CreateCompetingUsers: migrated (0.3400s) ====================
+
