@@ -1335,3 +1335,33 @@ $ rails db:migrate
    -> 0.3399s
 == 20220806182803 CreateCompetingUsers: migrated (0.3400s) ====================
 
+# generating model PredictionResult
+$ rails g model PredictionResult description:string
+      invoke  active_record
+      create    db/migrate/20220806184130_create_prediction_results.rb
+      create    app/models/prediction_result.rb
+      invoke    test_unit
+      create      test/models/prediction_result_test.rb
+      create      test/fixtures/prediction_results.yml
+
+$ rails db:migrate
+== 20220806184130 CreatePredictionResults: migrating ==========================
+-- create_table(:prediction_results)
+   -> 0.0819s
+== 20220806184130 CreatePredictionResults: migrated (0.0819s) =================
+
+# generating model prediction
+$ rails g model Prediction competing_user:references match:references prediction_result:references competing_team_home_goals:integer competing_team_away_goals:integer score_won:integer
+      invoke  active_record
+      create    db/migrate/20220806190643_create_predictions.rb
+      create    app/models/prediction.rb
+      invoke    test_unit
+      create      test/models/prediction_test.rb
+      create      test/fixtures/predictions.yml
+
+$ rails db:migrate
+== 20220806190643 CreatePredictions: migrating ================================
+-- create_table(:predictions)
+   -> 0.1278s
+== 20220806190643 CreatePredictions: migrated (0.1279s) =======================
+

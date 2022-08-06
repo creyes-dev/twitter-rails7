@@ -621,3 +621,10 @@ Country.create([{:name =>"Afganistán", :iso_code => 4 , :iso_alpha3 =>"AFG", :i
     { name: "045", competing_team_home_id: 30, competing_team_away_id: 31, stadium_id: 8, datetime: "2022-12-02T15:00:00+00:00" },
     { name: "046", competing_team_home_id: 32, competing_team_away_id: 29, stadium_id: 6, datetime: "2022-12-02T15:00:00+00:00" }])
 
+PredictionResult.create([
+  { description: "nueva" },
+  { description: "acierto completo" },
+  { description: "acierto parcial" },
+  { description: "errada" }
+])
+
