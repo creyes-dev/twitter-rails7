@@ -1365,3 +1365,18 @@ $ rails db:migrate
    -> 0.1278s
 == 20220806190643 CreatePredictions: migrated (0.1279s) =======================
 
+# generating award model
+
+$ rails g model Award name:string description:string score:integer
+      invoke  active_record
+      create    db/migrate/20220806193202_create_awards.rb
+      create    app/models/award.rb
+      invoke    test_unit
+      create      test/models/award_test.rb
+      create      test/fixtures/awards.yml
+cristian@debian-host:~/Code/twitter-rails7$ rails db:migrate
+== 20220806193202 CreateAwards: migrating =====================================
+-- create_table(:awards)
+   -> 0.0848s
+== 20220806193202 CreateAwards: migrated (0.0849s) ============================
+
