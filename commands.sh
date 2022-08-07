@@ -1404,7 +1404,7 @@ $ rails db:migrate
 == 20220807021056 CreateRounds: migrated (0.6626s) ============================
 
 # Testing rounds after seeding
-Round.create(competition_id: 1, number: 7)
+> Round.create(competition_id: 1, number: 7)
   TRANSACTION (0.3ms)  BEGIN
   Competition Load (0.2ms)  SELECT "competitions".* FROM "competitions" WHERE "competitions"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
   Round Create (19.2ms)  INSERT INTO "rounds" ("competition_id", "number", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["competition_id", 1], ["number", 7], ["created_at", "2022-08-07 02:32:08.132845"], ["updated_at", "2022-08-07 02:32:08.132845"]]
@@ -1413,4 +1413,14 @@ Round.create(competition_id: 1, number: 7)
 DETAIL:  Key (competition_id, number)=(1, 7) already exists.
 /usr/local/rvm/gems/ruby-3.1.2/gems/activerecord-7.0.3/lib/active_record/connection_adapters/postgresql_adapter.rb:768:in exec_params': ERROR:  duplicate key value violates unique constraint "index_rounds_on_competition_id_and_number" (PG::UniqueViolation)
 DETAIL:  Key (competition_id, number)=(1, 7) already exists.
+
+# Adding loops attributes to competition model
+$ rails g migration AddLoopsToCompetition loops:integer
+
+$ rails db:migrate
+== 20220807024304 AddLoopsToCompetition: migrating ============================
+-- add_column(:competitions, :loops, :integer, {:null=>false, :default=>1})
+   -> 0.0542s
+== 20220807024304 AddLoopsToCompetition: migrated (0.0543s) ===================
+
 
