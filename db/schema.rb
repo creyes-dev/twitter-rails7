@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_06_193202) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_07_021056) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -140,6 +140,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_06_193202) do
     t.index ["prediction_result_id"], name: "index_predictions_on_prediction_result_id"
   end
 
+  create_table "rounds", force: :cascade do |t|
+    t.bigint "competition_id", null: false
+    t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competition_id", "number"], name: "index_rounds_on_competition_id_and_number", unique: true
+    t.index ["competition_id"], name: "index_rounds_on_competition_id"
+    t.index ["number"], name: "index_rounds_on_number"
+  end
+
   create_table "stadia", force: :cascade do |t|
     t.bigint "location_id", null: false
     t.string "name"
@@ -186,5 +196,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_06_193202) do
   add_foreign_key "predictions", "competing_users"
   add_foreign_key "predictions", "matches"
   add_foreign_key "predictions", "prediction_results"
+  add_foreign_key "rounds", "competitions"
   add_foreign_key "stadia", "locations"
 end

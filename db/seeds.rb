@@ -571,6 +571,10 @@ Country.create([{:name =>"Afganistán", :iso_code => 4 , :iso_alpha3 =>"AFG", :i
     { name: "Estadio Al Janoub", location_id: 5 }
   ])
 
+  (1..7).each do |i|
+    Round.create( competition_id: 1, number: i )
+  end
+
   Match.create([
     { name: "002", competing_team_home_id: 3, competing_team_away_id: 4, stadium_id: 1, datetime: "2022-11-21T10:00:00+00:00" },
     { name: "001", competing_team_home_id: 1, competing_team_away_id: 2, stadium_id: 2, datetime: "2022-11-21T16:00:00+00:00" },

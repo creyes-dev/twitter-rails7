@@ -1380,3 +1380,37 @@ cristian@debian-host:~/Code/twitter-rails7$ rails db:migrate
    -> 0.0848s
 == 20220806193202 CreateAwards: migrated (0.0849s) ============================
 
+# deleting every match AGAIN!
+$ Match.delete_all
+
+# generating round model
+$ rails g model Round competition:references number:integer
+      invoke  active_record
+      create    db/migrate/20220807021056_create_rounds.rb
+      create    app/models/round.rb
+      invoke    test_unit
+      create      test/models/round_test.rb
+      create      test/fixtures/rounds.yml
+
+# migrating matches table including unique composed index
+$ rails db:migrate
+== 20220807021056 CreateRounds: migrating =====================================
+-- create_table(:rounds)
+   -> 0.4729s
+-- add_index(:rounds, [:competition_id, :number], {:unique=>true})
+   -> 0.1171s
+-- add_index(:rounds, :number)
+   -> 0.0723s
+== 20220807021056 CreateRounds: migrated (0.6626s) ============================
+
+# Testing rounds after seeding
+Round.create(competition_id: 1, number: 7)
+  TRANSACTION (0.3ms)  BEGIN
+  Competition Load (0.2ms)  SELECT "competitions".* FROM "competitions" WHERE "competitions"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Round Create (19.2ms)  INSERT INTO "rounds" ("competition_id", "number", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["competition_id", 1], ["number", 7], ["created_at", "2022-08-07 02:32:08.132845"], ["updated_at", "2022-08-07 02:32:08.132845"]]
+  TRANSACTION (0.2ms)  ROLLBACK
+/usr/local/rvm/gems/ruby-3.1.2/gems/activerecord-7.0.3/lib/active_record/connection_adapters/postgresql_adapter.rb:768:in exec_params': PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_rounds_on_competition_id_and_number" (ActiveRecord::RecordNotUnique)
+DETAIL:  Key (competition_id, number)=(1, 7) already exists.
+/usr/local/rvm/gems/ruby-3.1.2/gems/activerecord-7.0.3/lib/active_record/connection_adapters/postgresql_adapter.rb:768:in exec_params': ERROR:  duplicate key value violates unique constraint "index_rounds_on_competition_id_and_number" (PG::UniqueViolation)
+DETAIL:  Key (competition_id, number)=(1, 7) already exists.
+
