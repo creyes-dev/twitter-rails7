@@ -1423,4 +1423,36 @@ $ rails db:migrate
    -> 0.0542s
 == 20220807024304 AddLoopsToCompetition: migrated (0.0543s) ===================
 
+# generating department model
+$ rails g model Department name:string
+      invoke  active_record
+      create    db/migrate/20220807172045_create_departments.rb
+      create    app/models/department.rb
+      invoke    test_unit
+      create      test/models/department_test.rb
+      create      test/fixtures/departments.yml
+
+$ db:migrate
+== 20220807172045 CreateDepartments: migrating ================================
+-- create_table(:departments)
+   -> 0.2494s
+== 20220807172045 CreateDepartments: migrated (0.2495s) =======================
+
+# genero un departamento a modo de ejemplo
+> Department.create(name: "departamento")
+  TRANSACTION (37.4ms)  COMMIT
+ =>
+#<Department:0x00007f4d92fba928
+ id: 1,
+ name: "departamento",
+ created_at: Sun, 07 Aug 2022 17:30:52.120430000 UTC +00:00,
+ updated_at: Sun, 07 Aug 2022 17:30:52.120430000 UTC +00:00>
+3.1.2 :002 > Department.all
+  Department Load (0.6ms)  SELECT "departments".* FROM "departments"
+ =>
+[#<Department:0x00007f4d926cbb28
+  id: 1,
+  name: "departamento",
+  created_at: Sun, 07 Aug 2022 17:30:52.120430000 UTC +00:00,
+  updated_at: Sun, 07 Aug 2022 17:30:52.120430000 UTC +00:00>]
 
