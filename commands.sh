@@ -1456,3 +1456,14 @@ $ db:migrate
   created_at: Sun, 07 Aug 2022 17:30:52.120430000 UTC +00:00,
   updated_at: Sun, 07 Aug 2022 17:30:52.120430000 UTC +00:00>]
 
+# User belongs to a department
+$ rails g migration AddDepartmentToUsers department:references
+      invoke  active_record
+      create    db/migrate/20220812005956_add_department_to_users.rb
+
+$ rails db:migrate
+== 20220812005956 AddDepartmentToUsers: migrating =============================
+-- add_reference(:users, :department, {:null=>false, :foreign_key=>true})
+   -> 0.2282s
+== 20220812005956 AddDepartmentToUsers: migrated (0.2283s) ====================
+
