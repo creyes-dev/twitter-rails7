@@ -1467,3 +1467,4 @@ $ rails db:migrate
    -> 0.2282s
 == 20220812005956 AddDepartmentToUsers: migrated (0.2283s) ====================
 
+# Had to reinstall devise
