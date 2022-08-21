@@ -1468,3 +1468,10 @@ $ rails db:migrate
 == 20220812005956 AddDepartmentToUsers: migrated (0.2283s) ====================
 
 # Had to reinstall devise
+
+# Downloading jquery using importmap
+
+$ bin/importmap pin jquery --download
+Pinning "jquery" to vendor/javascript/jquery.js via download from https://ga.jspm.io/npm:jquery@3.6.0/dist/jquery.js
+$ bin/importmap pin @rails/ujs --download
+Pinning "@rails/ujs" to vendor/javascript/@rails/ujs.js via download from https://ga.jspm.io/npm:@rails/ujs@7.0.3-1/lib/assets/compiled/rails-ujs.js

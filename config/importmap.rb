@@ -7,3 +7,5 @@ pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin "popper", to: 'popper.js', preload: true
 pin "bootstrap", to: "bootstrap.min.js", preload: true
+pin "jquery" # @3.6.0
+pin "@rails/ujs", to: "@rails--ujs.js" # @7.0.3
