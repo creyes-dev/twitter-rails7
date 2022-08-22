@@ -12,3 +12,4 @@ pin "@rails/ujs", to: "@rails--ujs.js", preload: true # @7.0.3
 pin "perfect-scrollbar", preload: true # @1.5.5
 pin "metis-menu", to: "metismenu.js", preload: true
 pin "dlab_settings", to: "dlab_settings.js"
+pin "chart_js", to: "https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"
