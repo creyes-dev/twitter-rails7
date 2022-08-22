@@ -7,7 +7,9 @@ import "popper"
 import "bootstrap"
 import "perfect-scrollbar"
 
-window.jQuery = jquery
-window.$ = jquery
+window.jQuery = jquery;
+window.$ = jquery;
 
 import "metis-menu"
+import "dlab_settings"
+
