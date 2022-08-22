@@ -13,4 +13,4 @@ window.$ = jquery;
 import "metis-menu"
 import "dlab_settings"
 import "chartjs"
-import "jqueryniceselect"
+import "apexcharts"
