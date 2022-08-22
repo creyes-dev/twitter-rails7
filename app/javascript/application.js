@@ -5,3 +5,7 @@ import "jquery"
 import "@rails/ujs"
 import "popper"
 import "bootstrap"
+import "perfect-scrollbar"
+
+window.$ = jQuery;
+window.jQuery = jQuery;
