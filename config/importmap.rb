@@ -10,3 +10,4 @@ pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "jquery", preload: true # @3.6.0
 pin "@rails/ujs", to: "@rails--ujs.js", preload: true # @7.0.3
 pin "perfect-scrollbar", preload: true # @1.5.5
+pin "metis-menu", to: "metismenu.js", preload: true

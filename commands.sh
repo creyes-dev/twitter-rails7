@@ -1477,3 +1477,5 @@ $ bin/importmap pin @rails/ujs --download
 Pinning "@rails/ujs" to vendor/javascript/@rails/ujs.js via download from https://ga.jspm.io/npm:@rails/ujs@7.0.3-1/lib/assets/compiled/rails-ujs.js
 
 # Downloading perfect-scrollbar
+$ bin/importmap pin perfect-scrollbar --download
+Pinning "perfect-scrollbar" to vendor/javascript/perfect-scrollbar.js via download from https://ga.jspm.io/npm:perfect-scrollbar@1.5.5/dist/perfect-scrollbar.esm.js
