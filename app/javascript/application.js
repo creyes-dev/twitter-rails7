@@ -12,4 +12,4 @@ window.$ = jquery;
 
 import "metis-menu"
 import "dlab_settings"
-import "chart_js"
+import "chartjs"
