@@ -13,3 +13,4 @@ pin "perfect-scrollbar", preload: true # @1.5.5
 pin "metis-menu", to: "metismenu.js", preload: true
 pin "dlab_settings", to: "dlab_settings.js"
 pin "chartjs" # @0.3.24
+# pin "jqueryniceselect", to: "jquery.nice-select.js"
