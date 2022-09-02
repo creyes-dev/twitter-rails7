@@ -8,6 +8,7 @@
     <ul>
       <% @matches.each do |match| %>
           <li>
+            <p>round: <%= match.round.number %>
             <p>group: <%= match.competing_team_home.group.name %></p>
             <p>location: <%= match.stadium.name %>, <%= match.stadium.location.name %>, <%= match.datetime %></p>
             <p>match <%= match.name %>: <%= match.competing_team_home.team.name %> vs <%= match.competing_team_away.team.name %></p>

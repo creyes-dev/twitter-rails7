@@ -3,7 +3,6 @@ class CompetingUserTeamController < ApplicationController
   end
 
   def edit
-    @competing_teams =
   end
 
   def update
