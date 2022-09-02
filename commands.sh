@@ -1502,3 +1502,16 @@ $ rails generate controller competing_user_team index edit update destroy
       invoke  helper
       create    app/helpers/competing_user_team_helper.rb
       invoke    test_unit
+
+# Matches belong to a competition round
+$ rails g migration AddRoundToMatches round:references
+      invoke  active_record
+      create    db/migrate/20220902204630_add_round_to_matches.rb
+
+# Migrating changes
+$ rails db:migrate
+== 20220902204630 AddRoundToMatches: migrating ================================
+-- add_reference(:matches, :round, {:null=>false, :foreign_key=>true})
+   -> 1.6526s
+== 20220902204630 AddRoundToMatches: migrated (1.6527s) =======================
+

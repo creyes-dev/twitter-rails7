@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_12_005956) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_02_204630) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -124,6 +124,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_12_005956) do
     t.bigint "competing_team_home_id"
     t.bigint "competing_team_away_id"
     t.bigint "stadium_id", null: false
+    t.bigint "round_id", null: false
+    t.index ["round_id"], name: "index_matches_on_round_id"
     t.index ["stadium_id"], name: "index_matches_on_stadium_id"
   end
 
@@ -201,6 +203,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_12_005956) do
   add_foreign_key "competitions", "competition_structures"
   add_foreign_key "groups", "competitions"
   add_foreign_key "locations", "countries"
+  add_foreign_key "matches", "rounds"
   add_foreign_key "matches", "stadia"
   add_foreign_key "predictions", "competing_users"
   add_foreign_key "predictions", "matches"

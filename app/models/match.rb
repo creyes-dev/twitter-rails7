@@ -1,5 +1,6 @@
 class Match < ApplicationRecord
   belongs_to :competing_team_home, class_name: "CompetingTeam"
   belongs_to :competing_team_away, class_name: "CompetingTeam"
+  belongs_to :round
   belongs_to :stadium
 end
