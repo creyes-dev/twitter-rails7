@@ -14,9 +14,10 @@ pin "metis-menu", to: "metismenu.js", preload: true
 pin "dlab_settings", to: "dlab_settings.js"
 pin "chartjs" # @0.3.24
 pin "apexcharts", to: "apexcharts.esm.js"
-#pin "jqueryniceselect", to: "jquery.nice-select.js"
-#pin "moment", to: "moment.js"
-#pin "bootstrap-datetimepicker", to: "bootstrap-datetimepicker.min.js"
-#pin "dashboard-1", to: "dashboard-1.js"
-#pin "custom", to: "custom.js"
-#pin "dlabnav-init", to: "dlabnav-init.js"
+
+pin "jqueryniceselect", to: "jquery.nice-select.js"
+pin "moment", to: "moment.js"
+pin "bootstrap-datetimepicker", to: "bootstrap-datetimepicker.min.js"
+pin "dashboard-1", to: "dashboard-1.js"
+pin "custom", to: "custom.js"
+pin "dlabnav-init", to: "dlabnav-init.js"

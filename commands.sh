@@ -1484,3 +1484,21 @@ Pinning "perfect-scrollbar" to vendor/javascript/perfect-scrollbar.js via downlo
 $ bin/importmap pin chartjs --download
 Pinning "chartjs" to vendor/javascript/chartjs.js via download from https://ga.jspm.io/npm:chartjs@0.3.24/chart.js
 
+# Generating Competing user team controller
+$ rails generate controller competing_user_team index edit update destroy
+      create  app/controllers/competing_user_team_controller.rb
+       route  get 'competing_user_team/index'
+              get 'competing_user_team/edit'
+              get 'competing_user_team/update'
+              get 'competing_user_team/destroy'
+      invoke  erb
+      create    app/views/competing_user_team
+      create    app/views/competing_user_team/index.html.erb
+      create    app/views/competing_user_team/edit.html.erb
+      create    app/views/competing_user_team/update.html.erb
+      create    app/views/competing_user_team/destroy.html.erb
+      invoke  test_unit
+      create    test/controllers/competing_user_team_controller_test.rb
+      invoke  helper
+      create    app/helpers/competing_user_team_helper.rb
+      invoke    test_unit
