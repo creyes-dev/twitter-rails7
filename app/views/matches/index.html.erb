@@ -4,6 +4,8 @@
 
 <% if current_user %>
   <p>Hello<%= current_user.email %></p>
+  <p>you are working at: <%= current_user.department_id %></p>
+  <p>You are a [<%= current_user.role %>]</p>
   <%= link_to "Sign out", destroy_user_session_path, 'data-turbo-method': :delete %>
 <% else %>
   <p>You are not signed in</p>
