@@ -1541,3 +1541,9 @@ $ rails db:migrate
    -> 0.0009s
 == 20220903034541 AddNameFieldsToUsers: migrated (0.0397s) ====================
 
+# Updating users first and last names
+> User.update_all(first_name: 'first name', last_name: 'last name')
+  User Update All (38.1ms)  UPDATE "users" SET "first_name" = $1, "last_name" = $2  [["first_name", "first name"], ["last_name", "last name"]]
+ => 4
+
+

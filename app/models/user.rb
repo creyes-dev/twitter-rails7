@@ -9,5 +9,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: {maximum:50}
+  validates :first_name,  presence: true, length: {maximum:50}
+  validates :last_name, presence: true, length: {maximum:50}
   validates :department_id, presence: true
 end
