@@ -1515,3 +1515,15 @@ $ rails db:migrate
    -> 1.6526s
 == 20220902204630 AddRoundToMatches: migrated (1.6527s) =======================
 
+# Generating dashboard controller
+$ rails generate controller dashboard index
+      create  app/controllers/dashboard_controller.rb
+       route  get 'dashboard/index'
+      invoke  erb
+      create    app/views/dashboard
+      create    app/views/dashboard/index.html.erb
+      invoke  test_unit
+      create    test/controllers/dashboard_controller_test.rb
+      invoke  helper
+      create    app/helpers/dashboard_helper.rb
+      invoke    test_unit

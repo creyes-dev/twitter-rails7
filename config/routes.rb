@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'competing_user_team/index'
-  get 'competing_user_team/edit'
-  get 'competing_user_team/update'
-  get 'competing_user_team/destroy'
+  get 'dashboard', to: 'dashboard#index'
   resources :teams
   resources :competitions
   root 'matches#index'
