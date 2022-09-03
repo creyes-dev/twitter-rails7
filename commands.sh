@@ -1527,3 +1527,17 @@ $ rails generate controller dashboard index
       invoke  helper
       create    app/helpers/dashboard_helper.rb
       invoke    test_unit
+
+# Adding name fields to Users
+$ rails g migration AddNameFieldsToUsers first_name:string last_name:string
+      invoke  active_record
+      create    db/migrate/20220903034541_add_name_fields_to_users.rb
+
+$ rails db:migrate
+== 20220903034541 AddNameFieldsToUsers: migrating =============================
+-- add_column(:users, :first_name, :string, {:null=>true})
+   -> 0.0386s
+-- add_column(:users, :last_name, :string, {:null=>true})
+   -> 0.0009s
+== 20220903034541 AddNameFieldsToUsers: migrated (0.0397s) ====================
+
