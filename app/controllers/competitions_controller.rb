@@ -3,8 +3,9 @@ class CompetitionsController < ApplicationController
 
   # GET /competitions or /competitions.json
   def index
+    @competition = Competition.new
     @competitions = Competition.all
-    @matches = Match.all
+    @matches = Match.all.order(:round_id, :name)
   end
 
   # GET /competitions/1 or /competitions/1.json
@@ -66,6 +67,6 @@ class CompetitionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def competition_params
-      params.require(:competition).permit(:name, :competition_structure_id, :national_teams, :groups, :teams_group, :rounds)
+      params.require(:competition).permit(:name, :competition_structure_id, :national_teams, :groups, :teams_group, :rounds, :begin, :active, :loops)
     end
 end

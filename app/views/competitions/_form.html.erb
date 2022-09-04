@@ -1,4 +1,4 @@
-<%= form_with(model: competition) do |form| %>
+<%= form_with(model: competition, class: "bg-secondary") do |form| %>
   <% if competition.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(competition.errors.count, "error") %> prohibited this competition from being saved:</h2>
@@ -39,6 +39,21 @@
   <div>
     <%= form.label :rounds, style: "display: block" %>
     <%= form.number_field :rounds %>
+  </div>
+
+  <div>
+    <%= form.label :begin, style: "display: block" %>
+    <%= form.text_field :begin %>
+  </div>
+
+  <div>
+    <%= form.label :active, style: "display: block" %>
+    <%= form.check_box :active %>
+  </div>
+
+  <div>
+    <%= form.label :loops, style: "display: block" %>
+    <%= form.number_field :loops %>
   </div>
 
   <div>
