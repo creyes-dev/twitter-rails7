@@ -13,6 +13,14 @@ class TasksController < ApplicationController
   def show
   end
 
+  def active
+    @task = Task.find(params[:id])
+    @task.update(completed: !@task.completed)
+    respond_to do |format|
+      format.turbo_stream { render partial: 'tasks/active', locals: { task: @task } }
+    end
+  end
+
   # GET /tasks/new
   def new
     @task = Task.new

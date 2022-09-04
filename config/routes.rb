@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :tasks
   get 'dashboard', to: 'dashboard#index'
+  post 'tasks/:id/active' => 'tasks#active'
+
   resources :teams
   resources :competitions
   root 'matches#index'
