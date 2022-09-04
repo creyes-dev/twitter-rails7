@@ -1,4 +1,6 @@
 <div id="<%= dom_id task %>">
-  <%= check_box_tag :completed, task.completed, task.completed %>
+  <%= check_box_tag :completed, task.completed, task.completed,
+    data: { id: task.id, controller: 'check', action: 'click->check#active' }
+  %>
   <%= task.name %>
 </div>

@@ -1585,3 +1585,6 @@ $ rails db:migrate
    -> 0.5224s
 == 20220904032820 CreateTasks: migrated (0.5226s) =============================
 
+# Creating stimulus check controller
+$ rails g stimulus check
+      create  app/javascript/controllers/check_controller.js
