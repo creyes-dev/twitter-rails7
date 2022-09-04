@@ -28,6 +28,8 @@
   </div>
 <% end %>
 
+<%= turbo_stream_from 'tasks' %>
+
 <h3>TO DO</h3>
 <%= turbo_frame_tag "todo_list" do %>
   <%= render @tasks %>
