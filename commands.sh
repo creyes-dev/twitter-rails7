@@ -1546,4 +1546,42 @@ $ rails db:migrate
   User Update All (38.1ms)  UPDATE "users" SET "first_name" = $1, "last_name" = $2  [["first_name", "first name"], ["last_name", "last name"]]
  => 4
 
+# Generating Task scaffold
+$ rails g scaffold Task name:string completed:boolean
+      invoke  active_record
+      create    db/migrate/20220904032820_create_tasks.rb
+      create    app/models/task.rb
+      invoke    test_unit
+      create      test/models/task_test.rb
+      create      test/fixtures/tasks.yml
+      invoke  resource_route
+       route    resources :tasks
+      invoke  scaffold_controller
+      create    app/controllers/tasks_controller.rb
+      invoke    erb
+      create      app/views/tasks
+      create      app/views/tasks/index.html.erb
+      create      app/views/tasks/edit.html.erb
+      create      app/views/tasks/show.html.erb
+      create      app/views/tasks/new.html.erb
+      create      app/views/tasks/_form.html.erb
+      create      app/views/tasks/_task.html.erb
+      invoke    resource_route
+      invoke    test_unit
+      create      test/controllers/tasks_controller_test.rb
+      create      test/system/tasks_test.rb
+      invoke    helper
+      create      app/helpers/tasks_helper.rb
+      invoke      test_unit
+      invoke    jbuilder
+      create      app/views/tasks/index.json.jbuilder
+      create      app/views/tasks/show.json.jbuilder
+      create      app/views/tasks/_task.json.jbuilder
+
+# Migrating database
+$ rails db:migrate
+== 20220904032820 CreateTasks: migrating ======================================
+-- create_table(:tasks)
+   -> 0.5224s
+== 20220904032820 CreateTasks: migrated (0.5226s) =============================
 
