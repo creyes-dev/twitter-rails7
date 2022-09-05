@@ -1588,3 +1588,46 @@ $ rails db:migrate
 # Creating stimulus check controller
 $ rails g stimulus check
       create  app/javascript/controllers/check_controller.js
+
+# Generating Quote scaffold
+rails g scaffold Quote name_one:string name_two:string
+
+$ rails g scaffold Quote name_one:string name_two:string
+      invoke  active_record
+      create    db/migrate/20220905002549_create_quotes.rb
+      create    app/models/quote.rb
+      invoke    test_unit
+      create      test/models/quote_test.rb
+      create      test/fixtures/quotes.yml
+      invoke  resource_route
+       route    resources :quotes
+      invoke  scaffold_controller
+      create    app/controllers/quotes_controller.rb
+      invoke    erb
+      create      app/views/quotes
+      create      app/views/quotes/index.html.erb
+      create      app/views/quotes/edit.html.erb
+      create      app/views/quotes/show.html.erb
+      create      app/views/quotes/new.html.erb
+      create      app/views/quotes/_form.html.erb
+      create      app/views/quotes/_quote.html.erb
+      invoke    resource_route
+      invoke    test_unit
+      create      test/controllers/quotes_controller_test.rb
+      create      test/system/quotes_test.rb
+      invoke    helper
+      create      app/helpers/quotes_helper.rb
+      invoke      test_unit
+      invoke    jbuilder
+      create      app/views/quotes/index.json.jbuilder
+      create      app/views/quotes/show.json.jbuilder
+      create      app/views/quotes/_quote.json.jbuilder
+
+# Migrating database
+$ rails db:migrate
+== 20220905002549 CreateQuotes: migrating =====================================
+-- create_table(:quotes)
+   -> 0.6392s
+== 20220905002549 CreateQuotes: migrated (0.6393s) ============================
+
+

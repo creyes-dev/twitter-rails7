@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_04_032820) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_05_002549) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -147,6 +147,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_04_032820) do
     t.index ["competing_user_id"], name: "index_predictions_on_competing_user_id"
     t.index ["match_id"], name: "index_predictions_on_match_id"
     t.index ["prediction_result_id"], name: "index_predictions_on_prediction_result_id"
+  end
+
+  create_table "quotes", force: :cascade do |t|
+    t.string "name_one"
+    t.string "name_two"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rounds", force: :cascade do |t|

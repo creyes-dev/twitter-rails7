@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :quotes
   resources :tasks
   get 'dashboard', to: 'dashboard#index'
   post 'tasks/:id/active' => 'tasks#active'
