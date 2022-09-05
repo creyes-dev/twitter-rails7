@@ -12,7 +12,7 @@
   <% end %>
 
   <div>
-    <%= form.label :name_one, style: "display: block" %>
+    <%= form.label :name_one, style: "display: block", input_html: { autofocus: true }  %>
     <%= form.text_field :name_one %>
   </div>
 
@@ -22,6 +22,6 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn--secondary" %>
   </div>
 <% end %>

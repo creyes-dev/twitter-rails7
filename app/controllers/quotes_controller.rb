@@ -23,32 +23,26 @@ class QuotesController < ApplicationController
   # POST /quotes or /quotes.json
   def create
     @quote = Quote.new(quote_params)
-
-    respond_to do |format|
       if @quote.save
         redirect_to quotes_path, notice: "Quote was successfully created."
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
-    end
   end
 
   # PATCH/PUT /quotes/1 or /quotes/1.json
   def update
-    respond_to do |format|
       if @quote.update(quote_params)
         redirect_to quotes_path, notice: "Quote was successfully updated."
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
-    end
   end
 
   # DELETE /quotes/1 or /quotes/1.json
   def destroy
     @quote.destroy
     redirect_to quotes_path, notice: "Quote was successfully destroyed."
-    end
   end
 
   private
