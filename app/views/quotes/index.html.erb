@@ -1,21 +1,28 @@
-<div id="matches">
-  <p>
-    <strong>Matches </strong>
-    <ul>
-      <% @matches.each do |match| %>
-          <li>
-            <p>round: <%= match.round.number %>
-            <p>group: <%= match.competing_team_home.group.name %></p>
-            <p>location: <%= match.stadium.name %>, <%= match.stadium.location.name %>, <%= match.datetime %></p>
-            <p>match <%= match.name %>: <%= match.competing_team_home.team.name %> vs <%= match.competing_team_away.team.name %></p>
-          </li>
-      <% end %>
-    </ul>
-  </p>
-</div>
+<main class="container">
+  <div id="matches">
+    <p>
+      <strong>Matches </strong>
+      <ul>
+        <% @matches.each do |match| %>
+            <li>
+              <p>round: <%= match.round.number %>
+              <p>group: <%= match.competing_team_home.group.name %></p>
+              <p>location: <%= match.stadium.name %>, <%= match.stadium.location.name %>, <%= match.datetime %></p>
+              <p>match <%= match.name %>: <%= match.competing_team_home.team.name %> vs <%= match.competing_team_away.team.name %></p>
+            </li>
+        <% end %>
+      </ul>
+    </p>
+  </div>
 
-<p style="color: green"><%= notice %></p>
+  <p style="color: green"><%= notice %></p>
 
-<h1>Quotes</h1>
-<%= render @quotes %>
-<%= link_to "New quote", new_quote_path %>
+  <%= turbo_frame_tag "first_turbo_frame" do %>
+    <h3>first_turbo_frame</h3>
+    <%= link_to "New quote", new_quote_path, data: { turbo_frame: "second_frame" } %>
+  <% end %>
+  <%= turbo_frame_tag "second_frame" do %>
+    <h3>index#second_frame</h3>
+    <%= render @quotes %>
+  <% end %>
+</main>
