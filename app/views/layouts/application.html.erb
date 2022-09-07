@@ -12,6 +12,11 @@
 
   <body>
     <h1>Prode</h1>
+
+    <div class="flash">
+      <%= render "layouts/flash" %>
+    </div>
+
     <%= yield %>
     <%= javascript_import_module_tag "dashboard-1" %>
   </body>
