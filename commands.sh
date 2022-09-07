@@ -1630,4 +1630,6 @@ $ rails db:migrate
    -> 0.6392s
 == 20220905002549 CreateQuotes: migrated (0.6393s) ============================
 
+$ bin/rails generate stimulus removals
+      create  app/javascript/controllers/removals_controller.js
 
