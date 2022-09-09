@@ -14,3 +14,6 @@ application.register("removals", RemovalsController)
 
 import PredictionsChartController from "./predictions_chart_controller.js"
 application.register("predictions_chart", PredictionsChartController)
+
+import PredictionsWonChartController from "./predictions_won_chart_controller.js"
+application.register("predictions_won_chart", PredictionsWonChartController)
