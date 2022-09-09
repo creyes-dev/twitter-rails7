@@ -11,3 +11,6 @@ eagerLoadControllersFrom("controllers", application)
 // lazyLoadControllersFrom("controllers", application)
 import RemovalsController from "./removals_controller.js"
 application.register("removals", RemovalsController)
+
+import PredictionsChartController from "./predictions_chart_controller.js"
+application.register("predictions_chart", PredictionsChartController)

@@ -12,6 +12,7 @@ pin "@rails/ujs", to: "@rails--ujs.js", preload: true # @7.0.3
 pin "perfect-scrollbar", preload: true # @1.5.5
 pin "metis-menu", to: "metismenu.js", preload: true
 pin "dlab_settings", to: "dlab_settings.js"
+pin 'lodash', to: 'https://ga.jspm.io/npm:lodash@4.17.21/lodash.js'
 pin "chartjs" # @0.3.24
 pin "apexcharts", to: "apexcharts.esm.js"
 
