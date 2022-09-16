@@ -9,3 +9,9 @@ $(function() {
     });
 
 import "./src/global.min.js"
+import "./src/chart.bundle.min.js"
+import "./src/jquery.nice-select.js"
+import "./src/apexchart.js"
+
+import "./src/moment.js"
+import "./src/bootstrap-datetimepicker.min.js"
