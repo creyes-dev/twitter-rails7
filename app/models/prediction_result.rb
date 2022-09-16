@@ -1,2 +1,0 @@
-class PredictionResult < ApplicationRecord
-end

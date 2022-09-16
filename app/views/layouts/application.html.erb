@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Prode</title>
+    <title>ProdeRails</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
-    <h1>Prode</h1>
-
-    <div id="flash" class="flash">
-      <%= render "layouts/flash" %>
-    </div>
-
     <%= yield %>
-    <%= javascript_import_module_tag "dashboard-1" %>
   </body>
 </html>

@@ -1633,3 +1633,239 @@ $ rails db:migrate
 $ bin/rails generate stimulus removals
       create  app/javascript/controllers/removals_controller.js
 
+# Project destroyed
+
+# Setting up postgresql and creating database
+
+$ rails db:create
+Created database 'prode_rails_development'
+Created database 'prode_rails_test'
+
+$ sudo -u postgres psql
+[sudo] password for cristian:
+psql (13.7 (Debian 13.7-0+deb11u1))
+Type "help" for help.
+
+postgres=# \l
+
+                                           List of databases
+              Name              |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges
+--------------------------------+----------+----------+-------------+-------------+-----------------------
+ cristiandb                     | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ postgres                       | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ prode_development              | cristian | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ prode_rails_development        | cristian | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ prode_rails_test               | cristian | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ prode_test                     | cristian | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ soccer_forecasting_development | cristian | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ soccer_forecasting_test        | cristian | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ template0                      | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+                                |          |          |             |             | postgres=CTc/postgres
+ template1                      | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+                                |          |          |             |             | postgres=CTc/postgres
+
+$ bundle add esbuild-rails
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Using rake 13.0.6
+Using concurrent-ruby 1.1.10
+Using timeout 0.3.0
+Using strscan 3.0.4
+Using public_suffix 5.0.0
+Using crass 1.0.6
+Using rack 2.2.4
+Using bundler 2.3.17
+Using marcel 1.0.2
+Using regexp_parser 2.5.0
+Using childprocess 4.1.0
+Using io-console 0.5.11
+Using method_source 1.0.0
+Using matrix 0.4.2
+Using erubi 1.11.0
+Using racc 1.6.0
+Using bindex 0.8.1
+Using rexml 3.2.5
+Using rubyzip 2.3.2
+Using builder 3.2.4
+Using websocket 1.2.9
+Using mini_mime 1.1.2
+Using net-protocol 0.1.3
+Using addressable 2.8.1
+Using zeitwerk 2.6.0
+Using pg 1.4.3
+Using reline 0.3.1
+Using nio4r 2.5.8
+Using i18n 1.12.0
+Using irb 1.4.1
+Using mail 2.7.1
+Using debug 1.6.2
+Using puma 5.6.5
+Using thor 1.2.1
+Using rack-test 2.0.2
+Using sprockets 4.1.1
+Using msgpack 1.5.6
+Using nokogiri 1.13.8 (x86_64-linux)
+Using bootsnap 1.13.0
+Using digest 3.1.0
+Using loofah 2.18.0
+Using net-pop 0.1.1
+Using rails-html-sanitizer 1.4.3
+Using selenium-webdriver 4.4.0
+Using xpath 3.2.0
+Using websocket-extensions 0.1.5
+Using capybara 3.37.1
+Using net-imap 0.2.3
+Using net-smtp 0.3.1
+Using minitest 5.16.3
+Using webdrivers 5.0.0
+Using tzinfo 2.0.5
+Using websocket-driver 0.7.5
+Using activesupport 7.0.4
+Using activemodel 7.0.4
+Using rails-dom-testing 2.0.3
+Using globalid 1.0.0
+Using actionview 7.0.4
+Using activejob 7.0.4
+Using activerecord 7.0.4
+Using actionpack 7.0.4
+Using jbuilder 2.11.5
+Using activestorage 7.0.4
+Using actionmailer 7.0.4
+Using railties 7.0.4
+Using sprockets-rails 3.4.2
+Using actiontext 7.0.4
+Using actioncable 7.0.4
+Using actionmailbox 7.0.4
+Using jsbundling-rails 1.0.3
+Using stimulus-rails 1.1.0
+Using turbo-rails 1.1.1
+Using web-console 4.2.0
+Using rails 7.0.4
+Fetching esbuild-rails 0.1.4
+Installing esbuild-rails 0.1.4
+
+# Installing esbuild
+
+$ bin/rails esbuild:install
+Compile into app/assets/builds
+       exist  app/assets/builds
+   identical  app/assets/builds/.keep
+      append  app/assets/config/manifest.js
+      append  .gitignore
+Add esbuild include tag in application layout
+      insert  app/views/layouts/application.html.erb
+Create default package.json and install esbuild
+    conflict  package.json
+Overwrite /home/cristian/Code/twitter-rails7/package.json? (enter "h" for help) [Ynaqdhm] y
+       force  package.json
+         run  yarn add esbuild from "."
+yarn add v1.22.19
+warning ../package.json: No license field
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved lockfile.
+success Saved 1 new dependency.
+info Direct dependencies
+└─ esbuild@0.15.7
+info All dependencies
+└─ esbuild@0.15.7
+Done in 2.23s.
+
+$ yarn add @hotwired/turbo-rails
+yarn add v1.22.19
+warning ../package.json: No license field
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved lockfile.
+success Saved 3 new dependencies.
+info Direct dependencies
+└─ @hotwired/turbo-rails@7.1.3
+info All dependencies
+├─ @hotwired/turbo-rails@7.1.3
+├─ @hotwired/turbo@7.1.0
+└─ @rails/actioncable@7.0.4
+Done in 5.18s.
+
+$ yarn add stimulus
+yarn add v1.22.19
+warning ../package.json: No license field
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+
+success Saved lockfile.
+success Saved 3 new dependencies.
+info Direct dependencies
+└─ stimulus@3.1.0
+info All dependencies
+├─ @hotwired/stimulus-webpack-helpers@1.0.1
+├─ @hotwired/stimulus@3.1.0
+└─ stimulus@3.1.0
+Done in 3.56s.
+
+# Build application.js
+
+$ yarn run build
+yarn run v1.22.19
+warning ../package.json: No license field
+$ esbuild app/javascript/*.* --bundle --outdir=app/assets/builds
+
+  app/assets/builds/application.js  190.5kb
+
+Done in 0.11s.
+
+# add your controllers to be included in the bundling process
+$ ./bin/rails stimulus:manifest:update
+
+# Running rails
+
+$ ./bin/dev
+23:46:01 web.1  | started with pid 18453
+23:46:01 js.1   | started with pid 18454
+23:46:03 js.1   | yarn run v1.22.19
+23:46:03 js.1   | warning ../package.json: No license field
+23:46:03 js.1   | $ esbuild app/javascript/*.* --bundle --outdir=app/assets/builds --watch
+23:46:04 js.1   | [watch] build finished, watching for changes...
+23:46:06 web.1  | => Booting Puma
+23:46:06 web.1  | => Rails 7.0.4 application starting in development
+23:46:06 web.1  | => Run `bin/rails server --help` for more startup options
+23:46:07 web.1  | Puma starting in single mode...
+23:46:07 web.1  | * Puma version: 5.6.5 (ruby 3.1.2-p20) ("Birdie's Version")
+23:46:07 web.1  | *  Min threads: 5
+23:46:07 web.1  | *  Max threads: 5
+23:46:07 web.1  | *  Environment: development
+23:46:07 web.1  | *          PID: 18453
+23:46:07 web.1  | * Listening on http://127.0.0.1:3000
+23:46:07 web.1  | * Listening on http://[::1]:3000
+23:46:07 web.1  | Use Ctrl-C to stop
+
+# Generating dashboard controller
+
+$ rails generate controller dashboard index
+      create  app/controllers/dashboard_controller.rb
+       route  get 'dashboard/index'
+      invoke  erb
+      create    app/views/dashboard
+      create    app/views/dashboard/index.html.erb
+      invoke  test_unit
+      create    test/controllers/dashboard_controller_test.rb
+      invoke  helper
+      create    app/helpers/dashboard_helper.rb
+      invoke    test_unit
+
+$ yarn build
+yarn run v1.22.19
+warning ../package.json: No license field
+$ esbuild app/javascript/*.* --bundle --outdir=app/assets/builds
+
+  app/assets/builds/application.js  190.5kb
+
+Done in 0.11s.
+
