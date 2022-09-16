@@ -1869,3 +1869,32 @@ $ esbuild app/javascript/*.* --bundle --outdir=app/assets/builds
 
 Done in 0.11s.
 
+# Installing jquery
+
+$ yarn add jquery
+yarn add v1.22.19
+warning ../package.json: No license field
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+
+success Saved lockfile.
+success Saved 1 new dependency.
+info Direct dependencies
+└─ jquery@3.6.1
+info All dependencies
+└─ jquery@3.6.1
+Done in 2.06s.
+
+# Ok, yarn won't bundle it just like that
+
+$ yarn build
+yarn run v1.22.19
+warning ../package.json: No license field
+$ esbuild app/javascript/*.* --bundle --outdir=app/assets/builds
+
+  app/assets/builds/application.js  190.5kb
+
+Done in 0.12s.
+

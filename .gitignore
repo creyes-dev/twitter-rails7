@@ -8,6 +8,7 @@
 /.bundle
 /app/assets/images/flags/1x1
 /app/assets/images/flags/4x3
+/app/assets/stylesheets/getskills/css
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
