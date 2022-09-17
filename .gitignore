@@ -6,9 +6,12 @@
 
 # Ignore bundler config.
 /.bundle
+/app/assets/images
 /app/assets/images/flags/1x1
 /app/assets/images/flags/4x3
 /app/assets/stylesheets/getskills/css
+/app/assets/stylesheets/getskills/icons
+/app/assets/stylesheets/getskills/vendor
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
