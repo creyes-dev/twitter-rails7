@@ -1898,3 +1898,323 @@ $ esbuild app/javascript/*.* --bundle --outdir=app/assets/builds
 
 Done in 0.12s.
 
+$ bundle add esbuild-rails
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Using rake 13.0.6
+Using concurrent-ruby 1.1.10
+Using crass 1.0.6
+Using builder 3.2.4
+Using strscan 3.0.4
+Using bindex 0.8.1
+Using rack 2.2.4
+Using bundler 2.3.17
+Using nio4r 2.5.8
+Using matrix 0.4.2
+Using marcel 1.0.2
+Using mini_mime 1.1.2
+Using minitest 5.16.3
+Using timeout 0.3.0
+Using io-console 0.5.11
+Using public_suffix 5.0.0
+Using racc 1.6.0
+Using msgpack 1.5.6
+Using digest 3.1.0
+Using i18n 1.12.0
+Using tzinfo 2.0.5
+Using rack-test 2.0.2
+Using method_source 1.0.0
+Using thor 1.2.1
+Using zeitwerk 2.6.0
+Using erubi 1.11.0
+Using rexml 3.2.5
+Using addressable 2.8.1
+Using rubyzip 2.3.2
+Using websocket 1.2.9
+Using websocket-extensions 0.1.5
+Using regexp_parser 2.5.0
+Using websocket-driver 0.7.5
+Using sprockets 4.1.1
+Using puma 5.6.5
+Using mail 2.7.1
+Using net-protocol 0.1.3
+Using pg 1.4.3
+Using reline 0.3.1
+Using nokogiri 1.13.8 (x86_64-linux)
+Using activesupport 7.0.4
+Using loofah 2.19.0
+Using rails-dom-testing 2.0.3
+Using net-imap 0.2.3
+Using net-pop 0.1.1
+Using net-smtp 0.3.1
+Using irb 1.4.1
+Using xpath 3.2.0
+Using bootsnap 1.13.0
+Using capybara 3.37.1
+Using activemodel 7.0.4
+Using childprocess 4.1.0
+Using activerecord 7.0.4
+Using rails-html-sanitizer 1.4.3
+Using globalid 1.0.0
+Using actionview 7.0.4
+Using debug 1.6.2
+Using actionpack 7.0.4
+Using jbuilder 2.11.5
+Using sprockets-rails 3.4.2
+Using selenium-webdriver 4.4.0
+Using activejob 7.0.4
+Using actioncable 7.0.4
+Using webdrivers 5.1.0
+Using railties 7.0.4
+Using activestorage 7.0.4
+Using jsbundling-rails 1.0.3
+Using stimulus-rails 1.1.0
+Using actionmailer 7.0.4
+Using web-console 4.2.0
+Using cssbundling-rails 1.1.1
+Using turbo-rails 1.1.1
+Using actiontext 7.0.4
+Using actionmailbox 7.0.4
+Using rails 7.0.4
+Using esbuild-rails 0.1.4
+cristian@debian-host:~/Code/twitter-rails7$ bundle install
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Using rake 13.0.6
+Using erubi 1.11.0
+Using timeout 0.3.0
+Using nio4r 2.5.8
+Using marcel 1.0.2
+Using digest 3.1.0
+Using concurrent-ruby 1.1.10
+Using bundler 2.3.17
+Using builder 3.2.4
+Using crass 1.0.6
+Using rack 2.2.4
+Using websocket-extensions 0.1.5
+Using mini_mime 1.1.2
+Using racc 1.6.0
+Using io-console 0.5.11
+Using public_suffix 5.0.0
+Using ffi 1.15.5
+Using msgpack 1.5.6
+Using minitest 5.16.3
+Using matrix 0.4.2
+Using regexp_parser 2.5.0
+Using childprocess 4.1.0
+Using method_source 1.0.0
+Using thor 1.2.1
+Using tzinfo 2.0.5
+Using rack-test 2.0.2
+Using i18n 1.12.0
+Using zeitwerk 2.6.0
+Using rexml 3.2.5
+Using rubyzip 2.3.2
+Using nokogiri 1.13.8 (x86_64-linux)
+Using websocket 1.2.9
+Fetching tilt 2.0.11
+Using puma 5.6.5
+Using strscan 3.0.4
+Using bindex 0.8.1
+Using sprockets 4.1.1
+Using pg 1.4.3
+Using websocket-driver 0.7.5
+Using mail 2.7.1
+Using reline 0.3.1
+Using net-protocol 0.1.3
+Using irb 1.4.1
+Using net-pop 0.1.1
+Using sassc 2.4.0
+Using activesupport 7.0.4
+Using loofah 2.19.0
+Using xpath 3.2.0
+Using selenium-webdriver 4.4.0
+Using rails-html-sanitizer 1.4.3
+Using net-imap 0.2.3
+Using net-smtp 0.3.1
+Using bootsnap 1.13.0
+Using webdrivers 5.1.0
+Using debug 1.6.2
+Using rails-dom-testing 2.0.3
+Using activemodel 7.0.4
+Using addressable 2.8.1
+Using activerecord 7.0.4
+Using globalid 1.0.0
+Using capybara 3.37.1
+Using actionview 7.0.4
+Using activejob 7.0.4
+Using actionpack 7.0.4
+Using jbuilder 2.11.5
+Using actioncable 7.0.4
+Using activestorage 7.0.4
+Using actionmailer 7.0.4
+Using actionmailbox 7.0.4
+Using sprockets-rails 3.4.2
+Using actiontext 7.0.4
+Using railties 7.0.4
+Using jsbundling-rails 1.0.3
+Using stimulus-rails 1.1.0
+Using turbo-rails 1.1.1
+Using web-console 4.2.0
+Using cssbundling-rails 1.1.1
+Using rails 7.0.4
+Using esbuild-rails 0.1.4
+Installing tilt 2.0.11
+Using sassc-rails 2.1.2
+Bundle complete! 18 Gemfile dependencies, 80 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+
+$ yarn add jquery
+yarn add v1.22.19
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+
+success Saved 1 new dependency.
+info Direct dependencies
+└─ jquery@3.6.1
+info All dependencies
+└─ jquery@3.6.1
+Done in 2.12s.
+
+$ yarn add perfect-scrollbar@1.4.0
+yarn add v1.22.19
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved lockfile.
+success Saved 1 new dependency.
+info Direct dependencies
+└─ perfect-scrollbar@1.4.0
+info All dependencies
+└─ perfect-scrollbar@1.4.0
+Done in 2.21s.
+
+$ yarn add metismenu@3.0.3
+yarn add v1.22.19
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved lockfile.
+success Saved 1 new dependency.
+info Direct dependencies
+└─ metismenu@3.0.3
+info All dependencies
+└─ metismenu@3.0.3
+Done in 1.81s.
+
+$ yarn add chart.js@2.8.0
+yarn add v1.22.19
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved lockfile.
+success Saved 6 new dependencies.
+info Direct dependencies
+└─ chart.js@2.8.0
+info All dependencies
+├─ chart.js@2.8.0
+├─ chartjs-color-string@0.6.0
+├─ chartjs-color@2.4.1
+├─ color-convert@1.9.3
+├─ color-name@1.1.3
+└─ moment@2.29.4
+Done in 4.70s.
+
+$ yarn add jquery-nice-select
+yarn add v1.22.19
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved lockfile.
+success Saved 1 new dependency.
+info Direct dependencies
+└─ jquery-nice-select@1.1.0
+info All dependencies
+└─ jquery-nice-select@1.1.0
+Done in 2.69s.
+
+$ yarn add apexcharts@3.26.0
+yarn add v1.22.19
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved lockfile.
+success Saved 8 new dependencies.
+info Direct dependencies
+└─ apexcharts@3.26.0
+info All dependencies
+├─ apexcharts@3.26.0
+├─ svg.draggable.js@2.2.2
+├─ svg.easing.js@2.0.0
+├─ svg.filter.js@2.0.2
+├─ svg.js@2.7.1
+├─ svg.pathmorphing.js@0.1.3
+├─ svg.resize.js@1.4.3
+└─ svg.select.js@3.0.1
+Done in 6.24s.
+
+$ yarn add eonasdan-bootstrap-datetimepicker@4.17.47
+yarn add v1.22.19
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+warning " > eonasdan-bootstrap-datetimepicker@4.17.47" has incorrect peer dependency "bootstrap@^3.3".
+warning " > eonasdan-bootstrap-datetimepicker@4.17.47" has unmet peer dependency "moment@^2.10".
+warning " > eonasdan-bootstrap-datetimepicker@4.17.47" has unmet peer dependency "moment-timezone@^0.4.0".
+[4/4] Building fresh packages...
+success Saved lockfile.
+success Saved 2 new dependencies.
+info Direct dependencies
+└─ eonasdan-bootstrap-datetimepicker@4.17.47
+info All dependencies
+├─ eonasdan-bootstrap-datetimepicker@4.17.47
+└─ moment-timezone@0.4.1
+Done in 5.22s.
+
+$ ./bin/rails generate stimulus success_chart_controller
+      create  app/javascript/controllers/success_chart_controller.js
+       rails  stimulus:manifest:update
+
+$ ./bin/rails generate stimulus predictions_chart_controller
+      create  app/javascript/controllers/predictions_chart_controller.js
+       rails  stimulus:manifest:update
+
+$ ./bin/rails stimulus:manifest:update
+
+$ yarn add lodash@4.17.10
+yarn add v1.22.19
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+warning " > eonasdan-bootstrap-datetimepicker@4.17.47" has incorrect peer dependency "bootstrap@^3.3".
+warning " > eonasdan-bootstrap-datetimepicker@4.17.47" has unmet peer dependency "moment@^2.10".
+warning " > eonasdan-bootstrap-datetimepicker@4.17.47" has unmet peer dependency "moment-timezone@^0.4.0".
+[4/4] Building fresh packages...
+success Saved lockfile.
+success Saved 1 new dependency.
+info Direct dependencies
+└─ lodash@4.17.10
+info All dependencies
+└─ lodash@4.17.10
+Done in 2.66s.
+
+$ yarn build
+yarn run v1.22.19
+$ esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets
+
+  app/assets/builds/application.js      1.9mb ⚠️
+  app/assets/builds/application.js.map  3.3mb
+
+Done in 0.51s.
+
+$ ./bin/rails stimulus:manifest:update
+

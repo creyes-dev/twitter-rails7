@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: prode_rails_production
-  username: cristian
+  username: prode_rails
   password: <%= ENV["PRODE_RAILS_DATABASE_PASSWORD"] %>

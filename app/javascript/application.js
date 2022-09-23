@@ -1,15 +1,13 @@
 // Entry point for the build script in your package.json
 import "@hotwired/turbo-rails"
 import "./controllers"
-
-$(function() {
-    console.log("Hello from jQuery!");
-    });
+import * as bootstrap from "bootstrap"
 
 import "./src/jquery"
-import "./src/global.min.js"
+import "./src/perfect_scrollbar"
 
-import "./src/chart.bundle.min.js"
-import "./src/jquery.nice-select.js"
-import "./src/apexchart.js"
-
+import metis_menu from "metismenu"
+import chart_js from "chart.js"
+import jquery_nice_select from "jquery-nice-select"
+import apexcharts from "apexcharts"
+import bootstrap_datetime_picker from "eonasdan-bootstrap-datetimepicker"
