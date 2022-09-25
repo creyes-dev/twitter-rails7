@@ -15,12 +15,16 @@ export default class extends Controller {
           series: [
             {
               name: "",
-              data: [120, 90, 70, 40, 50, 18, 70, 90, 70, 40, 50, 18],
+              data: [120, 90, 70, 40, 50, 18, 70],
               //radius: 12,
             },
             {
               name: "",
-              data: [75, 50, 18, 70, 40, 70, 100, 50, 18, 40, 55, 100],
+              data: [75, 50, 18, 70, 40, 70, 100],
+            },
+            {
+              name: "",
+              data: [110, 20, 40, 10, 40, 80, 50],
             },
           ],
           chart: {
@@ -44,7 +48,7 @@ export default class extends Controller {
               filter: "none",
             },
           },
-          colors: ["var(--primary)", "var(--secondary)"],
+          colors: ["var(--primary)", "var(--secondary)", "var(--tertiary)"],
           dataLabels: {
             enabled: false,
           },
@@ -88,11 +92,6 @@ export default class extends Controller {
               "May",
               "Jun",
               "Jul",
-              "Aug",
-              "Sep",
-              "Oct",
-              "Nov",
-              "Dec",
             ],
             labels: {
               show: true,
@@ -125,7 +124,7 @@ export default class extends Controller {
           },
           fill: {
             opacity: 1,
-            colors: ["var(--secondary)", "var(--primary)"],
+            colors: ["var(--secondary)", "var(--primary)", "var(--tertiary)"],
           },
           tooltip: {
             y: {

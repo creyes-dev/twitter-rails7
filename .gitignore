@@ -12,6 +12,7 @@
 /app/assets/stylesheets/getskills/css
 /app/assets/stylesheets/getskills/icons
 /app/assets/stylesheets/getskills/vendor
+/app/assets/stylesheets/flags
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

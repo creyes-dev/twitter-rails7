@@ -18,6 +18,10 @@ export default class extends Controller {
               name: "",
               data: [40, 50, 40, 60, 90, 70, 90],
             },
+            {
+              name: "",
+              data: [90, 10, 30, 20, 50, 10, 50],
+            },
           ],
           chart: {
             height: 300,
@@ -35,7 +39,7 @@ export default class extends Controller {
           },
           stroke: {
             width: [3, 3, 3],
-            colors: ["var(--secondary)", "var(--primary)"],
+            colors: ["var(--secondary)", "var(--primary)", "var(--tertiary)"],
             curve: "straight",
           },
           legend: {
@@ -49,7 +53,7 @@ export default class extends Controller {
               );
             },
             markers: {
-              fillColors: ["var(--secondary)", "var(--primary)"],
+              fillColors: ["var(--secondary)", "var(--primary)", "var(--tertiary)"],
               width: 16,
               height: 16,
               strokeWidth: 0,
@@ -59,10 +63,10 @@ export default class extends Controller {
           markers: {
             size: [8, 8],
             strokeWidth: [4, 4],
-            strokeColors: ["#fff", "#fff"],
+            strokeColors: ["#fff", "#fff","#fff"],
             border: 2,
             radius: 2,
-            colors: ["var(--secondary)", "var(--primary)", "#fff"],
+            colors: ["var(--secondary)", "var(--primary)", "var(--tertiary)"],
             hover: {
               size: 10,
             },
