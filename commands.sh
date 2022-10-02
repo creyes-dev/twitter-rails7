@@ -2491,4 +2491,5 @@ $ rails db:migrate
    -> 0.1618s
 == 20221002205759 AddDepartmentToUsers: migrated (0.1619s) ====================
 
+# Register new users
 
