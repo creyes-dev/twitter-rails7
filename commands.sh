@@ -2388,3 +2388,30 @@ $ rails db:migrate
    -> 0.0497s
 == 20221002190425 DeviseCreateUsers: migrated (0.1699s) =======================
 
+# Adding fields to user
+$ rails g migration AddFieldsToUser role:integer name:string first_name:string last_name:string active:boolean
+      invoke  active_record
+      create    db/migrate/20221002191040_add_fields_to_user.rb
+
+# Migrating additional fields (check migration file for defaults)
+
+$ rails g migration AddFieldsToUser role:integer name:string first_name:string last_name:string active:boolean
+      invoke  active_record
+      create    db/migrate/20221002191040_add_fields_to_user.rb
+
+$ rails db:migrate
+== 20221002191040 AddFieldsToUser: migrating ==================================
+-- add_column(:users, :role, :integer, {:default=>0})
+   -> 0.0018s
+-- add_column(:users, :name, :string)
+   -> 0.0006s
+-- add_column(:users, :first_name, :string)
+   -> 0.0006s
+-- add_column(:users, :last_name, :string)
+   -> 0.0006s
+-- add_column(:users, :active, :boolean, {:default=>1})
+   -> 0.0008s
+== 20221002191040 AddFieldsToUser: migrated (0.0045s) =========================
+
+
+
