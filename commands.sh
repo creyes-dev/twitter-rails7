@@ -2227,3 +2227,164 @@ $ ./bin/rails generate stimulus competing_user_success_chart_controller
 $ ./bin/rails generate stimulus department_success_chart_controller
       create  app/javascript/controllers/department_success_chart_controller.js
        rails  stimulus:manifest:update
+
+# setting up devise
+
+$ bundle add devise
+
+$ bundle add devise
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Using rake 13.0.6
+Using minitest 5.16.3
+Using timeout 0.3.0
+Using crass 1.0.6
+Using rack 2.2.4
+Using nio4r 2.5.8
+Using digest 3.1.0
+Using msgpack 1.5.6
+Using bundler 2.3.17
+Using bindex 0.8.1
+Using regexp_parser 2.5.0
+Using childprocess 4.1.0
+Using method_source 1.0.0
+Using concurrent-ruby 1.1.10
+Using strscan 3.0.4
+Using io-console 0.5.11
+Using bcrypt 3.1.18
+Using orm_adapter 0.5.0
+Using builder 3.2.4
+Using ffi 1.15.5
+Using rubyzip 2.3.2
+Using tilt 2.0.11
+Using websocket 1.2.9
+Using net-protocol 0.1.3
+Using rack-test 2.0.2
+Using warden 1.2.9
+Using bootsnap 1.13.0
+Using puma 5.6.5
+Using i18n 1.12.0
+Using tzinfo 2.0.5
+Using sprockets 4.1.1
+Using reline 0.3.1
+Using pg 1.4.3
+Using matrix 0.4.2
+Using rexml 3.2.5
+Using websocket-extensions 0.1.5
+Using marcel 1.0.2
+Using irb 1.4.1
+Using racc 1.6.0
+Using zeitwerk 2.6.0
+Using websocket-driver 0.7.5
+Using thor 1.2.1
+Using erubi 1.11.0
+Using activesupport 7.0.4
+Using net-imap 0.2.3
+Using globalid 1.0.0
+Using activemodel 7.0.4
+Using sassc 2.4.0
+Using activejob 7.0.4
+Using mini_mime 1.1.2
+Using selenium-webdriver 4.4.0
+Using mail 2.7.1
+Using nokogiri 1.13.8 (x86_64-linux)
+Using net-pop 0.1.1
+Using xpath 3.2.0
+Using webdrivers 5.1.0
+Using rails-dom-testing 2.0.3
+Using public_suffix 5.0.0
+Using debug 1.6.2
+Using loofah 2.19.0
+Using activerecord 7.0.4
+Using rails-html-sanitizer 1.4.3
+Using net-smtp 0.3.1
+Using addressable 2.8.1
+Using actionview 7.0.4
+Using capybara 3.37.1
+Using actionpack 7.0.4
+Using jbuilder 2.11.5
+Using actioncable 7.0.4
+Using activestorage 7.0.4
+Using railties 7.0.4
+Using sprockets-rails 3.4.2
+Using actionmailbox 7.0.4
+Using actiontext 7.0.4
+Using cssbundling-rails 1.1.1
+Using responders 3.0.1
+Using jsbundling-rails 1.0.3
+Using stimulus-rails 1.1.0
+Using turbo-rails 1.1.1
+Using web-console 4.2.0
+Using actionmailer 7.0.4
+Using devise 4.8.1
+Using sassc-rails 2.1.2
+Using rails 7.0.4
+Using esbuild-rails 0.1.4
+
+# Installing devise
+
+$ rails generate devise:install
+      create  config/initializers/devise.rb
+      create  config/locales/devise.en.yml
+===============================================================================
+
+Depending on your applications configuration some manual setup may be required:
+
+  1. Ensure you have defined default url options in your environments files. Here
+     is an example of default_url_options appropriate for a development environment
+     in config/environments/development.rb:
+
+       config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+     In production, :host should be set to the actual host of your application.
+
+     * Required for all applications. *
+
+  2. Ensure you have defined root_url to *something* in your config/routes.rb.
+     For example:
+
+       root to: "home#index"
+
+     * Not required for API-only Applications *
+
+  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
+     For example:
+
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+     * Not required for API-only Applications *
+
+  4. You can copy Devise views (for customization) to your app by running:
+
+       rails g devise:views
+
+     * Not required *
+
+# Devise user migration
+
+$ rails generate devise User
+      invoke  active_record
+      create    db/migrate/20221002190425_devise_create_users.rb
+      create    app/models/user.rb
+      invoke    test_unit
+      create      test/models/user_test.rb
+      create      test/fixtures/users.yml
+      insert    app/models/user.rb
+       route  devise_for :users
+
+# Migrating User
+$ rails db:migrate
+
+$ rails db:migrate
+== 20221002190425 DeviseCreateUsers: migrating ================================
+-- create_table(:users)
+   -> 0.0944s
+-- add_index(:users, :email, {:unique=>true})
+   -> 0.0255s
+-- add_index(:users, :reset_password_token, {:unique=>true})
+   -> 0.0497s
+== 20221002190425 DeviseCreateUsers: migrated (0.1699s) =======================
+
