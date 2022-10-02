@@ -2218,3 +2218,12 @@ Done in 0.51s.
 
 $ ./bin/rails stimulus:manifest:update
 
+# Creating users and department charts
+
+$ ./bin/rails generate stimulus competing_user_success_chart_controller
+      create  app/javascript/controllers/competing_user_success_chart_controller.js
+       rails  stimulus:manifest:update
+
+$ ./bin/rails generate stimulus department_success_chart_controller
+      create  app/javascript/controllers/department_success_chart_controller.js
+       rails  stimulus:manifest:update

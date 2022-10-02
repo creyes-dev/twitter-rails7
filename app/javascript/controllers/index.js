@@ -4,6 +4,12 @@
 
 import { application } from "./application"
 
+import CompetingUserSuccessChartController from "./competing_user_success_chart_controller"
+application.register("competing-user-success-chart", CompetingUserSuccessChartController)
+
+import DepartmentSuccessChartController from "./department_success_chart_controller"
+application.register("department-success-chart", DepartmentSuccessChartController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
