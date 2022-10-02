@@ -2493,3 +2493,22 @@ $ rails db:migrate
 
 # Register new users
 
+# Generating competition structure model
+$ rails generate model Competition_structure description:string
+      invoke  active_record
+      create    db/migrate/20221002233530_create_competition_structures.rb
+      create    app/models/competition_structure.rb
+      invoke    test_unit
+      create      test/models/competition_structure_test.rb
+      create      test/fixtures/competition_structures.yml
+
+# Migrating competition structure
+
+$ rails db:migrate
+== 20221002233530 CreateCompetitionStructures: migrating ======================
+-- create_table(:competition_structures)
+   -> 0.5314s
+== 20221002233530 CreateCompetitionStructures: migrated (0.5315s) =============
+
+
+
