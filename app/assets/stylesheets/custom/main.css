@@ -1,0 +1,11 @@
+.competing-teams .home-team .details .team-name{
+    width: 150px;
+}
+
+.competing-teams .away-team .details .team-name{
+    width: 150px;
+}
+
+.match {
+    border-bottom: 0.0625rem solid #DBDBDB;
+}
