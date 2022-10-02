@@ -2479,5 +2479,16 @@ $ rails db:migrate
    -> 0.1571s
 == 20221002205039 CreateDepartments: migrated (0.1572s) =======================
 
+# Adding department field to users
+$ rails g migration AddDepartmentToUsers department:references
+      invoke  active_record
+      create    db/migrate/20221002205759_add_department_to_users.rb
+
+# Migrating user department relationship
+$ rails db:migrate
+== 20221002205759 AddDepartmentToUsers: migrating =============================
+-- add_reference(:users, :department, {:null=>false, :foreign_key=>true})
+   -> 0.1618s
+== 20221002205759 AddDepartmentToUsers: migrated (0.1619s) ====================
 
 
