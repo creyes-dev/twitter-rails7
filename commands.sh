@@ -2440,4 +2440,44 @@ $ rails g devise:views
       create    app/views/devise/mailer/reset_password_instructions.html.erb
       create    app/views/devise/mailer/unlock_instructions.html.erb
 
+# Generating department scaffold
+$ rails generate scaffold Department name:string
+      invoke  active_record
+      create    db/migrate/20221002205039_create_departments.rb
+      create    app/models/department.rb
+      invoke    test_unit
+      create      test/models/department_test.rb
+      create      test/fixtures/departments.yml
+      invoke  resource_route
+       route    resources :departments
+      invoke  scaffold_controller
+      create    app/controllers/departments_controller.rb
+      invoke    erb
+      create      app/views/departments
+      create      app/views/departments/index.html.erb
+      create      app/views/departments/edit.html.erb
+      create      app/views/departments/show.html.erb
+      create      app/views/departments/new.html.erb
+      create      app/views/departments/_form.html.erb
+      create      app/views/departments/_department.html.erb
+      invoke    resource_route
+      invoke    test_unit
+      create      test/controllers/departments_controller_test.rb
+      create      test/system/departments_test.rb
+      invoke    helper
+      create      app/helpers/departments_helper.rb
+      invoke      test_unit
+      invoke    jbuilder
+      create      app/views/departments/index.json.jbuilder
+      create      app/views/departments/show.json.jbuilder
+      create      app/views/departments/_department.json.jbuilder
+
+# Migrating departments
+$ rails db:migrate
+== 20221002205039 CreateDepartments: migrating ================================
+-- create_table(:departments)
+   -> 0.1571s
+== 20221002205039 CreateDepartments: migrated (0.1572s) =======================
+
+
 
