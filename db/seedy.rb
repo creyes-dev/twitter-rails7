@@ -1,18 +1,3 @@
-CompetitionStructure.create([
-  { description: "league" },
-  { description: "tournament" },
-  { description: "group and knockout stage"}])
-
-Competition.create(
-  name: "Mundial qatar 2022",
-  competition_structure_id: 3,
-  national_teams: true,
-  groups: 8,
-  teams_group: 4,
-  rounds: 7,
-  begin: "2022-11-21T09:00:00+00:00",
-  active: true)
-
 Group.create([
   { competition_id: 1, name: "A", rounds: 1 },
   { competition_id: 1, name: "B", rounds: 1 },
@@ -22,6 +7,7 @@ Group.create([
   { competition_id: 1, name: "F", rounds: 1 },
   { competition_id: 1, name: "G", rounds: 1 },
   { competition_id: 1, name: "H", rounds: 1 }])
+
 
 Team.create([{:national_team => true, :name =>"Afganistán", :iso_code => 4 , :iso_alpha3 =>"AFG", :iso_alpha2 =>"AF"},
   {:national_team => true, :name =>"Åland", :iso_code => 248 , :iso_alpha3 =>"ALA", :iso_alpha2 =>"AX"},

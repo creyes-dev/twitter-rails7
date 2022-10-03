@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @competing_user %>
+
+<div>
+  <%= link_to "Edit this competing user", edit_competing_user_path(@competing_user) %> |
+  <%= link_to "Back to competing users", competing_users_path %>
+
+  <%= button_to "Destroy this competing user", @competing_user, method: :delete %>
+</div>

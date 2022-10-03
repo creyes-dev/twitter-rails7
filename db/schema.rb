@@ -10,9 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_02_235620) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_03_013951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "competing_team_scores", force: :cascade do |t|
+    t.bigint "competing_team_id", null: false
+    t.integer "points", default: 0
+    t.integer "goals", default: 0
+    t.integer "wins", default: 0
+    t.integer "draws", default: 0
+    t.integer "loses", default: 0
+    t.integer "goals_made", default: 0
+    t.integer "goals_received", default: 0
+    t.integer "goals_differences", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competing_team_id"], name: "index_competing_team_scores_on_competing_team_id"
+  end
+
+  create_table "competing_teams", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_competing_teams_on_group_id"
+    t.index ["team_id"], name: "index_competing_teams_on_team_id"
+  end
+
+  create_table "competing_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "competition_id", null: false
+    t.bigint "competing_team_id"
+    t.integer "score", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competing_team_id"], name: "index_competing_users_on_competing_team_id"
+    t.index ["competition_id"], name: "index_competing_users_on_competition_id"
+    t.index ["user_id"], name: "index_competing_users_on_user_id"
+  end
 
   create_table "competition_structures", force: :cascade do |t|
     t.string "description"
@@ -41,6 +77,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_02_235620) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.bigint "competition_id", null: false
+    t.string "name"
+    t.integer "rounds"
+    t.integer "playoff_round"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competition_id"], name: "index_groups_on_competition_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.integer "iso_code"
+    t.string "name"
+    t.boolean "national_team", default: false
+    t.string "iso_alpha2"
+    t.string "iso_alpha3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,6 +116,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_02_235620) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "competing_team_scores", "competing_teams"
+  add_foreign_key "competing_teams", "groups"
+  add_foreign_key "competing_teams", "teams"
+  add_foreign_key "competing_users", "competing_teams"
+  add_foreign_key "competing_users", "competitions"
+  add_foreign_key "competing_users", "users"
   add_foreign_key "competitions", "competition_structures"
+  add_foreign_key "groups", "competitions"
   add_foreign_key "users", "departments"
 end

@@ -2510,7 +2510,7 @@ $ rails db:migrate
    -> 0.5314s
 == 20221002233530 CreateCompetitionStructures: migrated (0.5315s) =============
 
-# Generating competition model (should be a moden and not scaffold)
+# Generating competition scaffold
 $ rails generate scaffold Competition name:string competition_structure:references national_teams:boolean groups:integer teams_group:integer rounds:integer begin:datetime active:boolean loops:integer
       invoke  active_record
       create    db/migrate/20221002235620_create_competitions.rb
@@ -2549,5 +2549,115 @@ $ rails db:migrate
    -> 0.2573s
 == 20221002235620 CreateCompetitions: migrated (0.2574s) ======================
 
+# Generating group model
+$ rails g model Group competition:references name:string rounds:integer playoff_round:integer
+      invoke  active_record
+      create    db/migrate/20221003011409_create_groups.rb
+      create    app/models/group.rb
+      invoke    test_unit
+      create      test/models/group_test.rb
+      create      test/fixtures/groups.yml
+
+# Migrating groups
+
+$ rails db:migrate
+== 20221003011409 CreateGroups: migrating =====================================
+-- create_table(:groups)
+   -> 0.1253s
+== 20221003011409 CreateGroups: migrated (0.1254s) ============================
+
+
+# Generating team model
+$ rails generate model Team iso_code:integer name:string national_team:boolean iso_alpha2:string iso_alpha3:string
+      invoke  active_record
+      create    db/migrate/20221003010937_create_teams.rb
+      create    app/models/team.rb
+      invoke    test_unit
+      create      test/models/team_test.rb
+      create      test/fixtures/teams.yml
+
+# Setting migrations
+
+# Migrate teams
+$ rails db:migrate
+== 20221003010937 CreateTeams: migrating ======================================
+-- create_table(:teams)
+   -> 0.1163s
+== 20221003010937 CreateTeams: migrated (0.1164s) =============================
+
+# Generating competing team model
+$ rails g model Competing_team group:references team:references
+      invoke  active_record
+      create    db/migrate/20221003011738_create_competing_teams.rb
+      create    app/models/competing_team.rb
+      invoke    test_unit
+      create      test/models/competing_team_test.rb
+      create      test/fixtures/competing_teams.yml
+
+# Migrating competing teams
+$ rails db:migrate
+== 20221003011738 CreateCompetingTeams: migrating =============================
+-- create_table(:competing_teams)
+   -> 0.1938s
+== 20221003011738 CreateCompetingTeams: migrated (0.1939s) ====================
+
+# Generating scaffold competing user
+
+$ rails g scaffold Competing_user user:references competition:references competing_team:references score:integer
+      invoke  active_record
+      create    db/migrate/20221003005732_create_competing_users.rb
+      create    app/models/competing_user.rb
+      invoke    test_unit
+      create      test/models/competing_user_test.rb
+      create      test/fixtures/competing_users.yml
+      invoke  resource_route
+       route    resources :competing_users
+      invoke  scaffold_controller
+      create    app/controllers/competing_users_controller.rb
+      invoke    erb
+      create      app/views/competing_users
+      create      app/views/competing_users/index.html.erb
+      create      app/views/competing_users/edit.html.erb
+      create      app/views/competing_users/show.html.erb
+      create      app/views/competing_users/new.html.erb
+      create      app/views/competing_users/_form.html.erb
+      create      app/views/competing_users/_competing_user.html.erb
+      invoke    resource_route
+      invoke    test_unit
+      create      test/controllers/competing_users_controller_test.rb
+      create      test/system/competing_users_test.rb
+      invoke    helper
+      create      app/helpers/competing_users_helper.rb
+      invoke      test_unit
+      invoke    jbuilder
+      create      app/views/competing_users/index.json.jbuilder
+      create      app/views/competing_users/show.json.jbuilder
+      create      app/views/competing_users/_competing_user.json.jbuilder
+
+# Setting migrations and migrate competing users
+$ rails db:migrate
+== 20221003012343 CreateCompetingUsers: migrating =============================
+-- create_table(:competing_users)
+   -> 0.2275s
+== 20221003012343 CreateCompetingUsers: migrated (0.2275s) ====================
+
+# Generating Competing team score model
+
+$ rails g model Competing_team_score competing_team:references points:integer goals:integer wins:integer draws:integer loses:integer goals_made:integer goals_received:integer goals_differences:integer
+      invoke  active_record
+      create    db/migrate/20221003013951_create_competing_team_scores.rb
+      create    app/models/competing_team_score.rb
+      invoke    test_unit
+      create      test/models/competing_team_score_test.rb
+      create      test/fixtures/competing_team_scores.yml
+
+# Setting competing team migration
+
+# Migrating competing teams
+$ rails db:migrate
+== 20221003013951 CreateCompetingTeamScores: migrating ========================
+-- create_table(:competing_team_scores)
+   -> 0.1174s
+== 20221003013951 CreateCompetingTeamScores: migrated (0.1175s) ===============
 
 

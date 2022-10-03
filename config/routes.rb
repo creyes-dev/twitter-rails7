@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :competing_users
   resources :competitions
   resources :departments
   devise_for :users
