@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :competitions
   resources :departments
   devise_for :users
   get 'dashboard/index'

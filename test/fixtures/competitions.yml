@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  competition_structure: one
+  national_teams: false
+  groups: 1
+  teams_group: 1
+  rounds: 1
+  begin: 2022-10-02 20:56:20
+  active: false
+  loops: 1
+
+two:
+  name: MyString
+  competition_structure: two
+  national_teams: false
+  groups: 1
+  teams_group: 1
+  rounds: 1
+  begin: 2022-10-02 20:56:20
+  active: false
+  loops: 1
