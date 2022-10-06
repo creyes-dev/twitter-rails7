@@ -1,14 +1,13 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>Competing users</h1>
-
-<div id="competing_users">
-  <% @competing_users.each do |competing_user| %>
-    <%= render competing_user %>
-    <p>
-      <%= link_to "Show this competing user", competing_user %>
-    </p>
-  <% end %>
+<div>
+  <p>
+    <strong>Teams </strong>
+    <ul>
+      <% @teams.each do |team| %>
+          <li>
+            <p><%= team.name %></p>
+          </li>
+      <% end %>
+    </ul>
+  </p>
 </div>
-
-<%= link_to "New competing user", new_competing_user_path %>

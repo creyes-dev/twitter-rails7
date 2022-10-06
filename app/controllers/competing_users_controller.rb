@@ -3,7 +3,7 @@ class CompetingUsersController < ApplicationController
 
   # GET /competing_users or /competing_users.json
   def index
-    @competing_users = CompetingUser.all
+    @teams = Team.joins(competing_teams: { group: :competition}).where( competition: { active: true }, groups: { playoff_round: nil }).order("teams.name ASC")
   end
 
   # GET /competing_users/1 or /competing_users/1.json
