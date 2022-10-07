@@ -63,7 +63,7 @@ class CompetingUsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_competing_user
       #@competing_user = CompetingUser.find(params[:id])
-      @competing_user = CompetingUser.includes(:competition, :user).where( competition: { active: true } ).find(params[:id])
+      @competing_user = CompetingUser.includes(:competition, :user, :competing_team).where( competition: { active: true } ).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

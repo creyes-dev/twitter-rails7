@@ -8,106 +8,42 @@
                         <p>
                           Le damos la bienvenida al Prode de
                           <%= @competing_user.competition.name %>
-                          <%= flag_src("UY") %>
+                          <%= @competing_user.competing_team.inspect %>
                           . Para comenzar, puede elegir su equipo favorito, la elección del mismo afectará a su puntaje.
                         </p>
                         <div class="dropdown">
                             <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                               <span>
-                                <img class="flag me-3" src="/assets/flags/4x3/ar.svg" alt="" />Argentina
+                                <img class="flag me-3" src="<%= flag_src nil %>" alt="" />
+                                Seleccione un equipo
                               </span>
                             </button>
                             <div class="dropdown-menu team-dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <ul class="pre-scrollable">
-                                    <li>
-                                        <a class="dropdown-item active" href="#"><span><img class="flag me-3" src="/assets/flags/4x3/ar.svg" alt="" />Argentina</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Australia</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-beer"></i></span> <span>Brasil</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Uruguay</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Corea del Sur</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Arabia Saudita</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Portugal</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Estados Unidos</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Japón</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Inglaterra</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Francia</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Croacia</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Iran</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Mexico</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Mexico</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Mexico</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Mexico</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Mexico</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Mexico</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Mexico</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"><span class="me-3"> <i class="la la-user"></i></span> <span>Mexico</span></a>
-                                    </li>
+                                    <% @teams.each do |team| %>
+                                        <li>
+                                          <%= link_to "#", :name => team.name, :class => 'dropdown-item' do %>
+                                            <span>
+                                              <%= image_tag(flag_src(team.iso_alpha2), class: "flag me-3") %>
+                                              <%= team.name %>
+                                            </span>
+                                          <% end %>
+                                        </li>
+                                    <% end %>
                                 </ul>
                             </div>
                         </div>
                         <p>Tenés tiempo hasta el para definir tu equipo favorito. <a href="#">Te invitamos a leer las reglas de este prode<span class="me-3"> <i class="la la-beer"></i></a></p>
                     </div>
                     <div class="dlab-img">
-                        <img src="assets/prode/Qatar2022_logo2.png" alt="" />
+                        <img src="/assets/prode/Qatar2022_logo2.png" alt="" />
                     </div>
                     <div class="dlab-icon">
-                        <img src="assets/vector/calpng.png" alt="" class="cal-img">
-                        <img src="assets/vector/book.png" alt="" class="book-img">
+                        <img src="/assets/vector/calpng.png" alt="" class="cal-img">
+                        <img src="/assets/vector/book.png" alt="" class="book-img">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-
-    <strong>Teams </strong>
-    <ul>
-      <% @teams.each do |team| %>
-          <li>
-            <p><%= team.name %></p>
-          </li>
-      <% end %>
-    </ul>
-
 </div>
