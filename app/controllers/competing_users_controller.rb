@@ -1,4 +1,5 @@
 class CompetingUsersController < ApplicationController
+  include FlagSrcHelper
   before_action :set_competing_user, only: %i[ show edit update destroy ]
 
   # GET /competing_users or /competing_users.json
@@ -8,8 +9,6 @@ class CompetingUsersController < ApplicationController
 
   # GET /competing_users/1 or /competing_users/1.json
   def show
-    active_competition = Competition.find_by(active: true)
-    CompetingTeam.joins(:group).where(groups: { competition_id: active_competition.id, playoff_round: nil })
   end
 
   # GET /competing_users/new
@@ -63,7 +62,8 @@ class CompetingUsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_competing_user
-      @competing_user = CompetingUser.find(params[:id])
+      #@competing_user = CompetingUser.find(params[:id])
+      @competing_user = CompetingUser.includes(:competition, :user).where( competition: { active: true } ).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

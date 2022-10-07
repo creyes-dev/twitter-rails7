@@ -9,3 +9,12 @@
 .match {
     border-bottom: 0.0625rem solid #DBDBDB;
 }
+
+.dropdown span .flag {
+    height: 2rem;
+    border-radius: 0.25rem;
+}
+
+.dropdown-item span .flag {
+    height: 1rem;
+}
