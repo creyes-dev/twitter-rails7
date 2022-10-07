@@ -1,37 +1,9 @@
 class CompetingUsersController < ApplicationController
-  before_action :set_competing_user, only: %i[ show edit update destroy ]
-
-  # GET /competing_users or /competing_users.json
-  def index
-    @teams = Team.joins(competing_teams: { group: :competition}).where( competition: { active: true }, groups: { playoff_round: nil }).order("teams.name ASC")
-  end
+  before_action :set_competing_user, only: %i[ show update ]
 
   # GET /competing_users/1 or /competing_users/1.json
   def show
-  end
-
-  # GET /competing_users/new
-  def new
-    @competing_user = CompetingUser.new
-  end
-
-  # GET /competing_users/1/edit
-  def edit
-  end
-
-  # POST /competing_users or /competing_users.json
-  def create
-    @competing_user = CompetingUser.new(competing_user_params)
-
-    respond_to do |format|
-      if @competing_user.save
-        format.html { redirect_to competing_user_url(@competing_user), notice: "Competing user was successfully created." }
-        format.json { render :show, status: :created, location: @competing_user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @competing_user.errors, status: :unprocessable_entity }
-      end
-    end
+    @teams = Team.joins(competing_teams: { group: :competition}).where( competition: { active: true }, groups: { playoff_round: nil }).order("teams.name ASC")
   end
 
   # PATCH/PUT /competing_users/1 or /competing_users/1.json
@@ -44,16 +16,6 @@ class CompetingUsersController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @competing_user.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /competing_users/1 or /competing_users/1.json
-  def destroy
-    @competing_user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to competing_users_url, notice: "Competing user was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
