@@ -2665,4 +2665,14 @@ $ ./bin/rails generate stimulus competing_user_team_controller
       create  app/javascript/controllers/competing_user_team_controller.js
        rails  stimulus:manifest:update
 
+# Generating static pages controller
+$ rails generate controller static_pages
+      create  app/controllers/static_pages_controller.rb
+      invoke  erb
+      create    app/views/static_pages
+      invoke  test_unit
+      create    test/controllers/static_pages_controller_test.rb
+      invoke  helper
+      create    app/helpers/static_pages_helper.rb
+      invoke    test_unit
 

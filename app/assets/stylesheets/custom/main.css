@@ -18,3 +18,15 @@
 .dropdown-item span .flag {
     height: 1rem;
 }
+
+#dropdownMenuButton1 {
+    margin-bottom: 1rem;
+}
+
+.rules-invitation {
+    color: #374557;
+}
+
+.rules-invitation:hover {
+    color: #fff;
+}
