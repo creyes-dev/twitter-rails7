@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :competing_users
+
+  get 'competing_users/edit' => 'competing_users#edit', as: :edit_competing_user
+  post 'competing_users/select_favorite_competing_team' => 'competing_users#select_favorite_competing_team', as: :select_favorite_competing_team
+
   resources :competitions
   resources :departments
   devise_for :users

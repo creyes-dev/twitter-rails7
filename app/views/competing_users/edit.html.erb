@@ -8,24 +8,24 @@
                         <p>
                           Le damos la bienvenida al Prode de
                           <%= @competing_user.competition.name %>
-                          <%= @competing_user.competing_team.inspect %>
                           . Para comenzar, puede elegir su equipo favorito, la elección del mismo afectará a su puntaje.
                         </p>
                         <div class="dropdown">
                             <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                               <span>
-                                <img class="flag me-3" src="<%= flag_src nil %>" alt="" />
-                                Seleccione un equipo
+                                <img class="favorite-team-flag flag me-3" src="<%= flag_src(@competing_user.competing_team.nil? ? nil : @competing_user.competing_team.team.iso_alpha2) %>" alt="" />
+                                <span class="favorite-team-name"><%= @competing_user.competing_team.nil? ? "Seleccione un equipo" : @competing_user.competing_team.team.name %></span>
                               </span>
                             </button>
                             <div class="dropdown-menu team-dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <ul class="pre-scrollable">
                                     <% @teams.each do |team| %>
                                         <li>
-                                          <%= link_to "#", :name => team.name, :class => 'dropdown-item' do %>
-                                            <span>
-                                              <%= image_tag(flag_src(team.iso_alpha2), class: "flag me-3") %>
-                                              <%= team.name %>
+                                          <%= link_to "#", :name => team.name, :class => 'dropdown-item',
+                                              data: { id: team.id, controller: 'competing-user-team', action: "click->competing-user-team#change"} do %>
+                                            <span class="team-description">
+                                              <%= image_tag(flag_src(team.iso_alpha2), class: "team-flag flag me-3") %>
+                                              <span class="team-name"><%= team.name %></span>
                                             </span>
                                           <% end %>
                                         </li>

@@ -2660,4 +2660,9 @@ $ rails db:migrate
    -> 0.1174s
 == 20221003013951 CreateCompetingTeamScores: migrated (0.1175s) ===============
 
+# Creating competing user team stimulus controller
+$ ./bin/rails generate stimulus competing_user_team_controller
+      create  app/javascript/controllers/competing_user_team_controller.js
+       rails  stimulus:manifest:update
+
 

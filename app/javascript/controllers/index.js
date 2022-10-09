@@ -7,6 +7,9 @@ import { application } from "./application"
 import CompetingUserSuccessChartController from "./competing_user_success_chart_controller"
 application.register("competing-user-success-chart", CompetingUserSuccessChartController)
 
+import CompetingUserTeamController from "./competing_user_team_controller"
+application.register("competing-user-team", CompetingUserTeamController)
+
 import DepartmentSuccessChartController from "./department_success_chart_controller"
 application.register("department-success-chart", DepartmentSuccessChartController)
 
