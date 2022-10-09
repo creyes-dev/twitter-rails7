@@ -1,49 +1,51 @@
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card dlab-join-card h-auto">
-            <div class="card-body">
-                <div class="dlab-media d-flex justify-content-between">
-                    <div class="dlab-content">
-                        <h4>Hola <%= @competing_user.user.first_name %>!</h4>
-                        <p>
-                          Le damos la bienvenida al Prode de
-                          <%= @competing_user.competition.name %>
-                          . Para comenzar, puede elegir su equipo favorito, la elección del mismo afectará a su puntaje.
-                        </p>
-                        <div class="dropdown">
-                            <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                              <span>
-                                <img class="favorite-team-flag flag me-3" src="<%= flag_src(@competing_user.competing_team.nil? ? nil : @competing_user.competing_team.team.iso_alpha2) %>" alt="" />
-                                <span class="favorite-team-name"><%= @competing_user.competing_team.nil? ? "Seleccione un equipo" : @competing_user.competing_team.team.name %></span>
-                              </span>
-                            </button>
-                            <div class="dropdown-menu team-dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <ul class="pre-scrollable">
-                                    <% @teams.each do |team| %>
-                                        <li>
-                                          <%= link_to "#", :name => team.name, :class => 'dropdown-item',
-                                              data: { id: team.id, controller: 'competing-user-team', action: "click->competing-user-team#change"} do %>
-                                            <span class="team-description">
-                                              <%= image_tag(flag_src(team.iso_alpha2), class: "team-flag flag me-3") %>
-                                              <span class="team-name"><%= team.name %></span>
-                                            </span>
-                                          <% end %>
-                                        </li>
-                                    <% end %>
-                                </ul>
+<%= turbo_frame_tag "competing_user" do %>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card dlab-join-card h-auto">
+                <div class="card-body">
+                    <div class="dlab-media d-flex justify-content-between">
+                        <div class="dlab-content">
+                            <h4>Hola <%= @competing_user.user.first_name %>!</h4>
+                            <p>
+                            Le damos la bienvenida al Prode de
+                            <%= @competing_user.competition.name %>
+                            . Para comenzar, puede elegir su equipo favorito, la elección del mismo afectará a su puntaje.
+                            </p>
+                            <div class="dropdown">
+                                <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span>
+                                    <img class="favorite-team-flag flag me-3" src="<%= flag_src(@competing_user.competing_team.nil? ? nil : @competing_user.competing_team.team.iso_alpha2) %>" alt="" />
+                                    <span class="favorite-team-name"><%= @competing_user.competing_team.nil? ? "Seleccione un equipo" : @competing_user.competing_team.team.name %></span>
+                                </span>
+                                </button>
+                                <div class="dropdown-menu team-dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <ul class="pre-scrollable">
+                                        <% @teams.each do |team| %>
+                                            <li>
+                                            <%= link_to "#", :name => team.name, :class => 'dropdown-item',
+                                                data: { id: team.id, controller: 'competing-user-team', action: "click->competing-user-team#change"} do %>
+                                                <span class="team-description">
+                                                <%= image_tag(flag_src(team.iso_alpha2), class: "team-flag flag me-3") %>
+                                                <span class="team-name"><%= team.name %></span>
+                                                </span>
+                                            <% end %>
+                                            </li>
+                                        <% end %>
+                                    </ul>
+                                </div>
                             </div>
+                            <p>Tiene tiempo hasta el para definir tu equipo favorito. <a href="#">Le invitamos a leer las reglas de este prode <span class="me-3"> <i class="la la-beer"></i></a></p>
                         </div>
-                        <p>Tenés tiempo hasta el para definir tu equipo favorito. <a href="#">Te invitamos a leer las reglas de este prode<span class="me-3"> <i class="la la-beer"></i></a></p>
-                    </div>
-                    <div class="dlab-img">
-                        <img src="/assets/prode/Qatar2022_logo2.png" alt="" />
-                    </div>
-                    <div class="dlab-icon">
-                        <img src="/assets/vector/calpng.png" alt="" class="cal-img">
-                        <img src="/assets/vector/book.png" alt="" class="book-img">
+                        <div class="dlab-img">
+                            <img src="/assets/prode/Qatar2022_logo2.png" alt="" />
+                        </div>
+                        <div class="dlab-icon">
+                            <img src="/assets/vector/calpng.png" alt="" class="cal-img">
+                            <img src="/assets/vector/book.png" alt="" class="book-img">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+<% end %>
