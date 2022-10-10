@@ -2846,3 +2846,53 @@ $ rails db:migrate
    -> 0.1123s
 == 20221010200103 DropCompetingTeamScores: migrated (0.1124s) =================
 
+# I don't know how to seed the matches, so I will delete everything and seeding it again
+$ rails db:reset
+Dropped database 'prode_rails_development'
+Dropped database 'prode_rails_test'
+Created database 'prode_rails_development'
+Created database 'prode_rails_test'
+rails aborted!
+NoMethodError: undefined method 'each' for 8:Integer
+
+        other_array.each { |val| raise_on_type_mismatch!(val) }
+                   ^^^^^
+/home/cristian/Code/twitter-rails7/db/seeds.rb:6:in '<main>'
+Tasks: TOP => db:reset => db:setup => db:seed
+(See full trace by running task with --trace)
+
+# Something don't work anymore
+Competition.create( name: "Mundial qatar 2022", competition_structu
+re_id: 3,national_teams: true,groups: 8,teams_group: 4,rounds: 7, begin: "2022-1
+1-21T09:00:00+00:00",active: true)
+/usr/local/rvm/gems/ruby-3.1.2/gems/activerecord-7.0.4/lib/active_record/associations/collection_association.rb:235:in 'replace': undefined method 'each' for 8:Integer (NoMethodError)
+
+        other_array.each { |val| raise_on_type_mismatch!(val) }
+                   ^^^^^
+# Competition has many relationship doesn't let me to introduce new competitions without groups, but one group belong to a competition
+
+# It's a name-relationship conflict, fixing it right now
+
+$ rails g migration FixCompetitionGroupColumnName
+      invoke  active_record
+      create    db/migrate/20221010202657_fix_competition_group_column_name.rb
+
+$ rails db:migrate
+== 20221010202657 FixCompetitionGroupColumnName: migrating ====================
+-- rename_column(:competitions, :groups, :group_amount)
+   -> 0.0050s
+== 20221010202657 FixCompetitionGroupColumnName: migrated (0.0050s) ===========
+
+# But something similar is happening with rounds, fixing it right now
+$ rails g migration FixCompetitionRoundColumnName
+      invoke  active_record
+      create    db/migrate/20221010203010_fix_competition_round_column_name.rb
+
+# Now I can fix the seeds
+$ rails db:migrate
+== 20221010203010 FixCompetitionRoundColumnName: migrating ====================
+-- rename_column(:competitions, :rounds, :round_amount)
+   -> 0.0032s
+== 20221010203010 FixCompetitionRoundColumnName: migrated (0.0032s) ===========
+
+

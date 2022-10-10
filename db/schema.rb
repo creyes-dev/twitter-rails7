@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_10_200103) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_10_203010) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,9 +52,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_200103) do
     t.string "name"
     t.bigint "competition_structure_id", null: false
     t.boolean "national_teams"
-    t.integer "groups"
+    t.integer "group_amount"
     t.integer "teams_group"
-    t.integer "rounds"
+    t.integer "round_amount"
     t.datetime "begin"
     t.boolean "active"
     t.integer "loops", default: 1, null: false

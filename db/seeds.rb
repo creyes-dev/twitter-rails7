@@ -3,15 +3,7 @@ CompetitionStructure.create([
   { description: "tournament" },
   { description: "group and knockout stage"}])
 
-Competition.create(
-  name: "Mundial qatar 2022",
-  competition_structure_id: 3,
-  national_teams: true,
-  groups: 8,
-  teams_group: 4,
-  rounds: 7,
-  begin: "2022-11-21T09:00:00+00:00",
-  active: true)
+Competition.create( name: "Mundial qatar 2022", competition_structure_id: 3,national_teams: true,group_amount: 8,teams_group: 4,round_amount: 4, begin: "2022-11-21T09:00:00+00:00",active: true,loops:1)
 
 Group.create([
   { competition_id: 1, name: "A", rounds: 1 },
@@ -93,7 +85,7 @@ Team.create([{:national_team => true, :name =>"Afganistán", :iso_code => 4 , :i
   {:national_team => true, :name =>"Eritrea", :iso_code => 232 , :iso_alpha3 =>"ERI", :iso_alpha2 =>"ER"},
   {:national_team => true, :name =>"Eslovaquia", :iso_code => 703 , :iso_alpha3 =>"SVK", :iso_alpha2 =>"SK"},
   {:national_team => true, :name =>"Eslovenia", :iso_code => 705 , :iso_alpha3 =>"SVN", :iso_alpha2 =>"SI"},
-  {:national_team => true, :name =>"España* **", :iso_code => 724 , :iso_alpha3 =>"ESP", :iso_alpha2 =>"ES"},
+  {:national_team => true, :name =>"España", :iso_code => 724 , :iso_alpha3 =>"ESP", :iso_alpha2 =>"ES"},
   {:national_team => true, :name =>"Estados Unidos", :iso_code => 840 , :iso_alpha3 =>"USA", :iso_alpha2 =>"US"},
   {:national_team => true, :name =>"Estonia", :iso_code => 233 , :iso_alpha3 =>"EST", :iso_alpha2 =>"EE"},
   {:national_team => true, :name =>"Etiopía", :iso_code => 231 , :iso_alpha3 =>"ETH", :iso_alpha2 =>"ET"},
@@ -375,7 +367,7 @@ Country.create([{:name =>"Afganistán", :iso_code => 4 , :iso_alpha3 =>"AFG", :i
   {:name =>"Eritrea", :iso_code => 232 , :iso_alpha3 =>"ERI", :iso_alpha2 =>"ER"},
   {:name =>"Eslovaquia", :iso_code => 703 , :iso_alpha3 =>"SVK", :iso_alpha2 =>"SK"},
   {:name =>"Eslovenia", :iso_code => 705 , :iso_alpha3 =>"SVN", :iso_alpha2 =>"SI"},
-  {:name =>"España* **", :iso_code => 724 , :iso_alpha3 =>"ESP", :iso_alpha2 =>"ES"},
+  {:name =>"España", :iso_code => 724 , :iso_alpha3 =>"ESP", :iso_alpha2 =>"ES"},
   {:name =>"Estados Unidos", :iso_code => 840 , :iso_alpha3 =>"USA", :iso_alpha2 =>"US"},
   {:name =>"Estonia", :iso_code => 233 , :iso_alpha3 =>"EST", :iso_alpha2 =>"EE"},
   {:name =>"Etiopía", :iso_code => 231 , :iso_alpha3 =>"ETH", :iso_alpha2 =>"ET"},
