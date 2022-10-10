@@ -2719,5 +2719,34 @@ $ rails db:migrate
    -> 0.5266s
 == 20221010161352 CreateCountries: migrated (0.5267s) =========================
 
+# Generating location model
+$ rails g model Location country:references name:string
+      invoke  active_record
+      create    db/migrate/20221010162138_create_locations.rb
+      create    app/models/location.rb
+      invoke    test_unit
+      create      test/models/location_test.rb
+      create      test/fixtures/locations.yml
 
+# Generating stadium model
+$ rails g model Stadium location:references name:string
+      invoke  active_record
+      create    db/migrate/20221010164221_create_stadia.rb
+      create    app/models/stadium.rb
+      invoke    test_unit
+      create      test/models/stadium_test.rb
+      create      test/fixtures/stadia.yml
 
+# Migrating locations and stadiums
+$ rails db:migrate
+== 20221010162138 CreateLocations: migrating ==================================
+-- create_table(:locations)
+   -> 0.2867s
+== 20221010162138 CreateLocations: migrated (0.2868s) =========================
+
+== 20221010164221 CreateStadia: migrating =====================================
+-- create_table(:stadia)
+   -> 0.1660s
+== 20221010164221 CreateStadia: migrated (0.1661s) ============================
+
+# Seeding locations and stadiums

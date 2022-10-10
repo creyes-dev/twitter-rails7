@@ -560,3 +560,21 @@ Country.create([{:name =>"Afganistán", :iso_code => 4 , :iso_alpha3 =>"AFG", :i
   {:name =>"Zimbabue", :iso_code => 716 , :iso_alpha3 =>"ZWE", :iso_alpha2 =>"ZW"},
   {:name => "Gales", :iso_code => 1826, :iso_alpha3 => "GB-WLS", :iso_alpha2 => "GB-WLS" }])
 
+  Location.create([
+    { name: "Doha" , country_id: 180 },
+    { name: "Jor" , country_id: 180 },
+    { name: "Rayán" , country_id: 180 },
+    { name: "Lusail" , country_id: 180 },
+    { name: "Al Wakrah" , country_id: 180 }
+  ])
+
+  Stadium.create([
+    { name: "Estadio Al Thumama", location_id: 1 },
+    { name: "Estadio Al Bayt", location_id: 2 },
+    { name: "Estadio Internacional Khalifa", location_id: 3 },
+    { name: "Estadio Ahmed bin Ali", location_id: 3  },
+    { name: "Estadio Icónico", location_id: 4 },
+    { name: "Estadio Ciudad de la Educación", location_id: 1 },
+    { name: "Estadio 974", location_id: 3 },
+    { name: "Estadio Al Janoub", location_id: 5 }
+  ])
