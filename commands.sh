@@ -2703,3 +2703,21 @@ $ rails db:migrate
    -> 0.0022s
 == 20221010155658 AddScoresToCompetingUser: migrated (0.3354s) ================
 
+# Creating country and city models for match location
+$ rails g model Country name:string iso_code:string iso_alpha2:string iso_alpha3:string
+      invoke  active_record
+      create    db/migrate/20221010161352_create_countries.rb
+      create    app/models/country.rb
+      invoke    test_unit
+      create      test/models/country_test.rb
+      create      test/fixtures/countries.yml
+
+# Migrating country
+$ rails db:migrate
+== 20221010161352 CreateCountries: migrating ==================================
+-- create_table(:countries)
+   -> 0.5266s
+== 20221010161352 CreateCountries: migrated (0.5267s) =========================
+
+
+
