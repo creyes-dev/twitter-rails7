@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_10_164221) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_10_171324) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -111,6 +111,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_164221) do
     t.index ["country_id"], name: "index_locations_on_country_id"
   end
 
+  create_table "rounds", force: :cascade do |t|
+    t.bigint "competition_id", null: false
+    t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competition_id"], name: "index_rounds_on_competition_id"
+  end
+
   create_table "stadia", force: :cascade do |t|
     t.bigint "location_id", null: false
     t.string "name"
@@ -157,6 +165,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_164221) do
   add_foreign_key "competitions", "competition_structures"
   add_foreign_key "groups", "competitions"
   add_foreign_key "locations", "countries"
+  add_foreign_key "rounds", "competitions"
   add_foreign_key "stadia", "locations"
   add_foreign_key "users", "departments"
 end

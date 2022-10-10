@@ -2750,3 +2750,21 @@ $ rails db:migrate
 == 20221010164221 CreateStadia: migrated (0.1661s) ============================
 
 # Seeding locations and stadiums
+
+# Generating match rounds
+$ rails g model Round competition:references number:integer
+      invoke  active_record
+      create    db/migrate/20221010171324_create_rounds.rb
+      create    app/models/round.rb
+      invoke    test_unit
+      create      test/models/round_test.rb
+      create      test/fixtures/rounds.yml
+
+# Migrating rounds
+$ rails db:migrate
+== 20221010171324 CreateRounds: migrating =====================================
+-- create_table(:rounds)
+   -> 0.1999s
+== 20221010171324 CreateRounds: migrated (0.2000s) ============================
+
+# Seeding rounds

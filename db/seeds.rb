@@ -578,3 +578,8 @@ Country.create([{:name =>"Afganistán", :iso_code => 4 , :iso_alpha3 =>"AFG", :i
     { name: "Estadio 974", location_id: 3 },
     { name: "Estadio Al Janoub", location_id: 5 }
   ])
+
+  (1..4).each do |i|
+    Round.create( competition_id: 1, number: i )
+  end
+
