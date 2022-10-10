@@ -2768,3 +2768,37 @@ $ rails db:migrate
 == 20221010171324 CreateRounds: migrated (0.2000s) ============================
 
 # Seeding rounds
+
+# Generating match model
+  $ rails g model Match competing_team_home_id:bigint competing_team_away_id:bigint competing_team_home_goals:integer competing_team_away_goals:integer competing_team_home_penalty_goals:integer competing_team_away_penalty_goals:integer location:references datetime:datetime is_finished:boolean name:string stadium:references round:references
+  invoke  active_record
+  create    db/migrate/20221010173848_create_matches.rb
+  create    app/models/match.rb
+  invoke    test_unit
+  create      test/models/match_test.rb
+  create      test/fixtures/matches.yml
+
+# Setting match migration
+
+# Migrating matches
+$ rails db:migrate
+== 20221010173848 CreateMatches: migrating ====================================
+-- create_table(:matches)
+   -> 0.3178s
+== 20221010173848 CreateMatches: migrated (0.3179s) ===========================
+
+# Designing match relationships
+
+# Seeding matches
+
+# Removing location id from matches
+$ rails g migration RemoveLocationIdFromMatches location:references
+
+# Migrating location id removal from matches
+$ rails db:migrate
+== 20221010185727 RemoveLocationIdFromMatches: migrating ======================
+-- remove_reference(:matches, :location, {:null=>false, :foreign_key=>true})
+   -> 0.0950s
+== 20221010185727 RemoveLocationIdFromMatches: migrated (0.0951s) =============
+
+

@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  competing_team_home_id: 
+  competing_team_away_id: 
+  competing_team_home_goals: 1
+  competing_team_away_goals: 1
+  competing_team_home_penalty_goals: 1
+  competing_team_away_penalty_goals: 1
+  location: one
+  datetime: 2022-10-10 14:38:48
+  is_finished: false
+  name: MyString
+  stadium_id: 
+  round_id: 
+
+two:
+  competing_team_home_id: 
+  competing_team_away_id: 
+  competing_team_home_goals: 1
+  competing_team_away_goals: 1
+  competing_team_home_penalty_goals: 1
+  competing_team_away_penalty_goals: 1
+  location: two
+  datetime: 2022-10-10 14:38:48
+  is_finished: false
+  name: MyString
+  stadium_id: 
+  round_id: 
