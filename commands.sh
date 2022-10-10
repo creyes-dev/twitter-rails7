@@ -2903,4 +2903,29 @@ $ rails db:reset
 
 # First I will delete every register
 
+# Generating and migrating prediction results
+
+$ rails g model PredictionResult description:string
+      invoke  active_record
+      create    db/migrate/20221010215005_create_prediction_results.rb
+      create    app/models/prediction_result.rb
+      invoke    test_unit
+      create      test/models/prediction_result_test.rb
+      create      test/fixtures/prediction_results.yml
+
+cristian@debian-host:~/Code/twitter-rails7$ rails db:migrate
+== 20221010215005 CreatePredictionResults: migrating ==========================
+-- create_table(:prediction_results)
+   -> 0.1075s
+== 20221010215005 CreatePredictionResults: migrated (0.1076s) =================
+
+# Seeding prediction results
+
+PredictionResult.create([
+  { description: "nueva" },
+  { description: "acierto completo" },
+  { description: "acierto parcial" },
+  { description: "errada" }
+])
+
 

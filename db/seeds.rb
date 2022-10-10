@@ -616,3 +616,13 @@ Match.create([
   { name: "032", competing_team_home_id: 29, competing_team_away_id: 31, stadium_id: 5, round_id: 2, datetime: "2022-11-28T19:00:00+00:00" },
   { name: "045", competing_team_home_id: 30, competing_team_away_id: 31, stadium_id: 8, round_id: 3, datetime: "2022-12-02T15:00:00+00:00" },
   { name: "046", competing_team_home_id: 32, competing_team_away_id: 29, stadium_id: 6, round_id: 3, datetime: "2022-12-02T15:00:00+00:00" }])
+
+PredictionResult.create([
+  { description: "nuevo" },
+  { description: "acierto completo" },
+  { description: "acierto parcial" },
+  { description: "errado" }
+])
+
+
+
