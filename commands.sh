@@ -2832,3 +2832,17 @@ $ rails db:migrate
    -> 0.0025s
 == 20221010193237 AddScoresToCompetingTeam: migrated (0.1141s) ================
 
+# Dropping CompetingTeamScores
+$ rails g migration DropCompetingTeamScores
+      invoke  active_record
+      create    db/migrate/20221010200103_drop_competing_team_scores.rb
+
+# Setting migration
+
+# Migrating
+$ rails db:migrate
+== 20221010200103 DropCompetingTeamScores: migrating ==========================
+-- drop_table(:competing_team_scores)
+   -> 0.1123s
+== 20221010200103 DropCompetingTeamScores: migrated (0.1124s) =================
+

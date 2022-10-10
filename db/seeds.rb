@@ -305,14 +305,6 @@ CompetingTeam.create([
   { group_id: 8, team_id: 56 }
 ])
 
-# TODO: Delete CompetingTeamScore table, and add score to CompetingTeam
-
-competing_teams = CompetingTeam.all
-
-competing_teams.each do |ct|
-  CompetingTeamScore.create( competing_team_id: ct.id )
-end
-
 Country.create([{:name =>"Afganistán", :iso_code => 4 , :iso_alpha3 =>"AFG", :iso_alpha2 =>"AF"},
   {:name =>"Åland", :iso_code => 248 , :iso_alpha3 =>"ALA", :iso_alpha2 =>"AX"},
   {:name =>"Albania", :iso_code => 8 , :iso_alpha3 =>"ALB", :iso_alpha2 =>"AL"},

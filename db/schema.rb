@@ -10,24 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_10_193237) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_10_200103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "competing_team_scores", force: :cascade do |t|
-    t.bigint "competing_team_id", null: false
-    t.integer "points", default: 0
-    t.integer "goals", default: 0
-    t.integer "wins", default: 0
-    t.integer "draws", default: 0
-    t.integer "loses", default: 0
-    t.integer "goals_made", default: 0
-    t.integer "goals_received", default: 0
-    t.integer "goals_differences", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["competing_team_id"], name: "index_competing_team_scores_on_competing_team_id"
-  end
 
   create_table "competing_teams", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -174,7 +159,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_193237) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "competing_team_scores", "competing_teams"
   add_foreign_key "competing_teams", "groups"
   add_foreign_key "competing_teams", "teams"
   add_foreign_key "competing_users", "competing_teams"
