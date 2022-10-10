@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_10_185727) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_10_193237) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_185727) do
     t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points", default: 0
+    t.integer "goals", default: 0
+    t.integer "wins", default: 0
+    t.integer "draws", default: 0
+    t.integer "loses", default: 0
+    t.integer "goals_made", default: 0
+    t.integer "goals_received", default: 0
     t.index ["group_id"], name: "index_competing_teams_on_group_id"
     t.index ["team_id"], name: "index_competing_teams_on_team_id"
   end
@@ -45,13 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_185727) do
     t.integer "score", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "points", default: 0
-    t.integer "goals", default: 0
-    t.integer "wins", default: 0
-    t.integer "draws", default: 0
-    t.integer "loses", default: 0
-    t.integer "goals_made", default: 0
-    t.integer "goals_received", default: 0
     t.index ["competing_team_id"], name: "index_competing_users_on_competing_team_id"
     t.index ["competition_id"], name: "index_competing_users_on_competition_id"
     t.index ["user_id"], name: "index_competing_users_on_user_id"

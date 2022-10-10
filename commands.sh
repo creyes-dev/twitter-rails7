@@ -2801,4 +2801,34 @@ $ rails db:migrate
    -> 0.0950s
 == 20221010185727 RemoveLocationIdFromMatches: migrated (0.0951s) =============
 
+# Removing scores from CompetingUser, it should be in CompetingTeam
+$ rails g migration RemoveScoresFromCompetingUser
+      invoke  active_record
+      create    db/migrate/20221010192915_remove_scores_from_competing_user.rb
+
+$ rails db:migrate
+
+# Adding scores to CompetingTeam
+$ rails g migration AddScoresToCompetingTeam
+      invoke  active_record
+      create    db/migrate/20221010193237_add_scores_to_competing_team.rb
+
+# Migrating CompetingTeams scores
+$ rails db:migrate
+== 20221010193237 AddScoresToCompetingTeam: migrating =========================
+-- add_column(:competing_teams, :points, :integer, {:default=>0})
+   -> 0.0986s
+-- add_column(:competing_teams, :goals, :integer, {:default=>0})
+   -> 0.0016s
+-- add_column(:competing_teams, :wins, :integer, {:default=>0})
+   -> 0.0014s
+-- add_column(:competing_teams, :draws, :integer, {:default=>0})
+   -> 0.0030s
+-- add_column(:competing_teams, :loses, :integer, {:default=>0})
+   -> 0.0038s
+-- add_column(:competing_teams, :goals_made, :integer, {:default=>0})
+   -> 0.0027s
+-- add_column(:competing_teams, :goals_received, :integer, {:default=>0})
+   -> 0.0025s
+== 20221010193237 AddScoresToCompetingTeam: migrated (0.1141s) ================
 
