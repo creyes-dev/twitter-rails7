@@ -2896,3 +2896,11 @@ $ rails db:migrate
 == 20221010203010 FixCompetitionRoundColumnName: migrated (0.0032s) ===========
 
 
+# I don't know how to seed the matches, so I will delete everything and seeding it again
+$ rails db:reset
+
+# I still get only 45 matches, so it failed again, time to seed step by step
+
+# First I will delete every register
+
+

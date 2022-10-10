@@ -270,7 +270,7 @@ CompetingTeam.create([
   { group_id: 2, team_id: 181 },
   { group_id: 2, team_id: 105 },
   { group_id: 2, team_id: 72 },
-  { group_id: 2, team_id: 248 },
+  { group_id: 2, team_id: 246 },
   { group_id: 3, team_id: 12 },
   { group_id: 3, team_id: 10 },
   { group_id: 3, team_id: 146 },
