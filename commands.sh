@@ -2676,3 +2676,30 @@ $ rails generate controller static_pages
       create    app/helpers/static_pages_helper.rb
       invoke    test_unit
 
+# Adding score to competing team table
+$ rails g migration AddScoresToCompetingUser
+      invoke  active_record
+      create    db/migrate/20221010155658_add_scores_to_competing_user.rb
+
+# Setting migration
+
+# Migrating
+
+$ rails db:migrate
+== 20221010155658 AddScoresToCompetingUser: migrating =========================
+-- add_column(:competing_users, :points, :integer, {:default=>0})
+   -> 0.3161s
+-- add_column(:competing_users, :goals, :integer, {:default=>0})
+   -> 0.0024s
+-- add_column(:competing_users, :wins, :integer, {:default=>0})
+   -> 0.0025s
+-- add_column(:competing_users, :draws, :integer, {:default=>0})
+   -> 0.0022s
+-- add_column(:competing_users, :loses, :integer, {:default=>0})
+   -> 0.0022s
+-- add_column(:competing_users, :goals_made, :integer, {:default=>0})
+   -> 0.0073s
+-- add_column(:competing_users, :goals_received, :integer, {:default=>0})
+   -> 0.0022s
+== 20221010155658 AddScoresToCompetingUser: migrated (0.3354s) ================
+
