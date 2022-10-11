@@ -2955,4 +2955,21 @@ $ rails db:migrate
    -> 0.1511s
 == 20221011001630 CreateAwards: migrated (0.1511s) ============================
 
+# Generating competing user award model
+$ rails g model Competing_user_award competing_user:references competition:references round:references prediction:references award:references score:integer
+      invoke  active_record
+      create    db/migrate/20221011004735_create_competing_user_awards.rb
+      create    app/models/competing_user_award.rb
+      invoke    test_unit
+      create      test/models/competing_user_award_test.rb
+      create      test/fixtures/competing_user_awards.yml
+
+# Setting competing user award migration
+
+# Migrate competing user award
+$ rails db:migrate
+== 20221011004735 CreateCompetingUserAwards: migrating ========================
+-- create_table(:competing_user_awards)
+   -> 0.2956s
+== 20221011004735 CreateCompetingUserAwards: migrated (0.2957s) ===============
 

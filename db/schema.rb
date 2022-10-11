@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_001630) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_004735) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_001630) do
     t.integer "goals_received", default: 0
     t.index ["group_id"], name: "index_competing_teams_on_group_id"
     t.index ["team_id"], name: "index_competing_teams_on_team_id"
+  end
+
+  create_table "competing_user_awards", force: :cascade do |t|
+    t.bigint "competing_user_id", null: false
+    t.bigint "competition_id"
+    t.bigint "round_id"
+    t.bigint "prediction_id"
+    t.bigint "award_id", null: false
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["award_id"], name: "index_competing_user_awards_on_award_id"
+    t.index ["competing_user_id"], name: "index_competing_user_awards_on_competing_user_id"
+    t.index ["competition_id"], name: "index_competing_user_awards_on_competition_id"
+    t.index ["prediction_id"], name: "index_competing_user_awards_on_prediction_id"
+    t.index ["round_id"], name: "index_competing_user_awards_on_round_id"
   end
 
   create_table "competing_users", force: :cascade do |t|
@@ -192,6 +208,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_001630) do
 
   add_foreign_key "competing_teams", "groups"
   add_foreign_key "competing_teams", "teams"
+  add_foreign_key "competing_user_awards", "awards"
+  add_foreign_key "competing_user_awards", "competing_users"
+  add_foreign_key "competing_user_awards", "competitions"
+  add_foreign_key "competing_user_awards", "predictions"
+  add_foreign_key "competing_user_awards", "rounds"
   add_foreign_key "competing_users", "competing_teams"
   add_foreign_key "competing_users", "competitions"
   add_foreign_key "competing_users", "users"

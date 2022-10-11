@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  competing_user: one
+  competition: one
+  round: one
+  prediction: one
+  award: one
+  score: 1
+
+two:
+  competing_user: two
+  competition: two
+  round: two
+  prediction: two
+  award: two
+  score: 1
