@@ -2921,11 +2921,22 @@ cristian@debian-host:~/Code/twitter-rails7$ rails db:migrate
 
 # Seeding prediction results
 
-PredictionResult.create([
-  { description: "nueva" },
-  { description: "acierto completo" },
-  { description: "acierto parcial" },
-  { description: "errada" }
-])
+# Generating prediction model
+$ rails g model Prediction competing_user:references match:references prediction_result:references competing_team_home_goals:integer competing_team_away_goals:integer score_won:integer perc_home_team_won:decimal perc_draw:decimal
+      invoke  active_record
+      create    db/migrate/20221011000129_create_predictions.rb
+      create    app/models/prediction.rb
+      invoke    test_unit
+      create      test/models/prediction_test.rb
+      create      test/fixtures/predictions.yml
+
+# Setting migrations
+
+# Migrate prediction model
+$ rails db:migrate
+== 20221011000129 CreatePredictions: migrating ================================
+-- create_table(:predictions)
+   -> 0.3150s
+== 20221011000129 CreatePredictions: migrated (0.3151s) =======================
 
 
