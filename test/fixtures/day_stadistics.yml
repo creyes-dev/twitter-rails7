@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day: 2022-10-10 22:53:28
+  department: one
+  matches: 1
+  competing_user: one
+  predictions: 1
+  success: 1
+  success_perc: 9.99
+
+two:
+  day: 2022-10-10 22:53:28
+  department: two
+  matches: 1
+  competing_user: two
+  predictions: 1
+  success: 1
+  success_perc: 9.99

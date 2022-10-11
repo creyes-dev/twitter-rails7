@@ -2992,5 +2992,17 @@ $ rails db:migrate
    -> 0.1642s
 == 20221011010454 CreateMatchStadistics: migrated (0.1643s) ===================
 
+# Generating day stadistic
+$ rails g model Day_stadistic day:datetime department:references matches:integer competing_user:references predictions:integer success:integer success_perc:decimal
 
+# Settind day stadistics
+
+# Migrating day stadistics
+$ rails db:Migrate
+== 20221011015328 CreateDayStadistics: migrating ==============================
+-- create_table(:day_stadistics)
+   -> 0.2435s
+== 20221011015328 CreateDayStadistics: migrated (0.2435s) =====================
+
+# f**** this, I will delete everything and start again (this comment by suggested by GitPilot :D)
 

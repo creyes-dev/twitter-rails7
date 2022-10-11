@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_010454) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_015328) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -95,6 +95,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_010454) do
     t.string "iso_alpha3"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "day_stadistics", force: :cascade do |t|
+    t.datetime "day"
+    t.bigint "department_id"
+    t.integer "matches", default: 0
+    t.bigint "competing_user_id"
+    t.integer "predictions", default: 0
+    t.integer "success", default: 0
+    t.decimal "success_perc", default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competing_user_id"], name: "index_day_stadistics_on_competing_user_id"
+    t.index ["department_id"], name: "index_day_stadistics_on_department_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -235,6 +249,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_010454) do
   add_foreign_key "competing_users", "competitions"
   add_foreign_key "competing_users", "users"
   add_foreign_key "competitions", "competition_structures"
+  add_foreign_key "day_stadistics", "competing_users"
+  add_foreign_key "day_stadistics", "departments"
   add_foreign_key "groups", "competitions"
   add_foreign_key "locations", "countries"
   add_foreign_key "match_stadistics", "departments"
