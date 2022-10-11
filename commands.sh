@@ -2973,3 +2973,24 @@ $ rails db:migrate
    -> 0.2956s
 == 20221011004735 CreateCompetingUserAwards: migrated (0.2957s) ===============
 
+# Generating match stadistics
+$ rails g model Match_stadistics match:references department:references predictions:integer home_team_won:integer draw:integer away_team_won:integer home_team_won_perc:decimal draw_perc:decimal away_team_won_perc:decimal success:integer success_perc:decimal
+[WARNING] The model name 'Match_stadistics' was recognized as a plural, using the singular 'Match_stadistic' instead. Override with --force-plural or setup custom inflection rules for this noun before running the generator.
+      invoke  active_record
+      create    db/migrate/20221011010454_create_match_stadistics.rb
+      create    app/models/match_stadistic.rb
+      invoke    test_unit
+      create      test/models/match_stadistic_test.rb
+      create      test/fixtures/match_stadistics.yml
+
+# Setting match stadistics migration
+
+# Migrating match stadistics
+$ rails db:migrate
+== 20221011010454 CreateMatchStadistics: migrating ============================
+-- create_table(:match_stadistics)
+   -> 0.1642s
+== 20221011010454 CreateMatchStadistics: migrated (0.1643s) ===================
+
+
+

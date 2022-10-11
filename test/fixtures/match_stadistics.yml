@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match: one
+  department: one
+  predictions: 1
+  home_team_won: 1
+  draw: 1
+  away_team_won: 1
+  home_team_won_perc: 9.99
+  draw_perc: 9.99
+  away_team_won_perc: 9.99
+  success_perc: 9.99
+
+two:
+  match: two
+  department: two
+  predictions: 1
+  home_team_won: 1
+  draw: 1
+  away_team_won: 1
+  home_team_won_perc: 9.99
+  draw_perc: 9.99
+  away_team_won_perc: 9.99
+  success_perc: 9.99

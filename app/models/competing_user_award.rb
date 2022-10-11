@@ -1,7 +1,7 @@
 class CompetingUserAward < ApplicationRecord
   belongs_to :competing_user
-  belongs_to :competition
-  belongs_to :round
-  belongs_to :prediction
+  belongs_to :competition, optional: true
+  belongs_to :round, optional: true
+  belongs_to :prediction, optional: true
   belongs_to :award
 end

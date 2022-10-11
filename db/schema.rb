@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_004735) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_010454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -121,6 +121,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_004735) do
     t.index ["country_id"], name: "index_locations_on_country_id"
   end
 
+  create_table "match_stadistics", force: :cascade do |t|
+    t.bigint "match_id", null: false
+    t.bigint "department_id"
+    t.integer "predictions", default: 0
+    t.integer "home_team_won", default: 0
+    t.integer "draw", default: 0
+    t.integer "away_team_won", default: 0
+    t.decimal "home_team_won_perc"
+    t.decimal "draw_perc"
+    t.decimal "away_team_won_perc"
+    t.integer "success", default: 0
+    t.decimal "success_perc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_match_stadistics_on_department_id"
+    t.index ["match_id"], name: "index_match_stadistics_on_match_id"
+  end
+
   create_table "matches", force: :cascade do |t|
     t.bigint "competing_team_home_id"
     t.bigint "competing_team_away_id"
@@ -219,6 +237,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_004735) do
   add_foreign_key "competitions", "competition_structures"
   add_foreign_key "groups", "competitions"
   add_foreign_key "locations", "countries"
+  add_foreign_key "match_stadistics", "departments"
+  add_foreign_key "match_stadistics", "matches"
   add_foreign_key "matches", "rounds"
   add_foreign_key "matches", "stadia"
   add_foreign_key "predictions", "competing_users"
