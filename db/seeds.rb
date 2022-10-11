@@ -624,5 +624,22 @@ PredictionResult.create([
   { description: "errado" }
 ])
 
-
-
+Award.create([
+  { name: "Balón", description: "Acierto al equipo ganador", image: "", points: 10 },
+  { name: "Analista de oro", description: "Acierto al equipo ganador con menos del 5% de pronósticos positivos", image: "", points: 5 },
+  { name: "Analista de plata", description: "Acierto al equipo ganador con entre el 5% hasta el 10% de pronósticos positivos", image: "", points: 4 },
+  { name: "Analista de bronce", description: "Acierto al equipo ganador con entre el 10% hasta el 15% de pronósticos positivos", image: "", points: 3 },
+  { name: "Analista de cobre", description: "Acierto al equipo ganador con entre el 15% hasta el 20% de pronósticos positivos", image: "", points: 2 },
+  { name: "Analista de hierro", description: "Acierto al equipo ganador con entre el 20% hasta el 25% de pronósticos positivos", image: "", points: 1 },
+  { name: "Estadista de oro", description: "Acierto al score del partido de manera exacta", image: "", points: 5 },
+  { name: "Estadista de plata", description: "Acierto al score del partido con diferencia de 1 gol", image: "", points: 4 },
+  { name: "Estadista de bronce", description: "Acierto al score del partido con diferencia de 2 goles", image: "", points: 3 },
+  { name: "Estadista de cobre", description: "Acierto al score del partido con diferencia de 3 goles", image: "", points: 2 },
+  { name: "Estadista de hierro", description: "Acierto al score del partido con diferencia de 4 goles", image: "", points: 1 },
+  { name: "Medalla de oro", description: "Terminó primero en una fecha", image: "", points: 10 },
+  { name: "Medalla de plata", description: "Terminó segundo en una fecha", image: "", points: 5 },
+  { name: "Medalla de bronce", description: "Terminó tercero en una fecha", image: "", points: 3 },
+  { name: "Copa de oro", description: "Terminó primero en la competencia", image: "", points: 10 },
+  { name: "Copa de plata", description: "Terminó segundo en la competencia", image: "", points: 5 },
+  { name: "Copa de bronce", description: "Terminó tercero en la competencia", image: "", points: 3 }
+])
