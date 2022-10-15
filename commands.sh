@@ -3109,4 +3109,20 @@ $ rails db:migrate
    -> 0.0011s
 == 20221015164401 AddStadisticFieldsToCompetingUser: migrated (0.0371s) =======
 
+# Adding lockable to devise
+$ rails g migration add_lockable_to_devise
+      invoke  active_record
+      create    db/migrate/20221015192121_add_lockable_to_devise.rb
+
+# Setting migration
+
+# Migrating
+$ rails db:migrate
+== 20221015192121 AddLockableToDevise: migrating ==============================
+-- add_column(:users, :failed_attempts, :integer, {:default=>0, :null=>false})
+   -> 0.0756s
+-- add_column(:users, :locked_at, :datetime)
+   -> 0.0110s
+== 20221015192121 AddLockableToDevise: migrated (0.0869s) =====================
+
 
