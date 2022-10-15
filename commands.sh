@@ -3016,3 +3016,25 @@ $ rails g controller matches
       invoke  helper
       create    app/helpers/matches_helper.rb
       invoke    test_unit
+
+# Fixing match stadistics default values
+$ rails g migration FixMatchStadisticsDefaultValues
+      invoke  active_record
+      create    db/migrate/20221015010544_fix_match_stadistics_default_values.rb
+
+# Setting migration
+
+# Migrating match stadistics default values fixes
+$ rails db:migrate
+== 20221015010544 FixMatchStadisticsDefaultValues: migrating ==================
+-- change_column(:match_stadistics, :home_team_won_perc, :decimal, {:default=>0.0})
+   -> 0.0945s
+-- change_column(:match_stadistics, :away_team_won_perc, :decimal, {:default=>0.0})
+   -> 0.0020s
+-- change_column(:match_stadistics, :draw_perc, :decimal, {:default=>0.0})
+   -> 0.0018s
+-- change_column(:match_stadistics, :success_perc, :decimal, {:default=>0.0})
+   -> 0.0121s
+== 20221015010544 FixMatchStadisticsDefaultValues: migrated (0.1108s) =========
+
+
