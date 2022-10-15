@@ -3049,4 +3049,47 @@ $ rails db:migrate
    -> 0.1154s
 == 20221015021113 FixPredictionsIndexes: migrated (0.1155s) ===================
 
+# Generating round ranking model
+$ rails g model RoundRanking user:references round:references place:integer score:integer
+      invoke  active_record
+      create    db/migrate/20221015153326_create_round_rankings.rb
+      create    app/models/round_ranking.rb
+      invoke    test_unit
+      create      test/models/round_ranking_test.rb
+      create      test/fixtures/round_rankings.yml
+
+# Setting migration
+
+# SEtting round ranking model relationships
+
+# Migrate round ranking model
+$ rails db:migrate
+== 20221015153326 CreateRoundRankings: migrating ==============================
+-- create_table(:round_rankings)
+   -> 0.2619s
+-- add_index(:round_rankings, [:round_id, :user_id], {:unique=>true})
+   -> 0.0419s
+== 20221015153326 CreateRoundRankings: migrated (0.3039s) =====================
+
+# Generating ranking
+$ rails g model Ranking competition:references user:references place:integer score:integer
+      invoke  active_record
+      create    db/migrate/20221015154649_create_rankings.rb
+      create    app/models/ranking.rb
+      invoke    test_unit
+      create      test/models/ranking_test.rb
+      create      test/fixtures/rankings.yml
+
+# Setting migration
+
+# Migrate ranking model
+$ rails db:migrate
+== 20221015154649 CreateRankings: migrating ===================================
+-- create_table(:rankings)
+   -> 0.1508s
+-- add_index(:rankings, [:competition_id, :user_id], {:unique=>true})
+   -> 0.0418s
+== 20221015154649 CreateRankings: migrated (0.1927s) ==========================
+
+
 
