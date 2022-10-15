@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # layout 'authentication', if: :devise_controller?
+  layout 'authentication', if: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 

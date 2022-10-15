@@ -10,9 +10,22 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class="vh-100">
+      <div class="authincation h-100">
+          <div class="container h-100">
+              <div class="row justify-content-center h-100 align-items-center">
+                  <div class="col-md-6">
+                      <div class="authincation-content">
+                          <div class="row no-gutters">
+                              <div class="col-xl-12">
+                                <%= yield %>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </body>
+
 </html>
