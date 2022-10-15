@@ -30,3 +30,13 @@
 .rules-invitation:hover {
     color: #fff;
 }
+
+.competing-teams .home-team .flag {
+    height: 3.75rem;
+    border-radius: 0.5rem;
+}
+
+.competing-teams .away-team .flag {
+    height: 3.75rem;
+    border-radius: 0.5rem;
+}

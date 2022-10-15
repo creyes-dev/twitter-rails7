@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'static_pages/rules' => 'static_pages#rules', as: :rules
   get "/rules", :to => "static_pages#rules", :as => :ruly_rules
 
+  get 'matches/:user_id/:is_finished/:limit/:round_id' => 'matches#index', as: :matches
+
   resources :competitions
   resources :departments
   devise_for :users

@@ -1,0 +1,82 @@
+<div id="<%= dom_id match %>" class="match pb-1">
+  <div class="match-header d-flex justify-content-between mt-2 flex-wrap">
+      <div class="match-id">
+          <ul class="d-flex align-items-center raiting my-0 flex-wrap">
+              <li>
+                  <span class="font-w500">
+                  <i class="fa fa-trophy"></i> <%= match.round.competition.name %> </span>
+              </li>
+              <li>Grupo <%= match.competing_team_home.group.name %></li>
+              <li>Fecha <%= match.round.number %></li>
+              <li>Partido <%= match.name %></li>
+          </ul>
+      </div>
+      <div>
+          <ul class="d-flex align-items-center raiting my-0 flex-wrap">
+              <li>
+                  <span class="font-w500">
+                  <i class="fa fa-clock"></i> <%= match.datetime %></span>
+              </li>
+              <li>Faltan x días 3 horas 23 minutos</li>
+              <li><span class="badge light badge-primary">En vivo  <i class="fa-solid fa-rss"></i></span></li>
+          </ul>
+      </div>
+  </div>
+  <div class="match-body">
+      <div class="title text-center">
+          <h4 class="fs-16 font-w600"><%= match.stadium.name %>, <%= match.stadium.location.name %></h4>
+      </div>
+      <div class="match-body-main d-flex justify-content-center">
+          <div class="competing-teams d-flex align-items-center flex-wrap">
+              <div class="home-team d-flex flex-row">
+                <%= image_tag(flag_src(match.competing_team_home.team.iso_alpha2), class: "flag") %>
+                  <div class="details text-left ms-3 me-4">
+                      <h4 class="team-name"><%= match.competing_team_home.team.name %></h4>
+                  </div>
+                  <div class="score ms-1 me-1">
+                      <h1>3(5)</h1>
+                  </div>
+                  <div class="prediction ms-1 me-1">
+                      <h4>7</h4>
+                  </div>
+              </div>
+              <div class="separator ms-1 me-1">
+                  <h4>-</h4>
+              </div>
+              <div class="away-team d-flex flex-row-reverse">
+                  <%= image_tag(flag_src(match.competing_team_away.team.iso_alpha2), class: "flag") %>
+                  <div class="details text-right ms-4 me-3" style="text-align: right;">
+                      <h4 class="team-name"><%= match.competing_team_away.team.name %></h4>
+                  </div>
+                  <div class="score ms-1 me-1">
+                      <h1>3(7)</h1>
+                  </div>
+                  <div class="prediction ms-1 me-1">
+                      <h4>7</h4>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="title text-center">
+          <span class="badge light badge-light">39.52 (14.52)</span>
+          <span class="badge light badge-light">39.52 (14.52)</span>
+          <span class="badge light badge-light">23.99 (41.12)</span>
+      </div>
+      <div class="match-footer d-flex justify-content-end mt-2 flex-wrap">
+          <div class="predictions">
+              <div class="d-flex align-items-center profile-img mb-sm-0 ms-3 mb-3 me-3">
+                  <img src="/assets/prode/profile-pic.png" alt="images">
+                  <img src="/assets/prode/profile-pic.png" alt="images">
+                  <img src="/assets/prode/profile-pic.png" alt="images">
+                  <img src="/assets/prode/profile-pic.png" alt="images">
+                  <img src="/assets/prode/profile-pic.png" alt="images">
+                  <span class="bg-primary text-white">9+</span>
+              </div>
+          </div>
+          <div class="operations">
+              <button class="btn btn-primary btn-sm" type="button">Pronosticar</button>
+              <button class="btn btn-secondary btn-sm" type="button">Actualizar</button>
+          </div>
+      </div>
+  </div>
+</div>

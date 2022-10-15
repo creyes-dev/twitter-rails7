@@ -3006,3 +3006,13 @@ $ rails db:Migrate
 
 # f**** this, I will delete everything and start again (this comment by suggested by GitPilot :D)
 
+# Generating matches controller
+$ rails g controller matches
+      create  app/controllers/matches_controller.rb
+      invoke  erb
+      create    app/views/matches
+      invoke  test_unit
+      create    test/controllers/matches_controller_test.rb
+      invoke  helper
+      create    app/helpers/matches_helper.rb
+      invoke    test_unit
