@@ -3037,4 +3037,16 @@ $ rails db:migrate
    -> 0.0121s
 == 20221015010544 FixMatchStadisticsDefaultValues: migrated (0.1108s) =========
 
+# Fixing prediction uniqueness
+$ rails g migration FixPredictionsIndexes
+
+# Setting migration
+
+# Migrating prediction uniqueness
+$ rails db:migrate
+== 20221015021113 FixPredictionsIndexes: migrating ============================
+-- add_index(:predictions, [:competing_user_id, :match_id], {:unique=>true})
+   -> 0.1154s
+== 20221015021113 FixPredictionsIndexes: migrated (0.1155s) ===================
+
 

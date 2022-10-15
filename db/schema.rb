@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_15_010544) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_15_021113) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -188,6 +188,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_15_010544) do
     t.decimal "perc_draw"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["competing_user_id", "match_id"], name: "index_predictions_on_competing_user_id_and_match_id", unique: true
     t.index ["competing_user_id"], name: "index_predictions_on_competing_user_id"
     t.index ["match_id"], name: "index_predictions_on_match_id"
     t.index ["prediction_result_id"], name: "index_predictions_on_prediction_result_id"
