@@ -3091,5 +3091,22 @@ $ rails db:migrate
    -> 0.0418s
 == 20221015154649 CreateRankings: migrated (0.1927s) ==========================
 
+# Adding stadistic fields to competing users
+$ rails g migration AddStadisticFieldsToCompetingUser predictions:integer success:integer
+      invoke  active_record
+      create    db/migrate/20221015164401_add_stadistic_fields_to_competing_user.rb
+
+# Setting migration
+
+# Adapting model
+
+# Migrating stadistic fields to competing users
+$ rails db:migrate
+== 20221015164401 AddStadisticFieldsToCompetingUser: migrating ================
+-- add_column(:competing_users, :predictions, :integer, {:default=>0})
+   -> 0.0359s
+-- add_column(:competing_users, :success, :integer, {:default=>0})
+   -> 0.0011s
+== 20221015164401 AddStadisticFieldsToCompetingUser: migrated (0.0371s) =======
 
 
