@@ -3125,4 +3125,11 @@ $ rails db:migrate
    -> 0.0110s
 == 20221015192121 AddLockableToDevise: migrated (0.0869s) =====================
 
+# I will delete everything
+$ rails db:reset
+Dropped database 'prode_rails_development'
+Dropped database 'prode_rails_test'
+Created database 'prode_rails_development'
+Created database 'prode_rails_test'
+
 
