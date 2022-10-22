@@ -3197,5 +3197,42 @@ $ rails db:migrate
    -> 0.1746s
 == 20221022174634 AddPlaceToCompetingUser: migrated (0.1747s) =================
 
+# Fixing user references in round ranking
+$ rails g migration FixingUserReferencesFromRoundRankings
+      invoke  active_record
+      create    db/migrate/20221022175520_fixing_user_references_from_round_rankings.rb
+
+# Setting migration
+
+# Migrating fixing user references in round ranking
+$ rails db:migrate
+== 20221022175520 FixingUserReferencesFromRoundRankings: migrating ============
+-- remove_reference(:round_rankings, :user, {:null=>false, :foreign_key=>true})
+   -> 0.0087s
+== 20221022175520 FixingUserReferencesFromRoundRankings: migrated (0.0088s) ===
+
+# Adding competing user reference to round ranking
+$ rails g migration AddCompetingUserToRoundRanking competing_user:references
+      invoke  active_record
+      create    db/migrate/20221022181251_add_competing_user_to_round_ranking.rb
+
+# Migrating competing user reference to round ranking
+$ rails db:migrate
+== 20221022181251 AddCompetingUserToRoundRanking: migrating ===================
+-- add_reference(:round_rankings, :competing_user, {:null=>false, :foreign_key=>true})
+   -> 0.4510s
+== 20221022181251 AddCompetingUserToRoundRanking: migrated (0.4511s) ==========
+
+# Migrating competing user and round composed index to round ranking
+$ rails g migration AddingCompetingUserRoundComposedIndex
+      invoke  active_record
+      create    db/migrate/20221022182428_adding_competing_user_round_composed_index.rb
+
+# Setting migration
+$ rails db:migrate
+== 20221022182428 AddingCompetingUserRoundComposedIndex: migrating ============
+-- add_index(:round_rankings, [:round_id, :competing_user_id], {:unique=>true})
+   -> 0.0786s
+== 20221022182428 AddingCompetingUserRoundComposedIndex: migrated (0.0786s) ===
 
 
