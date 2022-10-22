@@ -3182,4 +3182,20 @@ $ rails db:migrate
    -> 0.1851s
 == 20221022172038 DropRankings: migrated (0.1851s) ============================
 
+# Adding place to competing users
+$ rails g migration AddPlaceToCompetingUser place:integer
+      invoke  active_record
+      create    db/migrate/20221022174634_add_place_to_competing_user.rb
+
+
+# Setting migration
+
+# Migrating place to competing users
+$ rails db:migrate
+== 20221022174634 AddPlaceToCompetingUser: migrating ==========================
+-- add_column(:competing_users, :place, :integer, {:default=>0, :null=>false})
+   -> 0.1746s
+== 20221022174634 AddPlaceToCompetingUser: migrated (0.1747s) =================
+
+
 

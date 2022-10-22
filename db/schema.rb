@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_172038) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_174634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_172038) do
     t.datetime "updated_at", null: false
     t.integer "predictions", default: 0
     t.integer "success", default: 0
+    t.integer "place", default: 0, null: false
     t.index ["competing_team_id"], name: "index_competing_users_on_competing_team_id"
     t.index ["competition_id"], name: "index_competing_users_on_competition_id"
     t.index ["user_id"], name: "index_competing_users_on_user_id"
