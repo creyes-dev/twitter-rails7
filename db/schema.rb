@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_19_035730) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_172038) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -196,18 +196,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_035730) do
     t.index ["prediction_result_id"], name: "index_predictions_on_prediction_result_id"
   end
 
-  create_table "rankings", force: :cascade do |t|
-    t.bigint "competition_id", null: false
-    t.bigint "user_id", null: false
-    t.integer "place"
-    t.integer "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["competition_id", "user_id"], name: "index_rankings_on_competition_id_and_user_id", unique: true
-    t.index ["competition_id"], name: "index_rankings_on_competition_id"
-    t.index ["user_id"], name: "index_rankings_on_user_id"
-  end
-
   create_table "round_rankings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "round_id", null: false
@@ -295,8 +283,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_035730) do
   add_foreign_key "predictions", "competing_users"
   add_foreign_key "predictions", "matches"
   add_foreign_key "predictions", "prediction_results"
-  add_foreign_key "rankings", "competitions"
-  add_foreign_key "rankings", "users"
   add_foreign_key "round_rankings", "rounds"
   add_foreign_key "round_rankings", "users"
   add_foreign_key "rounds", "competitions"

@@ -3168,5 +3168,18 @@ $ rails g migration AddPassChangedToUser
 
 # Migrating pass changed
 
+# Dropping ranking table
+$ rails g migration DropRankings
+      invoke  active_record
+      create    db/migrate/20221022172038_drop_rankings.rb
+
+# Setting migration
+
+# Migrating ranking drop table
+$ rails db:migrate
+== 20221022172038 DropRankings: migrating =====================================
+-- drop_table(:rankings)
+   -> 0.1851s
+== 20221022172038 DropRankings: migrated (0.1851s) ============================
 
 
