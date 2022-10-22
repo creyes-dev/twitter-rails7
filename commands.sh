@@ -3132,3 +3132,41 @@ Dropped database 'prode_rails_test'
 Created database 'prode_rails_development'
 Created database 'prode_rails_test'
 
+# Adding trackable attribute to devise users
+$ rails g migration add_trackable_to_devise
+      invoke  active_record
+      create    db/migrate/20221017032908_add_trackable_to_devise.rb
+
+# Setting migration
+
+# Migrating
+
+$ rails db:migrate
+== 20221017034803 AddTrackableToDeviseAgain: migrating ========================
+== 20221017034803 AddTrackableToDeviseAgain: migrated (0.0000s) ===============
+
+$ rails db:migrate
+== 20221017040931 AddTrackableToDeviseAgainAgain: migrating ===================
+-- add_column(:users, :sign_in_count, :integer, {:default=>0, :null=>false})
+   -> 0.1795s
+-- add_column(:users, :current_sign_in_at, :datetime)
+   -> 0.0023s
+-- add_column(:users, :last_sign_in_at, :datetime)
+   -> 0.0776s
+-- add_column(:users, :current_sign_in_ip, :inet)
+   -> 0.0020s
+-- add_column(:users, :last_sign_in_ip, :inet)
+   -> 0.0021s
+== 20221017040931 AddTrackableToDeviseAgainAgain: migrated (0.2640s) ==========
+
+# Adding pass changed attribute to devise users
+$ rails g migration AddPassChangedToUser
+      invoke  active_record
+      create    db/migrate/20221019035730_add_pass_changed_to_user.rb
+
+# Setting migration
+
+# Migrating pass changed
+
+
+
