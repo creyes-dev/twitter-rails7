@@ -3235,4 +3235,5 @@ $ rails db:migrate
    -> 0.0786s
 == 20221022182428 AddingCompetingUserRoundComposedIndex: migrated (0.0786s) ===
 
-
+# I don't know if this seeds well
+$ rails db:reset

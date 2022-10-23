@@ -1,9 +1,33 @@
+Department.create([
+  { name: "Administration" },
+  { name: "Coaching" },
+  { name: "Technical" },
+  { name: "Scouting" },
+  { name: "Finance" },
+  { name: "IT" }
+])
+
+User.create([
+  { name: "creyes", email: "mail1@mail.com", password: "prode2022", password_confirmation: "prode2022", first_name: "Cristian", last_name: "Reyes", role: 1, department_id: 6 },
+  { name: "administradora", email: "administra@mail.com", password: "prode2022", password_confirmation: "prode2022", first_name: "Alba", last_name: "Virasoro", department_id: 1 },
+  { name: "administrador", email: "administra@mail.com", password: "prode2022", password_confirmation: "prode2022", first_name: "Antonio", last_name: "Ruiz", department_id: 1 },
+  { name: "administra", email: "administra@mail.com", password: "prode2022", password_confirmation: "prode2022", first_name: "Tomas", last_name: "Perez", department_id: 1 },
+  { name: "coaching", email: "coaching@mail.com", password: "prode2022", password_confirmation: "prode2022", first_name: "Campo", last_name: "Costa", department_id: 2 },
+  { name: "profesor", email: "profesor@mail.com", password: "prode2022", password_confirmation: "prode2022", first_name: "Campo", last_name: "Scuderi", department_id: 2 },
+  { name: "tecnico", email: "tecnico@mail.com", password: "prode2022", password_confirmation: "prode2022", first_name: "Fabiana", last_name: "Gonzalez", department_id: 3 },
+  { name: "financiero", email: "financiero@mail.com", password: "prode2022", password_confirmation: "prode2022", first_name: "Juan", last_name: "Perez", department_id: 5 },
+  { name: "scouting", email: "scouting@mail.com", password: "prode2022", password_confirmation: "prode2022", first_name: "Alvaro", last_name: "Rozimalta", department_id: 5 }])
+
 CompetitionStructure.create([
   { description: "league" },
   { description: "tournament" },
   { description: "group and knockout stage"}])
 
 Competition.create( name: "Mundial qatar 2022", competition_structure_id: 3,national_teams: true,group_amount: 8,teams_group: 4,round_amount: 4, begin: "2022-11-21T09:00:00+00:00",active: true,loops:1)
+
+User.all.each do |user|
+  user.competing_users.create(competition_id: 1)
+end
 
 Group.create([
   { competition_id: 1, name: "A", rounds: 1 },
@@ -567,6 +591,12 @@ Country.create([{:name =>"Afganistán", :iso_code => 4 , :iso_alpha3 =>"AFG", :i
     Round.create( competition_id: 1, number: i )
   end
 
+Round.all.each do |r|
+  CompetingUser.all.each do |u|
+    u.round_rankings.create( round_id: r.id )
+  end
+end
+
 Match.create([
   { name: "002", competing_team_home_id: 3, competing_team_away_id: 4, stadium_id: 1, round_id: 1, datetime: "2022-11-21T10:00:00+00:00" },
   { name: "001", competing_team_home_id: 1, competing_team_away_id: 2, stadium_id: 2, round_id: 1, datetime: "2022-11-21T16:00:00+00:00" },
@@ -616,6 +646,10 @@ Match.create([
   { name: "032", competing_team_home_id: 29, competing_team_away_id: 31, stadium_id: 5, round_id: 2, datetime: "2022-11-28T19:00:00+00:00" },
   { name: "045", competing_team_home_id: 30, competing_team_away_id: 31, stadium_id: 8, round_id: 3, datetime: "2022-12-02T15:00:00+00:00" },
   { name: "046", competing_team_home_id: 32, competing_team_away_id: 29, stadium_id: 6, round_id: 3, datetime: "2022-12-02T15:00:00+00:00" }])
+
+Match.all.each do |match|
+  match.match_stadistics.create()
+end
 
 PredictionResult.create([
   { description: "nuevo" },
