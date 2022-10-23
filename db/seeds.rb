@@ -29,6 +29,10 @@ User.all.each do |user|
   user.competing_users.create(competition_id: 1)
 end
 
+Department.all.each do |department|
+  department.competing_departments.create(competition_id: 1)
+end
+
 Group.create([
   { competition_id: 1, name: "A", rounds: 1 },
   { competition_id: 1, name: "B", rounds: 1 },
