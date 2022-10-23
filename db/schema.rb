@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_182428) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_23_225755) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_182428) do
     t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "competing_departments", force: :cascade do |t|
+    t.bigint "competition_id", null: false
+    t.bigint "department_id", null: false
+    t.integer "place", default: 0
+    t.integer "score", default: 0
+    t.integer "predictions", default: 0
+    t.integer "success", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competition_id"], name: "index_competing_departments_on_competition_id"
+    t.index ["department_id"], name: "index_competing_departments_on_department_id"
   end
 
   create_table "competing_teams", force: :cascade do |t|
@@ -88,6 +101,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_182428) do
     t.integer "loops", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "predictions", default: 0
+    t.integer "success", default: 0
     t.index ["competition_structure_id"], name: "index_competitions_on_competition_structure_id"
   end
 
@@ -262,6 +277,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_182428) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "competing_departments", "competitions"
+  add_foreign_key "competing_departments", "departments"
   add_foreign_key "competing_teams", "groups"
   add_foreign_key "competing_teams", "teams"
   add_foreign_key "competing_user_awards", "awards"

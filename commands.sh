@@ -3237,3 +3237,39 @@ $ rails db:migrate
 
 # I don't know if this seeds well
 $ rails db:reset
+
+# Adding stadistic fields to competition
+$ rails g migration AddStadisticFieldsToCompetition predictions:integer success:integer
+      invoke  active_record
+      create    db/migrate/20221023224047_add_stadistic_fields_to_competition.rb
+
+# Setting migration
+
+$ rails db:reset
+
+$ rails db:migrate
+== 20221023224047 AddStadisticFieldsToCompetition: migrating ==================
+-- add_column(:competitions, :predictions, :integer, {:default=>0})
+   -> 0.0023s
+-- add_column(:competitions, :success, :integer, {:default=>0})
+   -> 0.0009s
+== 20221023224047 AddStadisticFieldsToCompetition: migrated (0.0033s) =========
+
+# Adding competing department
+$ rails g model Competing_department competition:references department:references place:integer score:integer predictions:integer success:integer
+      invoke  active_record
+      create    db/migrate/20221023225755_create_competing_departments.rb
+      create    app/models/competing_department.rb
+      invoke    test_unit
+      create      test/models/competing_department_test.rb
+      create      test/fixtures/competing_departments.yml
+
+# Setting migration
+
+# Migrate
+$ rails db:migrate
+== 20221023225755 CreateCompetingDepartments: migrating =======================
+-- create_table(:competing_departments)
+   -> 0.1765s
+== 20221023225755 CreateCompetingDepartments: migrated (0.1766s) ==============
+
