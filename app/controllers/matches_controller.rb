@@ -1,4 +1,5 @@
 class MatchesController < ApplicationController
+  include ApplicationHelper
   include FlagSrcHelper
 
   # GET /matches/user_id/is_finished/limit/round_id

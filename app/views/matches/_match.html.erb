@@ -15,9 +15,9 @@
           <ul class="d-flex align-items-center raiting my-0 flex-wrap">
               <li>
                   <span class="font-w500">
-                  <i class="fa fa-clock"></i> <%= match.datetime %></span>
+                  <i class="fa fa-clock"></i> <%= convert_to_local_timezone_date_time(match.datetime) %></span>
               </li>
-              <li>Faltan x días 3 horas 23 minutos</li>
+              <li>Faltan <%= time_diff(Time.now, convert_to_local_datetime(match.datetime)) %></li>
               <li><span class="badge light badge-primary">En vivo  <i class="fa-solid fa-rss"></i></span></li>
           </ul>
       </div>

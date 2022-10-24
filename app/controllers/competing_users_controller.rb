@@ -1,4 +1,5 @@
 class CompetingUsersController < ApplicationController
+  include ApplicationHelper
   include FlagSrcHelper
   before_action :authenticate_user!
   before_action :set_competing_user, only: %i[ edit select_favorite_competing_team ]
