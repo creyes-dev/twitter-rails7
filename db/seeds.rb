@@ -603,7 +603,7 @@ end
 
 Match.create([
   { name: "002", competing_team_home_id: 3, competing_team_away_id: 4, stadium_id: 1, round_id: 1, datetime: "2022-11-21T10:00:00+00:00" },
-  { name: "001", competing_team_home_id: 1, competing_team_away_id: 2, stadium_id: 2, round_id: 1, datetime: "2022-11-21T16:00:00+00:00" },
+  { name: "001", competing_team_home_id: 1, competing_team_away_id: 2, stadium_id: 2, round_id: 1, datetime: "2022-11-20T16:00:00+00:00" },
   { name: "018", competing_team_home_id: 1, competing_team_away_id: 3, stadium_id: 1, round_id: 2, datetime: "2022-11-25T13:00:00+00:00" },
   { name: "019", competing_team_home_id: 4, competing_team_away_id: 2, stadium_id: 3, round_id: 2, datetime: "2022-11-25T16:00:00+00:00" },
   { name: "035", competing_team_home_id: 2, competing_team_away_id: 3, stadium_id: 3, round_id: 3, datetime: "2022-11-29T15:00:00+00:00" },
@@ -614,8 +614,8 @@ Match.create([
   { name: "020", competing_team_home_id: 5, competing_team_away_id: 7, stadium_id: 2, round_id: 2, datetime: "2022-11-25T19:00:00+00:00" },
   { name: "033", competing_team_home_id: 8, competing_team_away_id: 5, stadium_id: 4, round_id: 3, datetime: "2022-11-29T19:00:00+00:00" },
   { name: "034", competing_team_home_id: 6, competing_team_away_id: 7, stadium_id: 1, round_id: 3, datetime: "2022-11-29T19:00:00+00:00" },
-  { name: "008", competing_team_home_id: 9, competing_team_away_id: 10, stadium_id: 5, round_id: 1, datetime: "2022-11-21T10:00:00+00:00" },
-  { name: "007", competing_team_home_id: 11, competing_team_away_id: 12, stadium_id: 7, round_id: 1, datetime: "2022-11-21T16:00:00+00:00" },
+  { name: "008", competing_team_home_id: 9, competing_team_away_id: 10, stadium_id: 5, round_id: 1, datetime: "2022-11-22T10:00:00+00:00" },
+  { name: "007", competing_team_home_id: 11, competing_team_away_id: 12, stadium_id: 7, round_id: 1, datetime: "2022-11-22T16:00:00+00:00" },
   { name: "022", competing_team_home_id: 12, competing_team_away_id: 10, stadium_id: 6, round_id: 2, datetime: "2022-11-26T13:00:00+00:00" },
   { name: "024", competing_team_home_id: 9, competing_team_away_id: 11, stadium_id: 5, round_id: 2, datetime: "2022-11-26T19:00:00+00:00" },
   { name: "039", competing_team_home_id: 12, competing_team_away_id: 9, stadium_id: 7, round_id: 3, datetime: "2022-11-30T19:00:00+00:00" },

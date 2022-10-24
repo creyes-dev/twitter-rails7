@@ -20,13 +20,12 @@ class MatchesController < ApplicationController
     .left_outer_joins(predictions:
         [ :prediction_result,
           { competing_user: :user },
-          { competing_user_awards: :award }],
-        :match_stadistics)
+          { competing_user_awards: :award }])
     .where( competition: { active: true })
     .where('is_finished = ?', is_finished )
     .where(round_condition)
     .order(datetime: :desc, name: :desc)
     .limit(limit)
   end
-
+  # left_outer_joins ,        :match_stadistics
 end
