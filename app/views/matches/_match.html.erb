@@ -38,7 +38,7 @@
                   <div class="details text-left ms-3 me-4">
                       <h4 class="team-name"><%= match.competing_team_home.team.name %></h4>
                   </div>
-                  <% if match.is_finished %>
+                  <% if Time.now > convert_to_local_datetime(match.datetime) %>
                         <div class="score ms-1 me-1">
                             <h1><%= match.competing_team_home_goals %><% if match.competing_team_home_penalty_goals > 0 %>(<%= match.competing_team_home_penalty_goals %>)<% end %></h1>
                         </div>
@@ -50,7 +50,7 @@
                   <% else %>
                         <% if !competing_user_prediction.nil? %>
                             <div class="score ms-1 me-1">
-                                <h1><%= competing_user_prediction.competing_team_home_goals %></h1>
+                                <h1 class="text-primary"><%= competing_user_prediction.competing_team_home_goals %></h1>
                             </div>
                         <% end %>
                   <% end %>
@@ -63,7 +63,7 @@
                   <div class="details text-right ms-4 me-3" style="text-align: right;">
                       <h4 class="team-name"><%= match.competing_team_away.team.name %></h4>
                   </div>
-                  <% if match.is_finished %>
+                  <% if Time.now > convert_to_local_datetime(match.datetime) %>
                         <div class="score ms-1 me-1">
                             <h1><%= match.competing_team_away_goals %><% if match.competing_team_away_penalty_goals > 0 %>(<%= match.competing_team_away_penalty_goals %>)<% end %></h1>
                         </div>
@@ -74,8 +74,8 @@
                         <% end %>
                   <% else %>
                         <% if !competing_user_prediction.nil? %>
-                            <div class="score ms-1 me-1">
-                                <h1><%= competing_user_prediction.competing_team_away_goals %></h1>
+                            <div class="score ms-1 me-1 text-primary">
+                                <h1 class="text-primary"><%= competing_user_prediction.competing_team_away_goals %></h1>
                             </div>
                         <% end %>
                   <% end %>
@@ -111,7 +111,9 @@
           </div>
           <div class="operations">
               <button class="btn btn-primary btn-sm" type="button">Pronosticar</button>
-              <button class="btn btn-secondary btn-sm" type="button">Actualizar</button>
+              <% if competing_user.user.role == "admin" && Time.now > convert_to_local_datetime(match.datetime) %>
+                <button class="btn btn-secondary btn-sm" type="button">Actualizar</button>
+              <% end %>
           </div>
       </div>
   </div>
