@@ -17,8 +17,13 @@
                   <span class="font-w500">
                   <i class="fa fa-clock"></i> <%= convert_to_local_timezone_date_time(match.datetime) %></span>
               </li>
-              <li>Faltan <%= time_diff(Time.now, convert_to_local_datetime(match.datetime)) %></li>
-              <li><span class="badge light badge-primary">En vivo  <i class="fa-solid fa-rss"></i></span></li>
+              <% if Time.now < convert_to_local_datetime(match.datetime) %>
+                <li>Faltan <%= time_diff(Time.now, convert_to_local_datetime(match.datetime)) %></li>
+              <% else %>
+                <% if !match.is_finished %>
+                  <li><span class="badge light badge-primary">En vivo  <i class="fa-solid fa-rss"></i></span></li>
+                <% end %>
+              <% end %>
           </ul>
       </div>
   </div>
@@ -33,12 +38,22 @@
                   <div class="details text-left ms-3 me-4">
                       <h4 class="team-name"><%= match.competing_team_home.team.name %></h4>
                   </div>
-                  <div class="score ms-1 me-1">
-                      <h1>3(5)</h1>
-                  </div>
-                  <div class="prediction ms-1 me-1">
-                      <h4>7</h4>
-                  </div>
+                  <% if match.is_finished %>
+                        <div class="score ms-1 me-1">
+                            <h1><%= match.competing_team_home_goals %><% if match.competing_team_home_penalty_goals > 0 %>(<%= match.competing_team_home_penalty_goals %>)<% end %></h1>
+                        </div>
+                        <% if !competing_user_prediction.nil? %>
+                            <div class="prediction ms-1 me-1">
+                                <h4><%= competing_user_prediction.competing_team_home_goals %></h4>
+                            </div>
+                        <% end %>
+                  <% else %>
+                        <% if !competing_user_prediction.nil? %>
+                            <div class="score ms-1 me-1">
+                                <h1><%= competing_user_prediction.competing_team_home_goals %></h1>
+                            </div>
+                        <% end %>
+                  <% end %>
               </div>
               <div class="separator ms-1 me-1">
                   <h4>-</h4>
@@ -48,12 +63,22 @@
                   <div class="details text-right ms-4 me-3" style="text-align: right;">
                       <h4 class="team-name"><%= match.competing_team_away.team.name %></h4>
                   </div>
-                  <div class="score ms-1 me-1">
-                      <h1>3(7)</h1>
-                  </div>
-                  <div class="prediction ms-1 me-1">
-                      <h4>7</h4>
-                  </div>
+                  <% if match.is_finished %>
+                        <div class="score ms-1 me-1">
+                            <h1><%= match.competing_team_away_goals %><% if match.competing_team_away_penalty_goals > 0 %>(<%= match.competing_team_away_penalty_goals %>)<% end %></h1>
+                        </div>
+                        <% if !competing_user_prediction.nil? %>
+                            <div class="prediction ms-1 me-1">
+                                <h4><%= competing_user_prediction.competing_team_away_goals %></h4>
+                            </div>
+                        <% end %>
+                  <% else %>
+                        <% if !competing_user_prediction.nil? %>
+                            <div class="score ms-1 me-1">
+                                <h1><%= competing_user_prediction.competing_team_away_goals %></h1>
+                            </div>
+                        <% end %>
+                  <% end %>
               </div>
           </div>
       </div>

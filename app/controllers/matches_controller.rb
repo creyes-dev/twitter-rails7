@@ -5,7 +5,8 @@ class MatchesController < ApplicationController
   # GET /matches/user_id/is_finished/limit/round_id
   def index
 
-    @matches_user = User.find(params[:user_id])
+    # TODO: This doesn't work if there are more than one active competition
+    @competing_user = CompetingUser.includes(:competition, :user).where( competition: { active: true }, user: { id: params[:user_id] }).first
 
     # TODO: This could be more elegant
     is_finished = (params[:is_finished] == '1' ? true : false)
