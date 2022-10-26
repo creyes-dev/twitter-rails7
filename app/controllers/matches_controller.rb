@@ -6,7 +6,7 @@ class MatchesController < ApplicationController
   def index
 
     # TODO: This doesn't work if there are more than one active competition
-    @competing_user = CompetingUser.includes(:competition, :user).where( competition: { active: true }, user: { id: params[:user_id] }).first
+    @competing_user = CompetingUser.includes(:competition, user: :department).where( competition: { active: true }, user: { id: params[:user_id] }).first
 
     # TODO: This could be more elegant
     is_finished = (params[:is_finished] == '1' ? true : false)
@@ -14,6 +14,7 @@ class MatchesController < ApplicationController
     round_condition = (params[:round_id] == '0' ? "1=1" : "matches.round_id = #{params[:round_id]}")
 
     @matches = Match.joins(
+      :match_stadistics,
       round: :competition,
       stadium: :location,
       competing_team_home: [:team, :group],

@@ -83,9 +83,20 @@
           </div>
       </div>
       <div class="title text-center">
-          <span class="badge light badge-light">39.52 (14.52)</span>
-          <span class="badge light badge-light">39.52 (14.52)</span>
-          <span class="badge light badge-light">23.99 (41.12)</span>
+        <% if match.global_stadistics.predictions > 0 %>
+          <span class="badge light <%= (match.global_stadistics.home_team_won_perc > match.global_stadistics.away_team_won_perc)? "badge-success" : "badge-danger" %>">
+            <%= match.global_stadistics.home_team_won_perc %>
+            <% if !match.match_stadistics_by_department(competing_user.user.department).nil? %>(<%= match.match_stadistics_by_department(competing_user.user.department).home_team_won_perc %>)<% end %>
+          </span>
+          <span class="badge light badge-light">
+            <%= match.global_stadistics.draw_perc %>
+            <% if !match.match_stadistics_by_department(competing_user.user.department).nil? %>(<%= match.match_stadistics_by_department(competing_user.user.department).draw_perc %>)<% end %>
+          </span>
+          <span class="badge light <%= (match.global_stadistics.home_team_won_perc > match.global_stadistics.away_team_won_perc)? "badge-danger" : "badge-success" %>">
+            <%= match.global_stadistics.away_team_won_perc %>
+            <% if !match.match_stadistics_by_department(competing_user.user.department).nil? %>(<%= match.match_stadistics_by_department(competing_user.user.department).away_team_won_perc %>)<% end %>
+          </span>
+        <% end %>
       </div>
       <div class="match-footer d-flex justify-content-end mt-2 flex-wrap">
           <div class="predictions">

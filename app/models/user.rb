@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :lockable, :trackable
 
   enum role: [:user, :admin]
+  belongs_to :department
   has_many :competing_users
 
   validates :name, presence: true, length: {maximum:50}
